@@ -11,27 +11,18 @@ CFLAGS = -Wall -Werror -Wextra
 RM = rm -rf
 
 # libmlx
-UNAME := $(shell uname)
-ifeq ($(UNAME), Darwin) # MacOS
-	MLX_DIR = libmlx/macos
-	MLX_FLAGS = -I$(MLX_DIR) -L$(MLX_DIR) \
-				-lmlx -framework OpenGL \
-				-framework AppKit
-	MLX_RPATH = 
 
-else
-	MLX_DIR = ./libmlx/linux
-	MLX_FLAGS = -I$(MLX_DIR) -L$(MLX_DIR) -lmlx \
-				-lXext -lX11 -lm
-	MLX_RPATH =			
-endif
-
+MLX_DIR = libmlx/macos
+MLX_FLAGS =  -I$(MLX_DIR) -L$(MLX_DIR)\
+			-lmlx -framework OpenGL \
+			-framework AppKit
+# MLX_RPATH = 
 
 SRCBASE = main
 
-SRC = $(addsuffix .c, $(addprefix srcs/, $(SRCBASE)))
+SRC = $(addsuffix .c, $(addprefix sources/, $(SRCBASE)))
 
-OBJ = $(SRC:srcs/%.c=$(OBJ_DIR)%.o)
+OBJ = $(SRC:sources/%.c=$(OBJ_DIR)%.o)
 
 start:
 	@make all
@@ -50,7 +41,7 @@ all: $(NAME)
 	@echo "\033[32m[Program is ready for use]\033[0m"
 
 # Rule to compile object files
-$(OBJ_DIR)%.o: srcs/%.c | $(OBJ_DIR)
+$(OBJ_DIR)%.o: sources/%.c | $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(INC) -I$(MLX_DIR) -c $< -o $@
 
 # Link everything

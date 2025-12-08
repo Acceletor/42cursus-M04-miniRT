@@ -38,19 +38,17 @@
 
 int main(int argc, char **argv)
 {
-    t_scene *sc;
-    t_collector *g_root;
-    int fd;
+    t_data data;
 
-    g_root = NULL;
-    if (invalid_file(argc, argv, &fd, &g_root))
-        ft_err("Incorrect argument: ./miniRT file_name.rt", &g_root);
-    if (!allocate_scene(&sc, &g_root))
-        ft_err("allocation", &g_root);
-    parse(sc, fd, &g_root);
+    data.gc_root = NULL;
+    data.fd = -1;
+    if (invalid_file(argc, argv, &data))
+        ft_err("Incorrect argument: ./miniRT file_name.rt", &data.gc_root);
+    if (!allocate_scene(&data))
+        ft_err("allocation", &data.gc_root);
+    // parse(&data);
     // .......program logic.......
-    gc_free_all(&g_root);
+    gc_free_all(&data.gc_root);
     // close(fd)
-
     return 0;
 }

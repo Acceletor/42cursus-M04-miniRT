@@ -1,13 +1,13 @@
 #include "../include/minirt.h"
 
-int allocate_scene(t_scene **sc, t_collector **g_root)
+int allocate_scene(t_data *data)
 {
-    *sc = gc_malloc(g_root, sizeof(t_scene));
-    if (!*sc)
+    data->scene = gc_malloc(&data->gc_root, sizeof(t_scene));
+    if (!data->scene)
         return (0);
-    (*sc)->objs = NULL;
-    (*sc)->light = NULL;
-    (*sc)->amb.is_set = false;
-    (*sc)->cam.is_set = false;
+    (data->scene)->objs = NULL;
+    (data->scene)->light = NULL;
+    (data->scene)->amb.is_set = false;
+    (data->scene)->cam.is_set = false;
     return (1);
 }

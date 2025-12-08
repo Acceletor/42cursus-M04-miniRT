@@ -79,6 +79,12 @@ typedef struct s_sphere
 //     t_vec3 normal
 // } t_plane;
 
+typedef struct s_data
+{
+    t_scene scene;
+    t_collector *gc_root;
+    int fd;
+} t_data;
 
 typedef struct s_scene
 {

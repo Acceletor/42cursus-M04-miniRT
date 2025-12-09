@@ -1,14 +1,21 @@
 #include "../include/minirt.h"
 
+static int split_len(char **tokens)
+{
+    int i = 0;
+    while (tokens && tokens[i])
+        i++;
+    return i;
+}
+
 void parse_ambient(t_data *data, char **tokens)
 {
-    // t_amb amb; 
-    if ( !tokens || ft_strlen(*tokens) != 3)
+    if ( !tokens || split_len(tokens) != 3)
         ft_err("invalid ambient!", &data->gc_root);
     if (data->scene.amb.is_set == true)
         ft_err("Too many ambient!", &data->gc_root);
-    // amb.ratio = tokens[1]
-    
+    data->scene.amb.ratio = ft_atod(tokens[1]);
+    data->scene.amb.is_set = true;
 }
 
 void parse_identifier(char *id, char **tokens, t_data *data)
@@ -48,7 +55,7 @@ int parse(t_data *data)
         free(line);
         if (!tokens)
             ft_err("malloc failed in ft_split", &data->gc_root);
-        if (*tokens)
+        if (tokens[0] && tokens[0][0] != '\0' && tokens[0][0] != '\n')
             parse_identifier(*tokens, tokens, data);
         free_split(tokens);
     }

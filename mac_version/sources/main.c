@@ -9,9 +9,10 @@ int main(int argc, char **argv)
     if (invalid_file(argc, argv, &data))
         ft_err("Incorrect argument: ./miniRT file_name.rt", &data.gc_root);
     init_scene(&data);
-    // parse(&data);
-    printf("%f\n", ft_atod("    1.1"));
+    parse(&data);
+    printf("%f\n", data.scene.amb.ratio);
     // .......program logic.......
+    
     gc_free_all(&data.gc_root);
     // close(fd)
     return 0;

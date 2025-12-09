@@ -17,6 +17,7 @@ void ft_err(char *str, t_collector **g_root);
 //core_util.c
 int invalid_file(int argc, char **argv, t_data *data);
 void free_split(char **tokens);
+double	ft_atod(const char *s);
 
 // core_gc.c (manual garbage collector)
 void gc_free_all(t_collector **g_root);
@@ -30,10 +31,6 @@ void init_scene(t_data *data);
 //core_parse.c
 void parse_identifier(char* id, char**tokens, t_data *data);
 int parse(t_data *data);
-
-
-
-
 
 
 #endif

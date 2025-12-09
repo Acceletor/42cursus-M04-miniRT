@@ -32,3 +32,32 @@ void free_split(char **tokens)
     }
     free(tokens);
 }
+
+double	ft_atod(const char *s)
+{
+	double	res;
+	double	div;
+	int		sign;
+
+	res = 0.0;
+	div = 1.0;
+	sign = 1;
+	while ((*s >= 9 && *s <= 13) || *s == ' ')
+		s++;
+	if (*s == '-' || *s == '+')
+	{
+		if (*s == '-')
+			sign = -1;
+		s++;
+	}
+	while (*s >= '0' && *s <= '9')
+		res = res * 10 + (*s++ - '0');
+	if (*s == '.')
+		s++;
+	while (*s >= '0' && *s <= '9')
+	{
+		res = res * 10 + (*s++ - '0');
+		div *= 10.0;
+	}
+	return ((res / div) * sign);
+}

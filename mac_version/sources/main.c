@@ -10,6 +10,7 @@ int main(int argc, char **argv)
         ft_err("Incorrect argument: ./miniRT file_name.rt", &data.gc_root);
     init_scene(&data);
     // parse(&data);
+    printf("%f\n", ft_atod("    1.1"));
     // .......program logic.......
     gc_free_all(&data.gc_root);
     // close(fd)

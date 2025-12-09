@@ -14,7 +14,7 @@ int invalid_file(int argc, char **argv, t_data *data)
         return (1);
     data->fd = open(argv[1], O_RDONLY);
     if (data->fd == -1)
-        ft_err("failed to read the file", &data->gc_root);
+        ft_err("failed to read the file", &data->gc_root, 1);
     return (0);
 }
 

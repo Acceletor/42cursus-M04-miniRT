@@ -10,8 +10,8 @@ typedef struct s_vars
 typedef struct s_vec
 {
     double x;
-    double z;
     double y;
+    double z;
 } t_vec;
 
 // store the result of ray-object intersect

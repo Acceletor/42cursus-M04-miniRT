@@ -1,6 +1,6 @@
 #include "../include/minirt.h"
 
-static int split_len(char **tokens)
+int split_len(char **tokens)
 {
     int i = 0;
     while (tokens && tokens[i])
@@ -8,14 +8,30 @@ static int split_len(char **tokens)
     return i;
 }
 
-void parse_ambient(t_data *data, char **tokens)
+int get_color(char *str, t_vec *out)
 {
-    if ( !tokens || split_len(tokens) != 3)
-        ft_err("invalid ambient!", &data->gc_root);
-    if (data->scene.amb.is_set == true)
-        ft_err("Too many ambient!", &data->gc_root);
-    data->scene.amb.ratio = ft_atod(tokens[1]);
-    data->scene.amb.is_set = true;
+    char **params;
+
+    params = ft_split(str, ',');
+    if (!params)
+        return (1); //malloc error
+    if (split_len(params) != 3)
+    {
+        free_split(params);
+        return (2); //format error
+    }
+    *out = (t_vec){ft_atod(params[0]), ft_atod(params[1]), ft_atod(params[2])};
+    // out->x = ft_atoi(params[0]);
+    // out->y = ft_atoi(params[1]);
+    // out->z = ft_atoi(params[2]);
+    if (out->x > 255 || out->y > 255 || out->z > 255 
+        || out->x < 0 || out->y < 0 || out->z < 0)
+    {
+        free_split(params);
+        return (3); //invalid color
+    }
+    free_split(params);
+    return (0);
 }
 
 void parse_identifier(char *id, char **tokens, t_data *data)
@@ -35,8 +51,7 @@ void parse_identifier(char *id, char **tokens, t_data *data)
     else
     {
         free_split(tokens);
-        close(data->fd);
-        ft_err("Invaid Object Type", &data->gc_root);
+        ft_err("Invaid Object Type", &data->gc_root, 1);
     }
     
 }
@@ -54,7 +69,7 @@ int parse(t_data *data)
         tokens = ft_split(line, ' ');
         free(line);
         if (!tokens)
-            ft_err("malloc failed in ft_split", &data->gc_root);
+            ft_err("malloc failed in ft_split", &data->gc_root, 1);
         if (tokens[0] && tokens[0][0] != '\0' && tokens[0][0] != '\n')
             parse_identifier(*tokens, tokens, data);
         free_split(tokens);

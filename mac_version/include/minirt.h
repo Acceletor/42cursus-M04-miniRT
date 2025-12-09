@@ -12,7 +12,7 @@
 # include "structs.h"
 
 // core_error.c
-void ft_err(char *str, t_collector **g_root);
+void ft_err(char *str, t_collector **g_root, int err);
 
 //core_util.c
 int invalid_file(int argc, char **argv, t_data *data);
@@ -29,8 +29,12 @@ void * gc_malloc(t_collector **g_root ,size_t size);
 void init_scene(t_data *data);
 
 //core_parse.c
+int split_len(char **tokens);
+int get_color(char *str, t_vec *out);
 void parse_identifier(char* id, char**tokens, t_data *data);
 int parse(t_data *data);
 
+//parse_element.c
+void parse_ambient(t_data *data, char **tokens);
 
 #endif

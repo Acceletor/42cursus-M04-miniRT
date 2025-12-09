@@ -96,7 +96,7 @@ typedef struct s_collector
 
 typedef struct s_data
 {
-    t_scene *scene;
+    t_scene scene;
     t_collector *gc_root;
     int fd;
 } t_data;

@@ -18,7 +18,8 @@ MLX_FLAGS =  -I$(MLX_DIR) -L$(MLX_DIR)\
 			-framework AppKit
 # MLX_RPATH = 
 
-SRCBASE = main core_error core_gc core_init core_util
+SRCBASE = main core_error core_gc core_init core_util core_parse \
+		
 
 SRC = $(addsuffix .c, $(addprefix sources/, $(SRCBASE)))
 

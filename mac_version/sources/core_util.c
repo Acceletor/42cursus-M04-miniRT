@@ -17,3 +17,18 @@ int invalid_file(int argc, char **argv, t_data *data)
         ft_err("failed to read the file", &data->gc_root);
     return (0);
 }
+
+void free_split(char **tokens)
+{
+    int i;
+
+    i = 0;
+    if (!tokens)
+        return;
+    while (tokens[i])
+    {
+        free(tokens[i]);
+        i++;
+    }
+    free(tokens);
+}

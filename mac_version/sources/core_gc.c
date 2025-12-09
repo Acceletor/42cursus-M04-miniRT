@@ -13,7 +13,6 @@ void gc_free_all(t_collector **g_root)
     }
 }
 
-
 t_collector *new_node(void *adr)
 {
     t_collector *node;

@@ -16,6 +16,7 @@ void ft_err(char *str, t_collector **g_root);
 
 //core_util.c
 int invalid_file(int argc, char **argv, t_data *data);
+void free_split(char **tokens);
 
 // core_gc.c (manual garbage collector)
 void gc_free_all(t_collector **g_root);
@@ -24,7 +25,11 @@ int gc_append_adr(t_collector **g_root, void *adr);
 void * gc_malloc(t_collector **g_root ,size_t size);
 
 //core_init.c
-int allocate_scene(t_data *data);
+void init_scene(t_data *data);
+
+//core_parse.c
+void parse_identifier(char* id, char**tokens, t_data *data);
+int parse(t_data *data);
 
 
 

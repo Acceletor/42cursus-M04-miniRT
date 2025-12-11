@@ -40,9 +40,6 @@ int get_vec(char *str, t_vec *out);
 int split_len(char **tokens);
 int get_color(char *str, t_vec *out);
 
-//parse_element.c
-void parse_ambient(t_data *data, char **tokens);
-void parse_camera(t_data *data, char **tokens);
 
 // parse_input_validator.c
 int is_invalid_double(char *s);
@@ -53,6 +50,12 @@ int has_invalid_input(char *token);
 void	validate_ambient_tokens(t_data *data, char **tokens);
 void	validate_ambient_values(t_data *data, char **tokens);
 void	parse_ambient(t_data *data, char **tokens);
+
+//parse_camera.c
+void	validate_camera_tokens(t_data *data, char **tokens);
+void	validate_camera_vectors(t_data *data, char **tokens);
+void	validate_camera_fov(t_data *data, char **tokens);
+void parse_camera(t_data *data, char **tokens);
 
 //print_scene.c
 void	print_vec(char *label, t_vec v);

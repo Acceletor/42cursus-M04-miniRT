@@ -49,6 +49,11 @@ int is_invalid_double(char *s);
 int is_invalid_vector(char *s);
 int has_invalid_input(char *token);
 
+// parse_ambient.c
+void	validate_ambient_tokens(t_data *data, char **tokens);
+void	validate_ambient_values(t_data *data, char **tokens);
+void	parse_ambient(t_data *data, char **tokens);
+
 //print_scene.c
 void	print_vec(char *label, t_vec v);
 void	print_ambient(t_amb *amb);

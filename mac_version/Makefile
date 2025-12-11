@@ -20,7 +20,7 @@ MLX_FLAGS =  -I$(MLX_DIR) -L$(MLX_DIR)\
 
 SRCBASE = main core_error core_gc core_init core_util core_parse \
 		parse_elements parse_input_validator parse_utils \
-		print_scene
+		parse_ambient print_scene 
 
 SRC = $(addsuffix .c, $(addprefix sources/, $(SRCBASE)))
 

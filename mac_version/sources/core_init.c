@@ -7,5 +7,4 @@ void init_scene(t_data *data)
     data->scene.amb.is_set = false;
     data->scene.amb.ratio = 0.0;
     data->scene.cam.is_set = false;
-
 }

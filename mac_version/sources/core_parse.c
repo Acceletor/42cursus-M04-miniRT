@@ -20,7 +20,7 @@ int get_color(char *str, t_vec *out)
         free_split(params);
         return (2); //format error
     }
-    *out = (t_vec){ft_atod(params[0]), ft_atod(params[1]), ft_atod(params[2])};
+    *out = (t_vec){ft_atoi(params[0]), ft_atoi(params[1]), ft_atoi(params[2])};
     // out->x = ft_atoi(params[0]);
     // out->y = ft_atoi(params[1]);
     // out->z = ft_atoi(params[2]);
@@ -34,12 +34,13 @@ int get_color(char *str, t_vec *out)
     return (0);
 }
 
+
 void parse_identifier(char *id, char **tokens, t_data *data)
 {
     if (ft_strcmp(id, "A") == 0)
         parse_ambient(data, tokens);
     // else if (ft_strcmp(id, "C") == 0)
-    //     parse_camera();
+    //     parse_camera(data, tokens);
     // else if (ft_strcmp(id, "L") == 0)
     //     parse_light();
     // else if (ft_strcmp(id, "sp") == 0)
@@ -53,7 +54,17 @@ void parse_identifier(char *id, char **tokens, t_data *data)
         free_split(tokens);
         ft_err("Invaid Object Type", &data->gc_root, 1);
     }
+}
+
+void trim_line_newline(char *s)
+{
+    int len;
     
+    if (!s)
+        return;
+    len = ft_strlen(s);
+    if (len > 0 && s[len - 1] == '\n')
+        s[len - 1] = '\0';
 }
 
 int parse(t_data *data)
@@ -66,6 +77,7 @@ int parse(t_data *data)
         line = get_next_line(data->fd);
         if (!line)
             break;
+        trim_line_newline(line);
         tokens = ft_split(line, ' ');
         free(line);
         if (!tokens)

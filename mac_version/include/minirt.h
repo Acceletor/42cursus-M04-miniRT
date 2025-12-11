@@ -36,5 +36,6 @@ int parse(t_data *data);
 
 //parse_element.c
 void parse_ambient(t_data *data, char **tokens);
+void parse_camera(t_data *data, char **tokens);
 
 #endif

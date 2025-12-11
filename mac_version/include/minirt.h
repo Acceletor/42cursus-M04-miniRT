@@ -32,10 +32,17 @@ void init_scene(t_data *data);
 int split_len(char **tokens);
 int get_color(char *str, t_vec *out);
 void parse_identifier(char* id, char**tokens, t_data *data);
+void trim_line_newline(char *s);
 int parse(t_data *data);
 
 //parse_element.c
 void parse_ambient(t_data *data, char **tokens);
 void parse_camera(t_data *data, char **tokens);
+
+// parse_input_validator.c
+int is_invalid_double(char *s);
+int is_invalid_vector(char *s);
+int has_invalid_input(char *token);
+
 
 #endif

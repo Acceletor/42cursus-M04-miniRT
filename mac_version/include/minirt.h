@@ -29,11 +29,16 @@ void * gc_malloc(t_collector **g_root ,size_t size);
 void init_scene(t_data *data);
 
 //core_parse.c
-int split_len(char **tokens);
-int get_color(char *str, t_vec *out);
+
 void parse_identifier(char* id, char**tokens, t_data *data);
 void trim_line_newline(char *s);
 int parse(t_data *data);
+
+// parse_utils.c
+t_vec	make_vec(double x, double y, double z);
+int get_vec(char *str, t_vec *out);
+int split_len(char **tokens);
+int get_color(char *str, t_vec *out);
 
 //parse_element.c
 void parse_ambient(t_data *data, char **tokens);
@@ -44,5 +49,11 @@ int is_invalid_double(char *s);
 int is_invalid_vector(char *s);
 int has_invalid_input(char *token);
 
+//print_scene.c
+void	print_vec(char *label, t_vec v);
+void	print_ambient(t_amb *amb);
+void	print_camera(t_cam *cam);
+void	print_lights_and_objs(t_scene *sc);
+void	print_scene(t_data *data);
 
 #endif

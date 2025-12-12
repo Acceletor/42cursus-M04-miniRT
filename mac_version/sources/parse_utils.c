@@ -36,6 +36,7 @@ int split_len(char **tokens)
 int get_color(char *str, t_vec *out)
 {
     char **params;
+    t_vec color;
 
     params = ft_split(str, ',');
     if (!params)
@@ -45,13 +46,17 @@ int get_color(char *str, t_vec *out)
         free_split(params);
         return (2); //format error
     }
-    *out = make_vec(ft_atoi(params[0]), ft_atoi(params[1]), ft_atoi(params[2]));
-    if (out->x > 255 || out->y > 255 || out->z > 255 
-        || out->x < 0 || out->y < 0 || out->z < 0)
+    color = make_vec(ft_atod(params[0]), ft_atod(params[1]), ft_atod(params[2]));
+    if (color.x != (int)color.x || color.y != (int)color.y || color.z != (int)color.z ||
+        color.x > 255 || color.y > 255 || color.z > 255 ||
+        color.x < 0 || color.y < 0 || color.z < 0)
     {
         free_split(params);
         return (3); //invalid color
     }
+    out->x = (int)color.x;
+    out->y = (int)color.y;
+    out->z = (int)color.z;
     free_split(params);
     return (0);
 }

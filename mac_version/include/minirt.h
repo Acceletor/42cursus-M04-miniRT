@@ -57,11 +57,20 @@ void	validate_camera_vectors(t_data *data, char **tokens);
 void	validate_camera_fov(t_data *data, char **tokens);
 void parse_camera(t_data *data, char **tokens);
 
+//parse_light.c
+void	validate_light_tokens(t_data *data, char **token);
+t_light	*alloc_light(t_data *data, char **token);
+void	set_light_params(t_data *data, t_light *new, char **token);
+void	add_light_to_scene(t_scene *scene, t_light *new);
+void parse_light(t_data *data, char **token);
+
 //print_scene.c
 void	print_vec(char *label, t_vec v);
 void	print_ambient(t_amb *amb);
 void	print_camera(t_cam *cam);
 void	print_lights_and_objs(t_scene *sc);
 void	print_scene(t_data *data);
+
+
 
 #endif

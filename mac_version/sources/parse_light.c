@@ -11,7 +11,7 @@ void	validate_light_tokens(t_data *data, char **token)
 		|| has_invalid_input(token[3]))
 	{
 		free_split(token);
-		ft_err("Invalid input parameter!", &data->gc_root, 1);
+		ft_err("Invalid Light input parameter!", &data->gc_root, 1);
 	}
 }
 

@@ -1,31 +1,45 @@
 #include "../include/minirt.h"
 
-int is_invalid_double(char *s)
+static int	check_double_body(char *s, int i)
 {
-    int i;
-    int has_dot;
-    int has_digit;
+	int	has_dot;
+	int	has_before;
+	int	has_after;
 
-    i = 0;
-    has_dot = 0;
-    has_digit = 0;
-    if (s[i] == '+' || s[i] == '-')
-        i++;
-    if (s[i] == '\0')
-        return (1);
-    while (s[i])
-    {
-        if (ft_isdigit(s[i]))
-            has_digit = 1;
-        else if (s[i] == '.' && !has_dot)
-            has_dot = 1;
-        else
-            return(1);
-        i++;
-    }
-    if (!has_digit)
-        return (1);
-    return(0);
+	has_dot = 0;
+	has_before = 0;
+	has_after = 0;
+	while (s[i])
+	{
+		if (ft_isdigit(s[i]) && !has_dot)
+			has_before = 1;
+		else if (s[i] == '.' && !has_dot)
+			has_dot = 1;
+		else if (ft_isdigit(s[i]) && has_dot)
+			has_after = 1;
+		else
+			return (1);
+		i++;
+	}
+	if (!has_before)
+		return (1);
+	if (has_dot && !has_after)
+		return (1);
+	return (0);
+}
+
+int	is_invalid_double(char *s)
+{
+	int	i;
+
+	i = 0;
+	if (!s || s[0] == '\0')
+		return (1);
+	if (s[i] == '+' || s[i] == '-')
+		i++;
+	if (s[i] == '\0')
+		return (1);
+	return (check_double_body(s, i));
 }
 
 int is_invalid_vector(char *s)

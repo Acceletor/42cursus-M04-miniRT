@@ -30,7 +30,9 @@ void	validate_camera_vectors(t_data *data, char **tokens)
 	}
 	if (data->scene.cam.dir.x > 1 || data->scene.cam.dir.y > 1
 		|| data->scene.cam.dir.z > 1 || data->scene.cam.dir.x < -1
-		|| data->scene.cam.dir.y < -1 || data->scene.cam.dir.z < -1)
+		|| data->scene.cam.dir.y < -1 || data->scene.cam.dir.z < -1
+        || (data->scene.cam.dir.x == 0 && data->scene.cam.dir.y == 0 
+            && data->scene.cam.dir.z == 0))
 	{
 		free_split(tokens);
 		ft_err("Invalid Camera orientation!", &data->gc_root, 1);

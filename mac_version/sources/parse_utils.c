@@ -61,12 +61,27 @@ t_objs *alloc_object(t_obj_type type, t_collector **gc_root)
     new_obj = gc_malloc(gc_root, sizeof(t_objs));
     if (!new_obj)
         return (NULL);
+    new_obj->type = type;
     if (type == OBJ_SPHERE)
-    {
-        new_obj->type = OBJ_SPHERE;
         new_obj->data = (void *)gc_malloc(gc_root, sizeof(t_sphere));
-        if (!new_obj->data)
-            return (NULL);
-    } 
+    else if (type == OBJ_PLANE)
+        new_obj->data = (void *)gc_malloc(gc_root, sizeof(t_plane));
+    if (!new_obj->data)
+        return (NULL);
     return (new_obj);
+}
+
+void	add_object_to_scene(t_scene *scene, t_objs *new)
+{
+	t_objs	*tmp;
+
+	if (!scene->objs)
+	{
+		scene->objs = new;
+		return ;
+	}
+	tmp = scene->objs;
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = new;
 }

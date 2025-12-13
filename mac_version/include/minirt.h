@@ -40,6 +40,7 @@ t_vec	make_vec(double x, double y, double z);
 int get_vec(char *str, t_vec *out);
 int get_color(char *str, t_vec *out);
 t_objs *alloc_object(t_obj_type type, t_collector **gc_root);
+void	add_object_to_scene(t_scene *scene, t_objs *new);
 
 // parse_input_validator.c
 int is_invalid_double(char *s);
@@ -66,6 +67,9 @@ void parse_light(t_data *data, char **token);
 
 //parse_sphere.c
 void parse_sphere(t_data *data, char **tokens);
+
+//parse_plane.c
+void parse_plane(t_data *data, char **tokens);
 
 //print_scene.c
 void	print_vec(char *label, t_vec v);

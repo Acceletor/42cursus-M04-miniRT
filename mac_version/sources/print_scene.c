@@ -67,7 +67,14 @@ void	print_lights_and_objs(t_scene *sc)
 				((t_sphere *)ob->data)->color);
 		}
 		else if (ob->type == OBJ_PLANE)
-			printf("Plane (no print data yet)\n");
+        {
+			printf("Plane\n");
+            print_vec("  point:  ", ((t_plane *)ob->data)->point);
+            print_vec("  normal:  ",
+				((t_plane *)ob->data)->normal);
+            print_vec("  color:   ",
+				((t_plane *)ob->data)->color);
+        }
 		else if (ob->type == OBJ_CYLINDER)
 			printf("Cylinder (no print data yet)\n");
 		ob = ob->next;

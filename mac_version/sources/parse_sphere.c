@@ -1,11 +1,11 @@
 #include "../include/minirt.h"
 
-void	validate_sphere_tokens(t_data *data, char **tokens)
+static void	validate_sphere_tokens(t_data *data, char **tokens)
 {
 	if (!tokens || split_len(tokens) != 4)
 	{
 		free_split(tokens);
-		ft_err("Invalid number of sphere's parameter!", &data->gc_root, 1);
+		ft_err("Invalid number of sphere parameter!", &data->gc_root, 1);
 	}
 	if (has_invalid_input(tokens[1]) || has_invalid_input(tokens[2])
 		|| has_invalid_input(tokens[3]))
@@ -15,7 +15,7 @@ void	validate_sphere_tokens(t_data *data, char **tokens)
 	}
 }
 
-t_objs	*create_sphere_obj(t_data *data, char **tokens)
+static t_objs	*create_sphere_obj(t_data *data, char **tokens)
 {
 	t_objs	*new;
 
@@ -29,7 +29,7 @@ t_objs	*create_sphere_obj(t_data *data, char **tokens)
 	return (new);
 }
 
-void	set_sphere_params(t_data *data, t_sphere *sp, char **tokens)
+static void	set_sphere_params(t_data *data, t_sphere *sp, char **tokens)
 {
 	if (get_vec(tokens[1], &sp->center))
 	{
@@ -49,20 +49,20 @@ void	set_sphere_params(t_data *data, t_sphere *sp, char **tokens)
 	}
 }
 
-void	add_object_to_scene(t_scene *scene, t_objs *new)
-{
-	t_objs	*tmp;
+// static void	add_object_to_scene(t_scene *scene, t_objs *new)
+// {
+// 	t_objs	*tmp;
 
-	if (!scene->objs)
-	{
-		scene->objs = new;
-		return ;
-	}
-	tmp = scene->objs;
-	while (tmp->next)
-		tmp = tmp->next;
-	tmp->next = new;
-}
+// 	if (!scene->objs)
+// 	{
+// 		scene->objs = new;
+// 		return ;
+// 	}
+// 	tmp = scene->objs;
+// 	while (tmp->next)
+// 		tmp = tmp->next;
+// 	tmp->next = new;
+// }
 
 void	parse_sphere(t_data *data, char **tokens)
 {

@@ -73,11 +73,12 @@ typedef struct s_sphere
    t_vec color;
 } t_sphere;
 
-// typedef struct s_plane
-// {
-//     t_vec3 point;
-//     t_vec3 normal
-// } t_plane;
+typedef struct s_plane
+{
+    t_vec point;
+    t_vec normal;
+    t_vec color;
+} t_plane;
 
 typedef struct s_scene
 {

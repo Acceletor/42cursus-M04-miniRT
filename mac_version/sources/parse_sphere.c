@@ -49,21 +49,6 @@ static void	set_sphere_params(t_data *data, t_sphere *sp, char **tokens)
 	}
 }
 
-// static void	add_object_to_scene(t_scene *scene, t_objs *new)
-// {
-// 	t_objs	*tmp;
-
-// 	if (!scene->objs)
-// 	{
-// 		scene->objs = new;
-// 		return ;
-// 	}
-// 	tmp = scene->objs;
-// 	while (tmp->next)
-// 		tmp = tmp->next;
-// 	tmp->next = new;
-// }
-
 void	parse_sphere(t_data *data, char **tokens)
 {
 	t_objs		*new;

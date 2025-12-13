@@ -1,0 +1,25 @@
+# macOS system files
+.DS_Store
+*/.DS_Store
+
+# MLX Swift module files (generated on macOS)
+*.swiftdoc
+*.swiftmodule
+
+# Object files
+*.o
+
+# Libtool files
+*.lo
+*.la
+
+# Builds
+*.a
+*.so
+*.dylib
+
+# Executables
+a.out
+miniRT
+
+.vscode/

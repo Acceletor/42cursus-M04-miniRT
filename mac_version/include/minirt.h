@@ -18,6 +18,7 @@ void ft_err(char *str, t_collector **g_root, int err);
 int invalid_file(int argc, char **argv, t_data *data);
 void free_split(char **tokens);
 double	ft_atod(const char *s);
+int split_len(char **tokens);
 
 // core_gc.c (manual garbage collector)
 void gc_free_all(t_collector **g_root);
@@ -37,9 +38,8 @@ int parse(t_data *data);
 // parse_utils.c
 t_vec	make_vec(double x, double y, double z);
 int get_vec(char *str, t_vec *out);
-int split_len(char **tokens);
 int get_color(char *str, t_vec *out);
-
+t_objs *alloc_object(t_obj_type type, t_collector **gc_root);
 
 // parse_input_validator.c
 int is_invalid_double(char *s);
@@ -63,6 +63,9 @@ t_light	*alloc_light(t_data *data, char **token);
 void	set_light_params(t_data *data, t_light *new, char **token);
 void	add_light_to_scene(t_scene *scene, t_light *new);
 void parse_light(t_data *data, char **token);
+
+//parse_sphere.c
+void parse_sphere(t_data *data, char **tokens);
 
 //print_scene.c
 void	print_vec(char *label, t_vec v);

@@ -25,13 +25,6 @@ int get_vec(char *str, t_vec *out)
     free_split(params);
     return (0);
 }
-int split_len(char **tokens)
-{
-    int i = 0;
-    while (tokens && tokens[i])
-        i++;
-    return i;
-}
 
 int get_color(char *str, t_vec *out)
 {
@@ -59,4 +52,21 @@ int get_color(char *str, t_vec *out)
     out->z = (int)color.z;
     free_split(params);
     return (0);
+}
+
+t_objs *alloc_object(t_obj_type type, t_collector **gc_root)
+{
+    t_objs *new_obj;
+    
+    new_obj = gc_malloc(gc_root, sizeof(t_objs));
+    if (!new_obj)
+        return (NULL);
+    if (type == OBJ_SPHERE)
+    {
+        new_obj->type = OBJ_SPHERE;
+        new_obj->data = (void *)gc_malloc(gc_root, sizeof(t_sphere));
+        if (!new_obj->data)
+            return (NULL);
+    } 
+    return (new_obj);
 }

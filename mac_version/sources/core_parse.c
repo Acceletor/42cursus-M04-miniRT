@@ -8,8 +8,8 @@ void parse_identifier(char *id, char **tokens, t_data *data)
         parse_camera(data, tokens);
     else if (ft_strcmp(id, "L") == 0)
         parse_light(data, tokens);
-    // else if (ft_strcmp(id, "sp") == 0)
-    //     parse_sphere();
+    else if (ft_strcmp(id, "sp") == 0)
+        parse_sphere(data, tokens);
     // else if (ft_strcmp(id, "pl") == 0)
     //     parse_plane();
     // else if (ft_strcmp(id, "cy") == 0)

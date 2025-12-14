@@ -80,6 +80,15 @@ typedef struct s_plane
     t_vec color;
 } t_plane;
 
+typedef struct s_cylinder
+{
+    t_vec center;
+    t_vec normal;
+    double diameter;
+    double height;
+    t_vec color;
+} t_cylinder;
+
 typedef struct s_scene
 {
     t_vec col;

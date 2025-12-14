@@ -71,6 +71,9 @@ void parse_sphere(t_data *data, char **tokens);
 //parse_plane.c
 void parse_plane(t_data *data, char **tokens);
 
+//parse_cylinder.c
+void parse_cylinder(t_data *data, char **tokens);
+
 //print_scene.c
 void	print_vec(char *label, t_vec v);
 void	print_ambient(t_amb *amb);

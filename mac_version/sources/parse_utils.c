@@ -63,9 +63,11 @@ t_objs *alloc_object(t_obj_type type, t_collector **gc_root)
         return (NULL);
     new_obj->type = type;
     if (type == OBJ_SPHERE)
-        new_obj->data = (void *)gc_malloc(gc_root, sizeof(t_sphere));
+        new_obj->data = gc_malloc(gc_root, sizeof(t_sphere));
     else if (type == OBJ_PLANE)
-        new_obj->data = (void *)gc_malloc(gc_root, sizeof(t_plane));
+        new_obj->data = gc_malloc(gc_root, sizeof(t_plane));
+    else if (type == OBJ_CYLINDER)
+        new_obj->data = gc_malloc(gc_root, sizeof(t_cylinder));
     if (!new_obj->data)
         return (NULL);
     return (new_obj);

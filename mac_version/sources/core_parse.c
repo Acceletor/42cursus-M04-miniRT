@@ -12,8 +12,8 @@ void parse_identifier(char *id, char **tokens, t_data *data)
         parse_sphere(data, tokens);
     else if (ft_strcmp(id, "pl") == 0)
         parse_plane(data, tokens);
-    // else if (ft_strcmp(id, "cy") == 0)
-    //     parse_cylinder();
+    else if (ft_strcmp(id, "cy") == 0)
+        parse_cylinder(data, tokens);
     else
     {
         free_split(tokens);

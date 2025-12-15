@@ -37,7 +37,7 @@ t_camera set_camera(t_scene *sc)
     cam.forward = vec_normalize(sc->cam.dir);
     world_up = (t_vec){0, 1, 0};
     cam.right = vec_normalize(vec_cross(cam.forward, world_up));
-    cam.up =  vec_cross(cam.right, cam.forward);
+    cam.up =  vec_normalize(vec_cross(cam.right, cam.forward));
     return (cam);
 }
 

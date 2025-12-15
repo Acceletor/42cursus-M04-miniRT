@@ -1,11 +1,11 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-typedef struct s_vars
+typedef struct s_mlx
 {
     void *mlx;
     void *win;
-} t_vars;
+} t_mlx;
 
 typedef struct s_vec
 {
@@ -14,15 +14,45 @@ typedef struct s_vec
     double z;
 } t_vec;
 
-// store the result of ray-object intersect
-// raytracer updates this as it finds the nearest object
-typedef struct s_inter  
+typedef struct s_image //mlx image buffer
 {
-    double t; // distance to intersection along the ray
-    t_vec color; // final computed color at this point (after shading)
-    t_vec hit; // the exact hit point = ray.orig + t * ray.dir
-    t_vec norm; //surface normal at the hit point
-} t_inter;
+    void *img;
+    void *addr;
+    int bits_per_pixel;
+    int line_length;
+    int endian;
+}   t_image;
+
+typedef struct s_ray
+{
+    t_vec origin;
+    t_vec dir;
+} t_ray;
+
+typedef struct s_camera
+{
+    t_vec pos;
+    t_vec forward;
+    t_vec right;
+    t_vec up;
+    double aspect;
+    double theta; // horizontal FOV (radian)
+    double vp_width;
+    double vp_height;
+} t_camera;
+
+typedef struct s_renderer
+{
+    t_mlx mlx;
+    t_image img;
+    int x;
+    int y;
+    double u;
+    double v;
+    t_camera cam;
+    t_ray ray;
+    t_vec ray_col;
+}   t_renderer;
 
 
 /* ====== Global element (appear once)======= */

@@ -1,15 +1,21 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 
+# define WIDTH 1200
+# define HEIGHT 1400
+# define EPSILON 0.000001
+
 # include <stdlib.h>
 # include <fcntl.h> 
 # include <stdbool.h>
 # include <unistd.h>
+# include <math.h>
 # include "../libmlx/macos/mlx.h"
 # include "../libft/get_next_line.h"
 # include "../libft/ft_printf.h"
 # include "../libft/libft.h"
 # include "structs.h"
+
 
 // core_error.c
 void ft_err(char *str, t_collector **g_root, int err);

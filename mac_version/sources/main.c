@@ -24,6 +24,27 @@ t_vec vec_normalize(t_vec v)
     return (normalized);
 }
 
+t_vec add_vec(t_vec u, t_vec v)
+{
+    t_vec w;
+
+    w.x = u.x + v.x;
+    w.y = u.y + v.y;
+    w.z = u.z + v.z;
+    return (w);
+}
+
+t_vec mult_vec(t_vec v, double a)
+{
+    t_vec w;
+
+    w.x = v.x * a;
+    w.y = v.y * a;
+    w.z = v.z * a;
+    return (w);
+}
+
+
 t_camera set_camera(t_scene *sc)
 {
     t_camera cam;
@@ -35,10 +56,69 @@ t_camera set_camera(t_scene *sc)
     cam.vp_width = 2.0 * tan(cam.theta/2.0); // distance = 1
     cam.vp_height = cam.vp_width / cam.aspect;
     cam.forward = vec_normalize(sc->cam.dir);
-    world_up = (t_vec){0, 1, 0};
+    world_up = (t_vec){0, 1, 0}; // +Y
+    if (fabs(cam.forward.x) < EPSILON && fabs(cam.forward.z) < EPSILON)
+        world_up = (t_vec){0, 0, 1}; // +Z
     cam.right = vec_normalize(vec_cross(cam.forward, world_up));
     cam.up =  vec_normalize(vec_cross(cam.right, cam.forward));
     return (cam);
+}
+
+t_ray ray_primary(t_camera *cam, double sx, double sy)
+{
+    t_ray ray;
+    double horizontal_offset;
+    double vertical_offset;
+
+    horizontal_offset = sx * (cam->vp_width * 0.5);
+    vertical_offset = sy * (cam->vp_height * 0.5);
+
+    ray.origin = cam->pos;
+    ray.dir = add_vec(cam->forward,
+                add_vec(
+                    mult_vec(cam->right, horizontal_offset), 
+                    mult_vec(cam->up, vertical_offset)
+                ));
+    ray.dir = vec_normalize(ray.dir);
+    return (ray);
+}
+
+void image_init(t_renderer *info)
+{
+    info->mlx.mlx = mlx_init();
+    info->mlx.win = mlx_new_window(info->mlx.mlx, WIDTH, HEIGHT, WINDOW_NAME);
+    info->img.img = mlx_new_image(info->mlx.mlx, WIDTH, HEIGHT);
+    info->img.addr = mlx_get_data_addr(info->img.img, &info->img.bits_per_pixel,
+        &info->img.line_length, &info->img.endian);
+}
+
+void my_mlx_pixel_put(t_image *img, int x, int y, int color)
+{
+    char *dst;
+    if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
+        return;
+    dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel/8));
+    *(unsigned int *)dst = (unsigned int)color;
+}
+
+
+void draw(t_renderer *info, t_scene *sc)
+{  
+    info->y = 0;
+    while (info->y < HEIGHT)
+    {
+        info->x = 0;
+        while (info->x < WIDTH)
+        {
+            info->sx = ((info->x + 0.5)/ (double)WIDTH) * 2.0 - 1.0;
+            info->sy = 1.0 - ((info->y + 0.5)/ (double)HEIGHT) * 2.0;
+            info->ray = ray_primary(&info->cam, info->sx, info->sy);
+            // info.ray_col = ray_color()
+            sc = sc;
+            info->x++;
+        }
+        info->y++;
+    }
 }
 
 void rendering(t_scene *sc)
@@ -46,6 +126,8 @@ void rendering(t_scene *sc)
     t_renderer info;
 
     info.cam = set_camera(sc);
+    image_init(&info);
+    draw(&info, sc);
     
 }
 

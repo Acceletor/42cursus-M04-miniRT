@@ -4,6 +4,7 @@
 # define WIDTH 1200
 # define HEIGHT 1400
 # define EPSILON 0.000001
+# define WINDOW_NAME "MiniRT"
 
 # include <stdlib.h>
 # include <fcntl.h> 

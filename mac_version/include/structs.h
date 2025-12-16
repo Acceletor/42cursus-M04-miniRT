@@ -47,8 +47,8 @@ typedef struct s_renderer
     t_image img;
     int x;
     int y;
-    double u;
-    double v;
+    double sx;
+    double sy;
     t_camera cam;
     t_ray ray;
     t_vec ray_col;

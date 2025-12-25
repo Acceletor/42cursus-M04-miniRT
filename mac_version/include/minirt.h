@@ -35,6 +35,9 @@ void * gc_malloc(t_collector **g_root ,size_t size);
 
 //core_init.c
 void init_scene(t_data *data);
+t_camera set_camera(t_scene *sc);
+void image_init(t_renderer *info);
+
 
 //core_parse.c
 
@@ -87,6 +90,19 @@ void	print_ambient(t_amb *amb);
 void	print_camera(t_cam *cam);
 void	print_lights_and_objs(t_scene *sc);
 void	print_scene(t_data *data);
+
+// vector_op.c
+t_vec vec_cross(t_vec u, t_vec v);
+t_vec vec_normalize(t_vec v);
+t_vec add_vec(t_vec u, t_vec v);
+t_vec mult_vec(t_vec v, double a);
+
+// rendering.c
+t_vec   ray_color(t_ray *ray, t_scene *sc);
+t_ray ray_primary(t_camera *cam, double sx, double sy);
+void draw(t_renderer *info, t_scene *sc);
+void rendering(t_scene *sc);
+
 
 
 

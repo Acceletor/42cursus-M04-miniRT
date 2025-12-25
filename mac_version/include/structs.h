@@ -55,6 +55,14 @@ typedef struct s_renderer
 }   t_renderer;
 
 
+typedef struct s_inter
+{
+    double t;
+    t_vec color;
+    t_vec hit;
+    t_vec norm;
+} t_inter;
+
 /* ====== Global element (appear once)======= */
 typedef struct s_amb
 {

@@ -54,13 +54,14 @@ typedef struct s_renderer
     t_vec ray_col;
 }   t_renderer;
 
+// P(t) = ray.origin + ray.dir * t
 
-typedef struct s_inter
+typedef struct s_inter   
 {
-    double t;
+    double t; // distance along the ray 
+    t_vec hit; // the exact 3D point where the ray touches the object
+    t_vec norm; 
     t_vec color;
-    t_vec hit;
-    t_vec norm;
 } t_inter;
 
 /* ====== Global element (appear once)======= */
@@ -148,5 +149,19 @@ typedef struct s_data
     t_collector *gc_root;
     int fd;
 } t_data;
+
+///
+typedef struct s_sp_tmp
+{
+    t_vec oc;
+    double	a;
+	double	b;
+	double	c;
+	double	disc;
+	double	sqrt_disc;
+	double	t1;
+	double	t2;
+	double	r;
+} t_sp_tmp;
 
 #endif

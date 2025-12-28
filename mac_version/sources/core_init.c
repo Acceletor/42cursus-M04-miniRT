@@ -35,4 +35,7 @@ void image_init(t_renderer *info)
     info->img.img = mlx_new_image(info->mlx.mlx, WIDTH, HEIGHT);
     info->img.addr = mlx_get_data_addr(info->img.img, &info->img.bits_per_pixel,
         &info->img.line_length, &info->img.endian);
+
+    // printf("bpp=%d line_length=%d endian=%d\n",
+    //     info->img.bits_per_pixel, info->img.line_length, info->img.endian);
 }

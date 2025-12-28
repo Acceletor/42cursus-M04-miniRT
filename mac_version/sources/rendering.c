@@ -108,9 +108,11 @@ t_vec   ray_color(t_ray *ray, t_scene *sc)
     if (inter.t > EPSILON)
     {
         // compute amb + light;
-        return (inter.color); //temp
+        // return (inter.color); //temp
+        return (t_vec){1.0, 0.0, 0.0};
     }
-    return (mult_vec(sc->amb.color, sc->amb.ratio)); //background
+    return (t_vec){0.2, 0.2, 0.2};
+    // return (mult_vec(sc->amb.color, sc->amb.ratio)); //background
 }
 
 t_ray ray_primary(t_camera *cam, double sx, double sy)
@@ -132,6 +134,32 @@ t_ray ray_primary(t_camera *cam, double sx, double sy)
     return (ray);
 }
 
+void my_mlx_pixel_put(t_image *img, int x, int y, int color)
+{
+    char *dst;
+    if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
+        return;
+    dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel/8));
+    *(unsigned int *)dst = (unsigned int)color;
+}
+
+static int to_byte(double x)
+{
+    if (x <= 0.0) return 0;
+    if (x >= 1.0) return 255;
+    return (int)(x * 255.999);
+}
+
+int create_rgb(int r, int g, int b) 
+{
+    return (((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff)); 
+}
+
+int vec_to_rgb(t_vec c) // expects 0..1
+{
+    return create_rgb(to_byte(c.x), to_byte(c.y), to_byte(c.z));
+}
+
 void draw(t_renderer *info, t_scene *sc)
 {  
     info->y = 0;
@@ -144,10 +172,13 @@ void draw(t_renderer *info, t_scene *sc)
             info->sy = 1.0 - ((info->y + 0.5)/ (double)HEIGHT) * 2.0;
             info->ray = ray_primary(&info->cam, info->sx, info->sy);
             info->ray_col = ray_color(&info->ray, sc);
+            my_mlx_pixel_put(&info->img, info->x, info->y,
+                vec_to_rgb(info->ray_col));
             info->x++;
         }
         info->y++;
     }
+    mlx_put_image_to_window(info->mlx.mlx, info->mlx.win, info->img.img, 0, 0);
 }
 
 void rendering(t_scene *sc)
@@ -157,5 +188,5 @@ void rendering(t_scene *sc)
     info.cam = set_camera(sc);
     image_init(&info);
     draw(&info, sc);
-    
+    mlx_loop(info.mlx.mlx);
 }

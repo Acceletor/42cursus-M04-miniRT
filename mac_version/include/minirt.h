@@ -1,8 +1,8 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# define WIDTH 1200
-# define HEIGHT 1000
+# define WIDTH 800
+# define HEIGHT 600
 # define EPSILON 0.000001
 # define WINDOW_NAME "MiniRT"
 
@@ -102,14 +102,25 @@ t_vec add_vec(t_vec u, t_vec v);
 t_vec mult_vec(t_vec v, double a);
 
 // rendering.c
-t_vec   ray_color(t_ray *ray, t_scene *sc);
-t_ray ray_primary(t_camera *cam, double sx, double sy);
 void draw(t_renderer *info, t_scene *sc);
 void rendering(t_scene *sc);
+
+// ray_cal.c
+t_inter scene_inter(t_ray *ray, t_scene *sc);
+t_vec   ray_color(t_ray *ray, t_scene *sc);
+t_ray ray_primary(t_camera *cam, double sx, double sy);
+
+//hit_object_update.c
+t_inter hit_sphere_update(t_inter best, t_objs *obj, t_ray *ray);
 
 // intersection.c
 double	get_smallest_positive(double t1, double t2);
 int sphere_intersect(t_ray *ray, t_sphere *sp ,double *t_hit);
+
+// covert_to_rgb.c
+int to_byte(double x);
+int create_rgb(int r, int g, int b);
+int vec_to_rgb(t_vec c);
 
 
 

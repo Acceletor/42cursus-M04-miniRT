@@ -24,22 +24,16 @@ t_vec vec_normalize(t_vec v)
     return (normalized);
 }
 
-t_vec add_vec(t_vec u, t_vec v)
+double dot_vec(t_vec a, t_vec b)
 {
-    t_vec w;
-
-    w.x = u.x + v.x;
-    w.y = u.y + v.y;
-    w.z = u.z + v.z;
-    return (w);
+    return a.x*b.x + a.y*b.y + a.z*b.z;
 }
 
-t_vec mult_vec(t_vec v, double a)
+t_vec normalize_color(t_vec rgb)
 {
-    t_vec w;
-
-    w.x = v.x * a;
-    w.y = v.y * a;
-    w.z = v.z * a;
-    return (w);
+    return ((t_vec) {
+        rgb.x/255,
+        rgb.y/255,
+        rgb.z/255,
+    });
 }

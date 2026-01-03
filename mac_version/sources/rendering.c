@@ -55,11 +55,8 @@ t_vec   ray_color(t_ray *ray, t_scene *sc)
     {
         // compute amb + light;
         return (inter.color); //HIT
-        // return (t_vec){1.0, 0.0, 0.0};
     }
-    // return (t_vec){0.2, 0.2, 0.2};
-    return (normalize_color(mult_vec(sc->amb.color, sc->amb.ratio)));
-    // return (mult_vec(sc->amb.color, sc->amb.ratio)); //background
+    return (normalize_color(mult_vec(sc->amb.color, sc->amb.ratio)))  
 }
 
 t_ray ray_primary(t_camera *cam, double sx, double sy)

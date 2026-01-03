@@ -44,7 +44,6 @@ t_inter scene_inter(t_ray *ray, t_scene *sc)
     return (best);
 }
 
-
 t_vec   ray_color(t_ray *ray, t_scene *sc)
 {
     t_inter inter;
@@ -59,7 +58,7 @@ t_vec   ray_color(t_ray *ray, t_scene *sc)
         // return (t_vec){1.0, 0.0, 0.0};
     }
     // return (t_vec){0.2, 0.2, 0.2};
-    return (mult_vec(normalize_color(sc->amb.color), sc->amb.ratio));
+    return (normalize_color(mult_vec(sc->amb.color, sc->amb.ratio)));
     // return (mult_vec(sc->amb.color, sc->amb.ratio)); //background
 }
 

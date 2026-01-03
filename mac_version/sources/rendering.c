@@ -69,7 +69,7 @@ t_inter hit_sphere_update(t_inter best, t_objs *obj, t_ray *ray)
     hit.t = t;
     hit.hit = add_vec(ray->origin, mult_vec(ray->dir, t));
     hit.norm = vec_normalize(sub_vec(hit.hit, sp->center));
-    hit.color = sp->color;
+    hit.color = (t_vec){sp->color.x/255, sp->color.y/255, sp->color.z/255};
 
     return (hit);
 }
@@ -108,11 +108,11 @@ t_vec   ray_color(t_ray *ray, t_scene *sc)
     if (inter.t > EPSILON)
     {
         // compute amb + light;
-        // return (inter.color); //temp
-        return (t_vec){1.0, 0.0, 0.0};
+        return (inter.color); //HIT
+        // return (t_vec){1.0, 0.0, 0.0};
     }
-    return (t_vec){0.2, 0.2, 0.2};
-    // return (mult_vec(sc->amb.color, sc->amb.ratio)); //background
+    // return (t_vec){0.2, 0.2, 0.2};
+    return (mult_vec(sc->amb.color, sc->amb.ratio)); //background
 }
 
 t_ray ray_primary(t_camera *cam, double sx, double sy)

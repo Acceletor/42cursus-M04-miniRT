@@ -21,8 +21,8 @@ MLX_FLAGS =  -I$(MLX_DIR) -L$(MLX_DIR)\
 SRCBASE = main core_error core_gc core_init core_util core_parse \
 		parse_input_validator parse_utils print_scene \
 		parse_ambient parse_camera parse_light parse_sphere \
-		parse_plane parse_cylinder vector_op vector_op2 rendering \
-		intersection convert_to_rgb hit_object_update ray_cal \
+		parse_plane parse_cylinder vector_op vector_op2 ren_rendering \
+		ren_intersection convert_to_rgb ren_hit_object_update ren_ray_cal \
 
 SRC = $(addsuffix .c, $(addprefix sources/, $(SRCBASE)))
 

@@ -101,19 +101,22 @@ t_vec sub_vec(t_vec a, t_vec b);
 t_vec add_vec(t_vec u, t_vec v);
 t_vec mult_vec(t_vec v, double a);
 
-// rendering.c
+// ren_rendering.c
+void my_mlx_pixel_put(t_image *img, int x, int y, int color);
+int clean_exit(t_data *data);
+int handle_key(int keycode, void *param);
 void draw(t_renderer *info, t_scene *sc);
 void rendering(t_data *data);
 
-// ray_cal.c
+// ren_ray_cal.c
 t_inter scene_inter(t_ray *ray, t_scene *sc);
 t_vec   ray_color(t_ray *ray, t_scene *sc);
 t_ray ray_primary(t_camera *cam, double sx, double sy);
 
-//hit_object_update.c
+// ren_hit_object_update.c
 t_inter hit_sphere_update(t_inter best, t_objs *obj, t_ray *ray);
 
-// intersection.c
+// ren_intersection.c
 double	get_smallest_positive(double t1, double t2);
 int sphere_intersect(t_ray *ray, t_sphere *sp ,double *t_hit);
 
@@ -121,8 +124,6 @@ int sphere_intersect(t_ray *ray, t_sphere *sp ,double *t_hit);
 int to_byte(double x);
 int create_rgb(int r, int g, int b);
 int vec_to_rgb(t_vec c);
-
-
 
 
 #endif

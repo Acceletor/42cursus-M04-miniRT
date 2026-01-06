@@ -9,19 +9,22 @@ void my_mlx_pixel_put(t_image *img, int x, int y, int color)
     *(unsigned int *)dst = (unsigned int)color;
 }
 
+int clean_exit(t_data *data)
+{
+    mlx_destroy_window(data->renderer.mlx.mlx, data->renderer.mlx.win);
+        gc_free_all(&data->gc_root);
+        if (data->fd != -1)
+            close(data->fd);
+    exit(0);
+}
+
 int handle_key(int keycode, void *param)
 {
     t_data *data;
 
     data = (t_data *)param;
     if (keycode == 53)
-    {
-        mlx_destroy_window(data->renderer.mlx.mlx, data->renderer.mlx.win);
-        gc_free_all(&data->gc_root);
-        if (data->fd != -1)
-            close(data->fd);
-        exit(0);
-    }
+        clean_exit(data);
     return (0);
 }
 
@@ -55,5 +58,6 @@ void rendering(t_data *data)
     image_init(info);
     draw(info, &data->scene);
     mlx_key_hook(info->mlx.win, handle_key, data);
+    mlx_hook(info->mlx.win, 17, 0, clean_exit, data);
     mlx_loop(info->mlx.mlx);
 }

@@ -2,7 +2,7 @@ NAME = miniRT
 
 # Directories
 INC = -Iinclude
-OBJ_DIR = obj/
+OBJ_DIR = obj
 LIBFT = ./libft/libft.a
 
 # Complier
@@ -26,9 +26,9 @@ SRCBASE = main core_error core_gc core_init core_util core_parse \
 
 SRC = $(addsuffix .c, $(addprefix sources/, $(SRCBASE)))
 
-OBJ = $(SRC:sources/%.c=$(OBJ_DIR)%.o)
+OBJ = $(SRC:sources/%.c=$(OBJ_DIR)/%.o)
 
-start:
+start: 
 	@make all
 
 # Ensure obj directory exist
@@ -45,7 +45,7 @@ all: $(NAME)
 	@echo "\033[32m[Program is ready for use]\033[0m"
 
 # Rule to compile object files
-$(OBJ_DIR)%.o: sources/%.c | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: sources/%.c | $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(INC) -I$(MLX_DIR) -c $< -o $@
 
 # Link everything

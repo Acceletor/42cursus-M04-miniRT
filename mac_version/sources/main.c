@@ -22,7 +22,7 @@ int main(int argc, char **argv)
     init_scene(&data);
     parse(&data);
     print_scene(&data);
-    rendering(&data.scene);
+    rendering(&data);
 
     // .......program logic.......
     

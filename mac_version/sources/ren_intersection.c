@@ -37,3 +37,5 @@ int sphere_intersect(t_ray *ray, t_sphere *sp ,double *t_hit)
 	*t_hit = t;
 	return (1);
 }
+
+// int plane_intersection(t_ray *ray, )

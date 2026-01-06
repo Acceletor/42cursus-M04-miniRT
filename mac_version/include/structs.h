@@ -145,9 +145,10 @@ typedef struct s_collector
 
 typedef struct s_data
 {
-    t_scene scene;
     t_collector *gc_root;
+    t_scene scene;
     int fd;
+    t_renderer renderer;
 } t_data;
 
 ///

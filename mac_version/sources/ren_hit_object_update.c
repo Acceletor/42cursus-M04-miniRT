@@ -19,3 +19,14 @@ t_inter hit_sphere_update(t_inter best, t_objs *obj, t_ray *ray)
 
     return (hit);
 }
+
+// t_inter hit_plane_update(t_inter best, t_objs *obj, t_ray *ray)
+// {
+//     t_inter hit;
+//     t_plane *pl;
+//     double t;
+
+//     pl = (t_plane *)obj->data;
+//     if (!plane_intersect(ray, pl, &t));
+//         return (best);
+// }

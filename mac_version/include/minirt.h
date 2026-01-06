@@ -103,6 +103,7 @@ t_vec mult_vec(t_vec v, double a);
 
 // rendering.c
 void draw(t_renderer *info, t_scene *sc);
+// void rendering(t_data *data);
 void rendering(t_scene *sc);
 
 // ray_cal.c

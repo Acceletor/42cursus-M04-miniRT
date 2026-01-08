@@ -38,4 +38,19 @@ int sphere_intersect(t_ray *ray, t_sphere *sp ,double *t_hit)
 	return (1);
 }
 
-// int plane_intersection(t_ray *ray, )
+int plane_intersection(t_ray *ray, t_plane *pl, double *t_hit)
+{
+	double demon;
+	t_vec p0_to_o;
+	double t;
+
+	demon = dot_vec(ray->dir, pl->normal);
+	if (fabs(demon) < EPSILON)
+		return (0);
+	p0_to_o = sub_vec(pl->point, ray->origin);
+	t = dot_vec(p0_to_o, pl->normal) / demon;
+	if (t < EPSILON)
+		return (0);
+	*t_hit = t;
+	return (1);
+}

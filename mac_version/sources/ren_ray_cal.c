@@ -14,8 +14,8 @@ t_inter scene_inter(t_ray *ray, t_scene *sc)
     {
         if (obj->type == OBJ_SPHERE)
             best = hit_sphere_update(best, obj, ray);
-        // else if (obj->type == OBJ_PLANE)
-            // best = hit_plane_update(best, obj, ray);
+        else if (obj->type == OBJ_PLANE)
+            best = hit_plane_update(best, obj, ray);
         // else if (obj->type == OBJ_CYLINDER)
         //     hold = cylinder_normal();
         obj = obj->next;
@@ -30,7 +30,6 @@ t_vec   ray_color(t_ray *ray, t_scene *sc)
     inter = scene_inter(ray, sc);
     if (inter.t > EPSILON)
     {
-        // compute amb + light;
         // return (inter.color); //HIT
         return (shade_hit(sc, inter));
     }

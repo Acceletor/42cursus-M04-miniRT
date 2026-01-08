@@ -39,7 +39,6 @@ void image_init(t_renderer *info);
 
 
 //core_parse.c
-
 void parse_identifier(char* id, char**tokens, t_data *data);
 void trim_line_newline(char *s);
 int parse(t_data *data);
@@ -116,10 +115,12 @@ t_ray ray_primary(t_camera *cam, double sx, double sy);
 
 // ren_hit_object_update.c
 t_inter hit_sphere_update(t_inter best, t_objs *obj, t_ray *ray);
+t_inter hit_plane_update(t_inter best, t_objs *obj, t_ray *ray);
 
 // ren_intersection.c
 double	get_smallest_positive(double t1, double t2);
 int sphere_intersect(t_ray *ray, t_sphere *sp ,double *t_hit);
+int plane_intersection(t_ray *ray, t_plane *pl, double *t_hit);
 
 // covert_to_rgb.c
 int to_byte(double x);

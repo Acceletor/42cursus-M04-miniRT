@@ -100,6 +100,7 @@ t_vec normalize_color(t_vec rgb);
 t_vec sub_vec(t_vec a, t_vec b);
 t_vec add_vec(t_vec u, t_vec v);
 t_vec mult_vec(t_vec v, double a);
+t_vec hadamard(t_vec a, t_vec b);
 
 // ren_rendering.c
 void my_mlx_pixel_put(t_image *img, int x, int y, int color);
@@ -124,6 +125,12 @@ int sphere_intersect(t_ray *ray, t_sphere *sp ,double *t_hit);
 int to_byte(double x);
 int create_rgb(int r, int g, int b);
 int vec_to_rgb(t_vec c);
+t_vec clamp01(t_vec c);
 
+// ren_color_cal.c
+t_vec ambient_color(t_scene *sc, t_vec obj_color);
+t_vec diffuse_color(t_vec obj, t_light *li, t_vec n, t_vec ldir);
+int in_shadow(t_scene *sc, t_inter inter, t_light *li);
+t_vec shade_hit(t_scene *sc, t_inter inter);
 
 #endif

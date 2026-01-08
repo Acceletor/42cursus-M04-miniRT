@@ -28,3 +28,8 @@ t_vec mult_vec(t_vec v, double a)
     w.z = v.z * a;
     return (w);
 }
+
+t_vec hadamard(t_vec a, t_vec b)
+{
+    return ((t_vec){a.x*b.x, a.y*b.y, a.z*b.z});
+}

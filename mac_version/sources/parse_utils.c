@@ -50,6 +50,7 @@ int get_color(char *str, t_vec *out)
     out->x = (int)color.x;
     out->y = (int)color.y;
     out->z = (int)color.z;
+    *out = normalize_color(*out);
     free_split(params);
     return (0);
 }

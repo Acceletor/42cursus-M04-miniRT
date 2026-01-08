@@ -4,7 +4,8 @@ t_vec ambient_color(t_scene *sc, t_vec obj_color)
 {
     t_vec a;
 
-    a = mult_vec(normalize_color(sc->amb.color), sc->amb.ratio);
+    // a = mult_vec(normalize_color(sc->amb.color), sc->amb.ratio);
+    a = mult_vec(sc->amb.color, sc->amb.ratio);
     return (hadamard(obj_color, a));
 }
 
@@ -16,7 +17,8 @@ t_vec diffuse_color(t_vec obj, t_light *li, t_vec n, t_vec ldir)
     ndotl = dot_vec(n, ldir);
     if (ndotl < 0.0)
         ndotl = 0.0;
-    li_col = mult_vec(normalize_color(li->color), li->ratio);
+    // li_col = mult_vec(normalize_color(li->color), li->ratio);
+    li_col = mult_vec(li->color, li->ratio);
     li_col = mult_vec(li_col, ndotl);
     return (hadamard(obj, li_col));
 }

@@ -15,8 +15,7 @@ t_inter hit_sphere_update(t_inter best, t_objs *obj, t_ray *ray)
     hit.t = t;
     hit.hit = add_vec(ray->origin, mult_vec(ray->dir, t));
     hit.norm = vec_normalize(sub_vec(hit.hit, sp->center));
-    hit.color = normalize_color(sp->color);
-
+    hit.color = sp->color;
     return (hit);
 }
 
@@ -37,6 +36,6 @@ t_inter hit_plane_update(t_inter best, t_objs *obj, t_ray *ray)
     hit.norm = vec_normalize(pl->normal);
     if (dot_vec(hit.norm, ray->dir) > 0.0)
         hit.norm = vec_normalize(mult_vec(hit.norm, -1.0));
-    hit.color = normalize_color(pl->color);
+    hit.color = pl->color;
     return (hit);
 }

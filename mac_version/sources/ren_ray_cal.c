@@ -33,7 +33,9 @@ t_vec   ray_color(t_ray *ray, t_scene *sc)
         // return (inter.color); //HIT
         return (shade_hit(sc, inter));
     }
-    return (mult_vec(normalize_color(sc->amb.color), sc->amb.ratio));
+    // return (mult_vec(normalize_color(sc->amb.color), sc->amb.ratio));
+    return (mult_vec(sc->amb.color, sc->amb.ratio));
+
 }
 
 t_ray ray_primary(t_camera *cam, double sx, double sy)

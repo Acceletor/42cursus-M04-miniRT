@@ -40,6 +40,26 @@ int in_shadow(t_scene *sc, t_inter inter, t_light *li)
     return (0);
 }
 
+t_vec specular_color(t_scene *sc, t_inter inter, t_light *li, t_vec ldir)
+{
+    t_vec   vdir;
+    t_vec   h;
+    double  ndoth;
+    double  spec;
+    double  shininess;
+
+    // View direction: from hit point to camera
+    vdir = vec_normalize(sub_vec(sc->cam.pos, inter.hit));
+
+    // Half vector H = normalize(L + V)
+    h = vec_normalize(add_vec(ldir, vdir));
+
+    ndoth = fmax(dot_vec(inter.norm, h), 0.0);
+    shininess = 256; // try 32, 64, 128
+    spec = pow(ndoth, shininess);
+    return mult_vec(li->color, li->ratio * spec);
+}
+
 t_vec shade_hit(t_scene *sc, t_inter inter)
 {
     t_vec col;
@@ -55,6 +75,7 @@ t_vec shade_hit(t_scene *sc, t_inter inter)
             ldir = vec_normalize(sub_vec(li->pos, inter.hit));
             col = add_vec(col, diffuse_color(inter.color, li,
                  inter.norm, ldir));
+            col = add_vec(col, specular_color(sc, inter, li, ldir));
         }
         li = li->next;
     }

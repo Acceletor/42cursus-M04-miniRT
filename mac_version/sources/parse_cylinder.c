@@ -49,6 +49,7 @@ static void	set_cylinder_center_normal(t_data *data,
 		ft_err("Invalid cylinder axis vector [-1,1] and not zero!",
 			&data->gc_root, 1);
 	}
+	cy->normal = vec_normalize(cy->normal);
 }
 
 static void	set_cylinder_size_color(t_data *data,

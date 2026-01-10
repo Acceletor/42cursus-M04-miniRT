@@ -122,6 +122,7 @@ t_inter hit_cylinder_update(t_inter best, t_objs *obj, t_ray *ray);
 double	get_smallest_positive(double t1, double t2);
 int sphere_intersect(t_ray *ray, t_sphere *sp ,double *t_hit);
 int plane_intersection(t_ray *ray, t_plane *pl, double *t_hit);
+// int cylinder_intersection_closed(t_ray *ray, t_cylinder *cy, double *t_hit, int *part);
 int cylinder_intersection(t_ray *ray, t_cylinder *cy, double *t_hit);
 
 // covert_to_rgb.c

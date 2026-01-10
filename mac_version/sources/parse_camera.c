@@ -37,6 +37,7 @@ void	validate_camera_vectors(t_data *data, char **tokens)
 		free_split(tokens);
 		ft_err("Invalid Camera orientation!", &data->gc_root, 1);
 	}
+	data->scene.cam.dir = vec_normalize(data->scene.cam.dir);
 }
 
 void	validate_camera_fov(t_data *data, char **tokens)

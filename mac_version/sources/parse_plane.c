@@ -44,6 +44,7 @@ static void	set_plane_params(t_data *data, t_plane *pl, char **tokens)
 		ft_err("Invalid plane normal vector [-1,1] and not zero!",
 			&data->gc_root, 1);
 	}
+	pl->normal = vec_normalize(pl->normal);
 	if (get_color(tokens[3], &pl->color))
 	{
 		free_split(tokens);

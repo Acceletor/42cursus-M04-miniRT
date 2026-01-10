@@ -165,4 +165,23 @@ typedef struct s_sp_tmp
 	double	r;
 } t_sp_tmp;
 
+typedef struct s_cy_tmp
+{
+    t_vec oc;
+	double d_dot_n;
+	t_vec d_side;
+	double oc_dot_n;
+	t_vec oc_side;
+    double a;
+    double b;
+    double c;
+    double disc;
+    double sqrt_disc;
+    double t1;
+    double t2;
+    double r;
+    t_vec P;
+    double y;
+} t_cy_tmp;
+
 #endif

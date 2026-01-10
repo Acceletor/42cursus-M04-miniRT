@@ -54,3 +54,36 @@ int plane_intersection(t_ray *ray, t_plane *pl, double *t_hit)
 	*t_hit = t;
 	return (1);
 }
+
+int cylinder_intersection(t_ray *ray, t_cylinder *cy, double *t_hit)
+{
+	t_cy_tmp cyl;
+	double t;
+
+	cyl.oc = sub_vec(ray->origin, cy->center);
+	cyl.d_dot_n = dot_vec(ray->dir, cy->normal);
+	cyl.d_side = sub_vec(ray->dir ,mult_vec(cy->normal, cyl.d_dot_n));
+	cyl.oc_dot_n = dot_vec(cyl.oc, cy->normal);
+	cyl.oc_side = sub_vec(cyl.oc, mult_vec(cy->normal, cyl.oc_dot_n));
+	cyl.r = cy->diameter/2;
+	cyl.a = dot_vec(cyl.d_side, cyl.d_side); 
+	if (fabs(cyl.a) < EPSILON)
+		return (0);
+	cyl.b = 2.0 * dot_vec(cyl.oc_side, cyl.d_side);
+	cyl.c = dot_vec(cyl.oc_side, cyl.oc_side) - (cyl.r) * (cyl.r);
+	cyl.disc = cyl.b * cyl.b - 4.0 * cyl.a * cyl.c;
+	if (cyl.disc < 0.0)
+		return (0);
+	cyl.sqrt_disc = sqrt(cyl.disc);
+	cyl.t1 = (-cyl.b - cyl.sqrt_disc) / (2.0 * cyl.a);
+	cyl.t2 = (-cyl.b + cyl.sqrt_disc) / (2.0 * cyl.a);
+	t = get_smallest_positive(cyl.t1, cyl.t2);
+	if (t < 0.0)
+		return (0);
+	cyl.P = add_vec(ray->origin, mult_vec(ray->dir, t));
+	cyl.y = dot_vec(sub_vec(cyl.P, cy->center), cy->normal);
+	if (fabs(cyl.y) > cy->height * 0.5)
+		return (0);
+	*t_hit = t;
+	return (1);
+}

@@ -14,6 +14,8 @@ void parse_identifier(char *id, char **tokens, t_data *data)
         parse_plane(data, tokens);
     else if (ft_strcmp(id, "cy") == 0)
         parse_cylinder(data, tokens);
+    else if (ft_strcmp(id, "#") == 0)
+        return;
     else
     {
         free_split(tokens);

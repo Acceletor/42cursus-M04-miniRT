@@ -122,8 +122,15 @@ t_inter hit_cylinder_update(t_inter best, t_objs *obj, t_ray *ray);
 double	get_smallest_positive(double t1, double t2);
 int sphere_intersect(t_ray *ray, t_sphere *sp ,double *t_hit);
 int plane_intersection(t_ray *ray, t_plane *pl, double *t_hit);
-// int cylinder_intersection_closed(t_ray *ray, t_cylinder *cy, double *t_hit, int *part);
-int cylinder_intersection(t_ray *ray, t_cylinder *cy, double *t_hit);
+int cylinder_intersection_closed(t_ray *ray, t_cylinder *cy, double *t_hit, int *part);
+int	intersect_cap(t_capq *q, double *t_hit);
+
+// ren_intersection_cy.c
+int	cy_pick_best(t_cy_hits h, double *t_best, int *part);
+t_cy_caps	cy_caps_init(t_cylinder *cy);
+t_cy_quad	cy_quad_init(t_ray *ray, t_cylinder *cy, t_vec axis);
+int	cy_side_hit(t_ray *ray, t_cylinder *cy, t_vec axis, double *t_side);
+void	cy_caps_hits(t_ray *ray, t_cy_caps c, t_cy_hits *h);
 
 // covert_to_rgb.c
 int to_byte(double x);

@@ -151,7 +151,7 @@ typedef struct s_data
     t_renderer renderer;
 } t_data;
 
-///
+/// sp
 typedef struct s_sp_tmp
 {
     t_vec oc;
@@ -165,23 +165,40 @@ typedef struct s_sp_tmp
 	double	r;
 } t_sp_tmp;
 
-typedef struct s_cy_tmp
+// cy
+typedef struct s_cy_quad
 {
-    t_vec oc;
-	double d_dot_n;
-	t_vec d_side;
-	double oc_dot_n;
-	t_vec oc_side;
-    double a;
-    double b;
-    double c;
-    double disc;
-    double sqrt_disc;
-    double t1;
-    double t2;
-    double r;
-    t_vec P;
-    double y;
-} t_cy_tmp;
+    t_vec	oc;
+	t_vec	d_perp;
+	t_vec	oc_perp;
+	double	a;
+	double	b;
+	double	c;
+	double	disc;
+	double	r;
+} t_cy_quad;
+
+typedef struct s_cy_caps
+{
+	t_vec	axis;
+	t_vec	top;
+	t_vec	bot;
+	double	r;
+}	t_cy_caps;
+
+typedef struct s_cy_hits
+{
+	double	t_side;
+	double	t_top;
+	double	t_bot;
+}	t_cy_hits;
+
+typedef struct s_capq
+{
+	t_ray	*ray;
+	t_vec	center;
+	t_vec	normal;
+	double	r;
+}	t_capq;
 
 #endif

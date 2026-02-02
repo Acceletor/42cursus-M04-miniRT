@@ -1,3 +1,6 @@
+# External Library files
+minilibx/
+
 # macOS system files
 .DS_Store
 */.DS_Store

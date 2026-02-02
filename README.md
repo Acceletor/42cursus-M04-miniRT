@@ -46,7 +46,6 @@ Example:
 ### 🛠️ Installation
 Requirements
 - macOS or Linux
-- GCC or Clang
 - minilibx
   
 ---

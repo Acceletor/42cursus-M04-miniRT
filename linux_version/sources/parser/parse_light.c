@@ -31,7 +31,7 @@ t_light	*alloc_light(t_data *data, char **token)
 
 void	set_light_params(t_data *data, t_light *new, char **token)
 {
-    if (get_vec(token[1], &new->pos))
+	if (get_vec(token[1], &new->pos))
 	{
 		free_split(token);
 		ft_err("Invalid light position!", &data->gc_root, 1);

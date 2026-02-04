@@ -30,7 +30,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 }
 
 //#include <stdio.h>
-//int main()
+// int main()
 //{
 //    char src[] = "hello-World!";
 //    char dest[8];
@@ -42,5 +42,5 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 //    printf("Destination: %s\n", dest);
 //    printf("Length of src: %zu\n", result);
 //
-//    return 0;
+//    return (0);
 //}

@@ -26,7 +26,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	return (0);
 }
 
-//int main() {
+// int main() {
 //    char buffer[] = {1, 2, 3, 4, 5};
 //
 //    // Search for the byte value 3 in the buffer
@@ -38,5 +38,5 @@ void	*ft_memchr(const void *s, int c, size_t n)
 //        printf("Byte 3 not found.\n");
 //    }
 //
-//    return 0;
+//    return (0);
 //}

@@ -5,16 +5,14 @@ static void	validate_cylinder_tokens(t_data *data, char **tokens)
 	if (!tokens || split_len(tokens) != 6)
 	{
 		free_split(tokens);
-		ft_err("Invalid number of cylinder parameter",
-			&data->gc_root, 1);
+		ft_err("Invalid number of cylinder parameter", &data->gc_root, 1);
 	}
 	if (has_invalid_input(tokens[1]) || has_invalid_input(tokens[2])
 		|| has_invalid_input(tokens[3]) || has_invalid_input(tokens[4])
 		|| has_invalid_input(tokens[5]))
 	{
 		free_split(tokens);
-		ft_err("Invalid cylinder input parameter!",
-			&data->gc_root, 1);
+		ft_err("Invalid cylinder input parameter!", &data->gc_root, 1);
 	}
 }
 
@@ -32,18 +30,18 @@ static t_objs	*create_cylinder_obj(t_data *data, char **tokens)
 	return (new);
 }
 
-static void	set_cylinder_center_normal(t_data *data,
-					t_cylinder *cy, char **tokens)
+static void	set_cylinder_center_normal(t_data *data, t_cylinder *cy,
+		char **tokens)
 {
 	if (get_vec(tokens[1], &cy->center))
 	{
 		free_split(tokens);
 		ft_err("Invalid cylinder center!", &data->gc_root, 1);
 	}
-	if (get_vec(tokens[2], &cy->normal)
-		|| cy->normal.x > 1 || cy->normal.y > 1 || cy->normal.z > 1
-		|| cy->normal.x < -1 || cy->normal.y < -1 || cy->normal.z < -1
-		|| (cy->normal.x == 0 && cy->normal.y == 0 && cy->normal.z == 0))
+	if (get_vec(tokens[2], &cy->normal) || cy->normal.x > 1 || cy->normal.y > 1
+		|| cy->normal.z > 1 || cy->normal.x < -1 || cy->normal.y < -1
+		|| cy->normal.z < -1 || (cy->normal.x == 0 && cy->normal.y == 0
+			&& cy->normal.z == 0))
 	{
 		free_split(tokens);
 		ft_err("Invalid cylinder axis vector [-1,1] and not zero!",
@@ -52,22 +50,19 @@ static void	set_cylinder_center_normal(t_data *data,
 	cy->normal = vec_normalize(cy->normal);
 }
 
-static void	set_cylinder_size_color(t_data *data,
-					t_cylinder *cy, char **tokens)
+static void	set_cylinder_size_color(t_data *data, t_cylinder *cy, char **tokens)
 {
 	cy->diameter = ft_atod(tokens[3]);
 	if (cy->diameter <= 0)
 	{
 		free_split(tokens);
-		ft_err("Cylinder diameter must be > 0!",
-			&data->gc_root, 1);
+		ft_err("Cylinder diameter must be > 0!", &data->gc_root, 1);
 	}
 	cy->height = ft_atod(tokens[4]);
 	if (cy->height <= 0)
 	{
 		free_split(tokens);
-		ft_err("Cylinder height must be > 0!",
-			&data->gc_root, 1);
+		ft_err("Cylinder height must be > 0!", &data->gc_root, 1);
 	}
 	if (get_color(tokens[5], &cy->color))
 	{
@@ -85,6 +80,6 @@ void	parse_cylinder(t_data *data, char **tokens)
 	new = create_cylinder_obj(data, tokens);
 	cy = (t_cylinder *)new->data;
 	set_cylinder_center_normal(data, cy, tokens);
-    set_cylinder_size_color(data, cy, tokens);
+	set_cylinder_size_color(data, cy, tokens);
 	add_object_to_scene(&data->scene, new);
 }

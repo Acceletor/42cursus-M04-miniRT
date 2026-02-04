@@ -55,8 +55,8 @@ int	cy_side_hit(t_ray *ray, t_cylinder *cy, t_vec axis, double *t_side)
 	if (fabs(q.a) < EPSILON || q.disc < 0.0)
 		return (0);
 	sd = sqrt(q.disc);
-	t = get_smallest_positive((-q.b - sd) / (2.0 * q.a),
-			(-q.b + sd) / (2.0 * q.a));
+	t = get_smallest_positive((-q.b - sd) / (2.0 * q.a), (-q.b + sd) / (2.0
+				* q.a));
 	if (t < 0.0)
 		return (0);
 	p = add_vec(ray->origin, mult_vec(ray->dir, t));

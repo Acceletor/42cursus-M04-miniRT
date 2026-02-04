@@ -48,8 +48,7 @@ static void	set_plane_params(t_data *data, t_plane *pl, char **tokens)
 	if (get_color(tokens[3], &pl->color))
 	{
 		free_split(tokens);
-		ft_err("Plane R,G,B colors have to be in [0-255]",
-			&data->gc_root, 1);
+		ft_err("Plane R,G,B colors have to be in [0-255]", &data->gc_root, 1);
 	}
 }
 

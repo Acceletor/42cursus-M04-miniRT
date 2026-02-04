@@ -15,38 +15,57 @@ LIB_FLAGS = -lm
 
 SRCBASE = \
 	main \
-	core_error \
-	core_gc \
-	core_init \
-	core_util \
-	core_parse \
-	parse_input_validator \
-	parse_utils print_scene \
-	parse_ambient parse_camera \
-	parse_light parse_sphere \
-	parse_plane parse_cylinder \
-	vector_op \
-	vector_op2 \
-	ren_rendering \
-	ren_intersection \
-	ren_intersection_cy \
-	convert_to_rgb \
-	ren_hit_object_update \
-	ren_ray_cal ren_color_cal
+	utils/core_error \
+	utils/core_gc \
+	utils/core_init \
+	utils/core_util \
+	utils/convert_to_rgb \
+	utils/print_scene \
+	parser/core_parse \
+	parser/parse_input_validator \
+	parser/parse_utils \
+	parser/parse_ambient \
+	parser/parse_camera \
+	parser/parse_light \
+	parser/parse_sphere \
+	parser/parse_plane \
+	parser/parse_cylinder \
+	render/ren_rendering \
+	render/ren_intersection \
+	render/ren_intersection_cy \
+	render/ren_hit_object_update \
+	render/ren_ray_cal \
+	render/ren_color_cal \
+	math/vector_op \
+	math/vector_op2
 
 SRC = $(addsuffix .c, $(addprefix sources/, $(SRCBASE)))
 
 OBJ = $(SRC:sources/%.c=$(OBJ_DIR)/%.o)
 
-start: 
-	@make all
+# start: 
+# @make all
+
+# macos: init_macos $(NAME)
+
+# init_macos:
+# 	MLX_DIR = libmlx/macos
+# 	MLX_FLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
+# 	@make -C ./libmlx/macos
+# 	@cp libmlx/macos/libmlx.dylib .
+# 	@echo "\033[32m[Macos Program is ready for use]\033[0m"
+
+all: $(NAME)
+	@echo "\033[32m[Program is ready for use]\033[0m"
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR)/parser
+	@mkdir -p $(OBJ_DIR)/utils
+	@mkdir -p $(OBJ_DIR)/math
+	@mkdir -p $(OBJ_DIR)/render
 	@make -C ./libft
-	@make -C ./minilibx
-
-all: $(NAME)
+	@make -C $(MLX_DIR)
 
 $(OBJ_DIR)/%.o: sources/%.c | $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
@@ -57,10 +76,13 @@ $(NAME): $(OBJ)
 clean:
 	@$(RM) $(OBJ_DIR)
 	@make clean -C ./libft
+# @make clean -C $(MLX_DIR)
 
 fclean: clean
 	@$(RM) $(NAME)
 	@make fclean -C ./libft
+# @make fclean -C $(MLX_DIR)
+# @$(RM) ./libmlx.dylib
 
 re: fclean all
 

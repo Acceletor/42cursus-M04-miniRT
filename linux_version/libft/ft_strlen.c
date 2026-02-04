@@ -27,5 +27,5 @@ size_t	ft_strlen(const char *s)
 // int main() {
 //     const char *str = "Hello, world!";
 //     printf("Length of the string: %zu\n", ft_strlen(str)); //13
-//     return 0;
+//     return (0);
 // }

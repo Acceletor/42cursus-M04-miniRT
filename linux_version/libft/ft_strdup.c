@@ -32,18 +32,18 @@ char	*ft_strdup(const char *s1)
 	return (des);
 }
 
-//int main() {
+// int main() {
 //    const char *original = "Hello, World!";
 //    char *duplicate = ft_strdup(original);
 //
 //    if (duplicate == NULL) {
 //        printf("Memory allocation failed\n");
-//        return 1;
+//        return (1);
 //    }
 //
 //    printf("Original: %s\n", original);
 //    printf("Duplicate: %s\n", duplicate);
 //
 //    free(duplicate); // Free the allocated memory
-//    return 0;
+//    return (0);
 //}

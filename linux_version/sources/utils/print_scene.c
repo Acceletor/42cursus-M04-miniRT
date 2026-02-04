@@ -61,29 +61,25 @@ void	print_lights_and_objs(t_scene *sc)
 		{
 			printf("Sphere\n");
 			print_vec("  center:  ", ((t_sphere *)ob->data)->center);
-			printf("  diam:    %.3f\n",
-				((t_sphere *)ob->data)->diameter);
-			print_vec("  color:   ",
-				((t_sphere *)ob->data)->color);
+			printf("  diam:    %.3f\n", ((t_sphere *)ob->data)->diameter);
+			print_vec("  color:   ", ((t_sphere *)ob->data)->color);
 		}
 		else if (ob->type == OBJ_PLANE)
-        {
+		{
 			printf("Plane\n");
-            print_vec("  point:  ", ((t_plane *)ob->data)->point);
-            print_vec("  normal:  ",
-				((t_plane *)ob->data)->normal);
-            print_vec("  color:   ",
-				((t_plane *)ob->data)->color);
-        }
+			print_vec("  point:  ", ((t_plane *)ob->data)->point);
+			print_vec("  normal:  ", ((t_plane *)ob->data)->normal);
+			print_vec("  color:   ", ((t_plane *)ob->data)->color);
+		}
 		else if (ob->type == OBJ_CYLINDER)
-        {
+		{
 			printf("Cylinder\n");
-            print_vec("  center:  ", ((t_cylinder *)ob->data)->center);
-            print_vec("  normal:  ", ((t_cylinder *)ob->data)->normal);
-            printf("  diam:    %.3f\n", ((t_cylinder *)ob->data)->diameter);
-            printf("  height:    %.3f\n", ((t_cylinder *)ob->data)->height);
-            print_vec("  color:  ", ((t_cylinder *)ob->data)->color);
-        }
+			print_vec("  center:  ", ((t_cylinder *)ob->data)->center);
+			print_vec("  normal:  ", ((t_cylinder *)ob->data)->normal);
+			printf("  diam:    %.3f\n", ((t_cylinder *)ob->data)->diameter);
+			printf("  height:    %.3f\n", ((t_cylinder *)ob->data)->height);
+			print_vec("  color:  ", ((t_cylinder *)ob->data)->color);
+		}
 		ob = ob->next;
 	}
 }

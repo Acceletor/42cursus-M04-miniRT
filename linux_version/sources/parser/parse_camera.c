@@ -22,8 +22,8 @@ void	validate_camera_vectors(t_data *data, char **tokens)
 		free_split(tokens);
 		ft_err("Camera has invalid input!", &data->gc_root, 1);
 	}
-	if (get_vec(tokens[1], &data->scene.cam.pos)
-		|| get_vec(tokens[2], &data->scene.cam.dir))
+	if (get_vec(tokens[1], &data->scene.cam.pos) || get_vec(tokens[2],
+			&data->scene.cam.dir))
 	{
 		free_split(tokens);
 		ft_err("Invalid Camera Vector!", &data->gc_root, 1);
@@ -31,8 +31,8 @@ void	validate_camera_vectors(t_data *data, char **tokens)
 	if (data->scene.cam.dir.x > 1 || data->scene.cam.dir.y > 1
 		|| data->scene.cam.dir.z > 1 || data->scene.cam.dir.x < -1
 		|| data->scene.cam.dir.y < -1 || data->scene.cam.dir.z < -1
-        || (data->scene.cam.dir.x == 0 && data->scene.cam.dir.y == 0 
-            && data->scene.cam.dir.z == 0))
+		|| (data->scene.cam.dir.x == 0 && data->scene.cam.dir.y == 0
+			&& data->scene.cam.dir.z == 0))
 	{
 		free_split(tokens);
 		ft_err("Invalid Camera orientation!", &data->gc_root, 1);

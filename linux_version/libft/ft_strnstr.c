@@ -32,7 +32,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	return (0);
 }
 
-//int main() {
+// int main() {
 //    const char	*haystack = "Hello, World!";
 //	const char	*needle = "World";
 //	size_t		len = 13;

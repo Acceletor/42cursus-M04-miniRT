@@ -12,7 +12,7 @@
 
 #include "printf.h"
 
-void	ft_putchar_pf(char c, size_t *counter);
+void		ft_putchar_pf(char c, size_t *counter);
 
 static void	ft_putunsigned_recursive(unsigned int num, size_t *counter)
 {

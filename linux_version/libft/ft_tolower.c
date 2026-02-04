@@ -19,10 +19,10 @@ int	ft_tolower(int c)
 	return (c);
 }
 
-//int main() {
+// int main() {
 //
 //    printf("%c\n", ft_tolower('9'));
 //    printf("%c\n", ft_tolower('W'));
 //
-//    return 0;
+//    return (0);
 //}

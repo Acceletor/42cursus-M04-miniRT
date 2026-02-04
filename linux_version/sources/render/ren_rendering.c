@@ -19,12 +19,13 @@ int	clean_exit(t_data *data)
 	exit(0);
 }
 
+// printf("key:[%d]\n", keycode);
 int	handle_key(int keycode, void *param)
 {
 	t_data	*data;
 
 	data = (t_data *)param;
-	if (keycode == 53)
+	if (keycode == 53 || keycode == 65307)
 		clean_exit(data);
 	return (0);
 }

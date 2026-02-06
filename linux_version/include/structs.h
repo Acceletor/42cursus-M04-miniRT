@@ -129,6 +129,8 @@ typedef struct s_cylinder
 	t_vec				color;
 }						t_cylinder;
 
+/* ====== Containers ======= */
+
 typedef struct s_scene
 {
 	t_vec				col;

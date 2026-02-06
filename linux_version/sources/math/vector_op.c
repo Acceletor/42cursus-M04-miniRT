@@ -1,5 +1,16 @@
 #include "../include/minirt.h"
 
+/*
+vector cross product (u x v) by Laplace Expansion & Algebraic Solving
+[w_x w_y w_z]
+[u_x u_y u_z]
+[v_x v_y v_z]
+
+for given matrix coordinates (i, j)
+Cofactor_ij ​= (−1)^(i+j) * Minor_ij​
+
+Looking for [w_x w_y w_z].
+*/
 t_vec	vec_cross(t_vec u, t_vec v)
 {
 	t_vec	w;
@@ -10,6 +21,10 @@ t_vec	vec_cross(t_vec u, t_vec v)
 	return (w);
 }
 
+/* 
+Converts a vector to a 'unit verctor' (len of 1) while preserving direction. Pure direction vectors.
+EPSILON - a tiny number for division by zero checks
+*/
 t_vec	vec_normalize(t_vec v)
 {
 	t_vec	normalized;

@@ -31,14 +31,12 @@ static t_objs	*create_plane_obj(t_data *data, char **tokens)
 
 static void	set_plane_params(t_data *data, t_plane *pl, char **tokens)
 {
-	if (get_vec(tokens[1], &pl->point) || get_vec(tokens[2], &pl->normal))
+	if (get_vec(tokens[1], &pl->point))
 	{
 		free_split(tokens);
 		ft_err("Invalid plane vector!", &data->gc_root, 1);
 	}
-	if (pl->normal.x < -1 || pl->normal.y < -1 || pl->normal.z < -1
-		|| pl->normal.x > 1 || pl->normal.y > 1 || pl->normal.z > 1
-		|| (pl->normal.x == 0 && pl->normal.y == 0 && pl->normal.z == 0))
+	if (get_vec(tokens[2], &pl->normal) || is_out_of_bounds(&pl->normal))
 	{
 		free_split(tokens);
 		ft_err("Invalid plane normal vector [-1,1] and not zero!",

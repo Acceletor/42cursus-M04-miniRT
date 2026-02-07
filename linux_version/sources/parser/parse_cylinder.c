@@ -38,10 +38,7 @@ static void	set_cylinder_center_normal(t_data *data, t_cylinder *cy,
 		free_split(tokens);
 		ft_err("Invalid cylinder center!", &data->gc_root, 1);
 	}
-	if (get_vec(tokens[2], &cy->normal) || cy->normal.x > 1 || cy->normal.y > 1
-		|| cy->normal.z > 1 || cy->normal.x < -1 || cy->normal.y < -1
-		|| cy->normal.z < -1 || (cy->normal.x == 0 && cy->normal.y == 0
-			&& cy->normal.z == 0))
+	if (get_vec(tokens[2], &cy->normal) || is_out_of_bounds(&cy->normal))
 	{
 		free_split(tokens);
 		ft_err("Invalid cylinder axis vector [-1,1] and not zero!",
@@ -50,7 +47,7 @@ static void	set_cylinder_center_normal(t_data *data, t_cylinder *cy,
 	cy->normal = vec_normalize(cy->normal);
 }
 
-static void	set_cylinder_size_color(t_data *data, t_cylinder *cy, char **tokens)
+static void	set_cylinder_attributes(t_data *data, t_cylinder *cy, char **tokens)
 {
 	cy->diameter = ft_atod(tokens[3]);
 	if (cy->diameter <= 0)
@@ -80,6 +77,6 @@ void	parse_cylinder(t_data *data, char **tokens)
 	new = create_cylinder_obj(data, tokens);
 	cy = (t_cylinder *)new->data;
 	set_cylinder_center_normal(data, cy, tokens);
-	set_cylinder_size_color(data, cy, tokens);
+	set_cylinder_attributes(data, cy, tokens);
 	add_object_to_scene(&data->scene, new);
 }

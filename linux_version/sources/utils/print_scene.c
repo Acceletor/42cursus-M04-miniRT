@@ -80,6 +80,15 @@ void	print_lights_and_objs(t_scene *sc)
 			printf("  height:    %.3f\n", ((t_cylinder *)ob->data)->height);
 			print_vec("  color:  ", ((t_cylinder *)ob->data)->color);
 		}
+    else if (ob->type == OBJ_CONE)
+		{
+			printf("Cone\n");
+			print_vec("  center:  ", ((t_cylinder *)ob->data)->center);
+			print_vec("  normal:  ", ((t_cylinder *)ob->data)->normal);
+			printf("  diam:    %.3f\n", ((t_cylinder *)ob->data)->diameter);
+			printf("  height:    %.3f\n", ((t_cylinder *)ob->data)->height);
+			print_vec("  color:  ", ((t_cylinder *)ob->data)->color);
+    }
 		ob = ob->next;
 	}
 }

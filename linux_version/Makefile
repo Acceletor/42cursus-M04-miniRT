@@ -30,6 +30,7 @@ SRCBASE = \
 	parser/parse_sphere \
 	parser/parse_plane \
 	parser/parse_cylinder \
+	parser/parse_cone \
 	render/ren_rendering \
 	render/ren_intersection \
 	render/ren_intersection_cy \

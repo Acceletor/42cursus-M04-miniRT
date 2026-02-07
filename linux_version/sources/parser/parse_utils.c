@@ -71,6 +71,8 @@ t_objs	*alloc_object(t_obj_type type, t_collector **gc_root)
 		new_obj->data = gc_malloc(gc_root, sizeof(t_plane));
 	else if (type == OBJ_CYLINDER)
 		new_obj->data = gc_malloc(gc_root, sizeof(t_cylinder));
+  else if (type == OBJ_CONE)
+		new_obj->data = gc_malloc(gc_root, sizeof(t_cone));
 	if (!new_obj->data)
 		return (NULL);
 	return (new_obj);

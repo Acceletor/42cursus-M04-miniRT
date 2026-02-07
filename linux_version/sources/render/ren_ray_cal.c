@@ -23,6 +23,10 @@ t_inter	scene_inter(t_ray *ray, t_scene *sc)
 	return (best);
 }
 
+/*
+  if ray hits an object render shade.
+  else render ambient.
+*/
 t_vec	ray_color(t_ray *ray, t_scene *sc)
 {
 	t_inter	inter;
@@ -30,13 +34,21 @@ t_vec	ray_color(t_ray *ray, t_scene *sc)
 	inter = scene_inter(ray, sc);
 	if (inter.t > EPSILON)
 	{
-		// return (inter.color); //HIT
+		// return (inter.color);
 		return (shade_hit(sc, inter));
 	}
-	// return (mult_vec(normalize_color(sc->amb.color), sc->amb.ratio));
-	return (mult_vec(sc->amb.color, sc->amb.ratio));
+  else
+  {
+    // return (mult_vec(normalize_color(sc->amb.color), sc->amb.ratio));
+    return (mult_vec(sc->amb.color, sc->amb.ratio));
+  }
 }
 
+/*
+  Scales s_coordinates to viewport scale.
+  Scales right and up vectors by respective offset, addes them. (2D plan direction)
+  Then adds to the forward vector (3Difying)
+*/
 t_ray	ray_primary(t_camera *cam, double sx, double sy)
 {
 	t_ray ray;
@@ -47,8 +59,10 @@ t_ray	ray_primary(t_camera *cam, double sx, double sy)
 	vertical_offset = sy * (cam->vp_height * 0.5);
 
 	ray.origin = cam->pos;
-	ray.dir = add_vec(cam->forward, add_vec(mult_vec(cam->right,
-					horizontal_offset), mult_vec(cam->up, vertical_offset)));
+	ray.dir = add_vec(cam->forward, add_vec(
+    mult_vec(cam->right, horizontal_offset),
+    mult_vec(cam->up, vertical_offset)
+    ));
 	ray.dir = vec_normalize(ray.dir);
 	return (ray);
 }

@@ -15,9 +15,9 @@ LIB_FLAGS = -lm
 
 SRCBASE = \
 	main \
+	core_init \
 	utils/core_error \
 	utils/core_gc \
-	utils/core_init \
 	utils/core_util \
 	utils/convert_to_rgb \
 	utils/print_scene \
@@ -31,12 +31,15 @@ SRCBASE = \
 	parser/parse_plane \
 	parser/parse_cylinder \
 	parser/parse_cone \
-	render/ren_rendering \
-	render/ren_intersection \
-	render/ren_intersection_cy \
-	render/ren_hit_object_update \
+	render/core_render \
 	render/ren_ray_cal \
 	render/ren_color_cal \
+	render/ren_utils \
+	render/ren_sphere \
+	render/ren_plane \
+	render/ren_cylinder \
+	render/ren_intersection_cy \
+	render/ren_cone \
 	math/vector_op \
 	math/vector_op2
 

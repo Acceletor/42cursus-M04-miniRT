@@ -96,7 +96,8 @@ typedef enum e_obj_type
 {
 	OBJ_SPHERE,
 	OBJ_PLANE,
-	OBJ_CYLINDER
+	OBJ_CYLINDER,
+  OBJ_CONE
 }						t_obj_type;
 
 typedef struct s_objs
@@ -128,6 +129,15 @@ typedef struct s_cylinder
 	double				height;
 	t_vec				color;
 }						t_cylinder;
+
+typedef struct s_cone
+{
+	t_vec				center;
+	t_vec				normal;
+	double				diameter;
+	double				height;
+	t_vec				color;
+}						t_cone;
 
 /* ====== Containers ======= */
 

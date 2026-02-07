@@ -53,6 +53,7 @@ void		add_object_to_scene(t_scene *scene, t_objs *new);
 int			is_invalid_double(char *s);
 int			is_invalid_vector(char *s);
 int			has_invalid_input(char *token);
+int     is_out_of_bounds(t_vec *v);
 
 // parse_ambient.c
 void		validate_ambient_tokens(t_data *data, char **tokens);
@@ -80,6 +81,9 @@ void		parse_plane(t_data *data, char **tokens);
 
 // parse_cylinder.c
 void		parse_cylinder(t_data *data, char **tokens);
+
+// parse_cone.c
+void	parse_cone(t_data *data, char **tokens);
 
 // print_scene.c
 void		print_vec(char *label, t_vec v);

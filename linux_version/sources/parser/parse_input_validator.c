@@ -88,3 +88,18 @@ int	has_invalid_input(char *token)
 		return (is_invalid_vector(token));
 	return (1);
 }
+
+
+int is_out_of_bounds(t_vec *v) {
+  if (v->x > 1
+    || v->y > 1
+		|| v->z > 1 
+    || v->x < -1 
+    || v->y < -1
+		|| v->z < -1 
+    || (v->x == 0 && v->y == 0&& v->z == 0)
+  )
+    return (1);
+  else 
+    return (0);
+}

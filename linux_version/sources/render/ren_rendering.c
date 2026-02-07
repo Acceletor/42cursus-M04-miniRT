@@ -33,6 +33,12 @@ int	handle_key(int keycode, void *param)
 	return (0);
 }
 
+/*
+For each pixel
+  convert pixel coordinates to a cartesian coordinate system (center = 0,0) with scale [1, -1]
+  calculate the given pixel's direction vector (ray)
+  calculate the color of the ray by ..
+*/
 void	draw(t_renderer *info, t_scene *sc)
 {
 	info->y = 0;

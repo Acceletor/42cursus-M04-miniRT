@@ -1,7 +1,7 @@
 #include "../include/minirt.h"
 
 /*
-vector cross product (u x v) by Laplace Expansion & Algebraic Solving
+vector cross product (u x v) by Laplace Expansion
 [w_x w_y w_z]
 [u_x u_y u_z]
 [v_x v_y v_z]
@@ -10,6 +10,8 @@ for given matrix coordinates (i, j)
 Cofactor_ij ​= (−1)^(i+j) * Minor_ij​
 
 Looking for [w_x w_y w_z].
+
+Symmetry cancels out to zero.
 */
 t_vec	vec_cross(t_vec u, t_vec v)
 {

@@ -41,6 +41,14 @@ t_vec	vec_normalize(t_vec v)
 	return (normalized);
 }
 
+/*
+Used for finding the angle between vectors. (alignment)
+product > 0 - less than 90 (in the same direction)
+product == 0 - 90
+product < - more than 90 (opposite directions)
+
+A * B * cos (cosinus value determines sign)
+*/
 double	dot_vec(t_vec a, t_vec b)
 {
 	return (a.x * b.x + a.y * b.y + a.z * b.z);

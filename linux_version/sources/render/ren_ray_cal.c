@@ -26,7 +26,7 @@ t_inter	scene_inter(t_ray *ray, t_scene *sc)
 }
 
 /*
-  if ray hits an object render shade.
+  if ray hits an objec render shade.
   else render ambient.
 */
 t_vec	ray_color(t_ray *ray, t_scene *sc)

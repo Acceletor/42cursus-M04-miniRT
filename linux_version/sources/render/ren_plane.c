@@ -1,5 +1,43 @@
 #include "../include/minirt.h"
 
+/*
+Normal - object perpendicular to a given object.
+Any vector on the plain is perpendicular to v_normal
+Equation of the plane (P − P_0) . v_normal = 0
+Point on a ray P = Origin + t . d
+
+t = dot(sub(P0, O), n) / dot(d, n)
+
+dot of dir and normal (checking the angle)
+  if dot == 0 then angle == 90
+
+p0_to_o - (vector from plane_origin to origin)
+
+dot of p0_to_o and normal
+
+dot(p0_to_o, normal) / dot(dir, normal)
+
+t - distance to hit.
+t = ((P_0 - Origin) . v_n) / (v_dir . v_n)
+if t < 0 then behind the camera.
+
+dist = p0_to_o * cos(p0_to_o, n)
+
+          .
+          |\< 01 cos = (dist / t)
+          | \
+          |  \
+   (dist) |   \ (t?)
+          |    \
+          |     \  
+        __|______\__ Plane
+          P0     |P
+                 | (n_v)
+                 V 
+
+t = dist / cos(01)
+t = Sortest Distance to Plane Origin / Rate of perpendicular travel
+*/
 static int	plane_intersection(t_ray *ray, t_plane *pl, double *t_hit)
 {
 	double	demon;
@@ -17,6 +55,11 @@ static int	plane_intersection(t_ray *ray, t_plane *pl, double *t_hit)
 	return (1);
 }
 
+/*
+  is closest hit check
+  hit.hit - coordinates of the hit - P = v_origin + t*v_dir
+  if plane hit from behind flip hit.norm
+*/
 t_inter	hit_plane_update(t_inter best, t_objs *obj, t_ray *ray)
 {
 	t_inter	hit;

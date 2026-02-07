@@ -1,6 +1,6 @@
 #include "../include/minirt.h"
 
-t_vec	ambient_color(t_scene *sc, t_vec obj_color)
+static t_vec	ambient_color(t_scene *sc, t_vec obj_color)
 {
 	t_vec	a;
 
@@ -9,7 +9,7 @@ t_vec	ambient_color(t_scene *sc, t_vec obj_color)
 	return (hadamard(obj_color, a));
 }
 
-t_vec	diffuse_color(t_vec obj, t_light *li, t_vec n, t_vec ldir)
+static t_vec	diffuse_color(t_vec obj, t_light *li, t_vec n, t_vec ldir)
 {
 	double	ndotl;
 	t_vec	li_col;
@@ -23,7 +23,7 @@ t_vec	diffuse_color(t_vec obj, t_light *li, t_vec n, t_vec ldir)
 	return (hadamard(obj, li_col));
 }
 
-int	in_shadow(t_scene *sc, t_inter inter, t_light *li)
+static int	in_shadow(t_scene *sc, t_inter inter, t_light *li)
 {
 	t_ray	shadow;
 	t_inter	block;
@@ -40,7 +40,7 @@ int	in_shadow(t_scene *sc, t_inter inter, t_light *li)
 	return (0);
 }
 
-t_vec	specular_color(t_scene *sc, t_inter inter, t_light *li, t_vec ldir)
+static t_vec	specular_color(t_scene *sc, t_inter inter, t_light *li, t_vec ldir)
 {
 	t_vec	vdir;
 	t_vec	h;

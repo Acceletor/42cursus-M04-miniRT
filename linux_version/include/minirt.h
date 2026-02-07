@@ -109,6 +109,7 @@ void		my_mlx_pixel_put(t_image *img, int x, int y, int color);
 int			handle_key(int keycode, void *param);
 void		draw(t_renderer *info, t_scene *sc);
 void		rendering(t_data *data);
+int			clean_exit(t_data *data);
 
 // ren_ray_cal.c
 t_inter		scene_inter(t_ray *ray, t_scene *sc);
@@ -116,11 +117,7 @@ t_vec		ray_color(t_ray *ray, t_scene *sc);
 t_ray		ray_primary(t_camera *cam, double sx, double sy);
 
 // ren_color_cal.c
-t_vec		ambient_color(t_scene *sc, t_vec obj_color);
-t_vec		diffuse_color(t_vec obj, t_light *li, t_vec n, t_vec ldir);
-int			in_shadow(t_scene *sc, t_inter inter, t_light *li);
 t_vec		shade_hit(t_scene *sc, t_inter inter);
-int			clean_exit(t_data *data);
 
 // ren_sphere.c
 t_inter		hit_sphere_update(t_inter best, t_objs *obj, t_ray *ray);

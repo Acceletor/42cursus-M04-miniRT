@@ -1,30 +1,27 @@
 #include "../include/minirt.h"
 
-int	cy_pick_best(t_cy_hits h, double *t_best, int *part)
+static int	intersect_cap(t_capq *q, double *t_hit)
 {
-	*t_best = -1.0;
-	*part = -1;
-	if (h.t_side > EPSILON && (*t_best < 0.0 || h.t_side < *t_best))
-		(*t_best = h.t_side, *part = 0);
-	if (h.t_top > EPSILON && (*t_best < 0.0 || h.t_top < *t_best))
-		(*t_best = h.t_top, *part = 1);
-	if (h.t_bot > EPSILON && (*t_best < 0.0 || h.t_bot < *t_best))
-		(*t_best = h.t_bot, *part = 2);
-	return (*t_best > 0.0);
+	double	den;
+	double	t;
+	t_vec	p;
+	t_vec	v;
+
+	den = dot_vec(q->ray->dir, q->normal);
+	if (fabs(den) < EPSILON)
+		return (0);
+	t = dot_vec(sub_vec(q->center, q->ray->origin), q->normal) / den;
+	if (t <= EPSILON)
+		return (0);
+	p = add_vec(q->ray->origin, mult_vec(q->ray->dir, t));
+	v = sub_vec(p, q->center);
+	if (dot_vec(v, v) > q->r * q->r)
+		return (0);
+	*t_hit = t;
+	return (1);
 }
 
-t_cy_caps	cy_caps_init(t_cylinder *cy)
-{
-	t_cy_caps	c;
-
-	c.axis = vec_normalize(cy->normal);
-	c.r = cy->diameter * 0.5;
-	c.top = add_vec(cy->center, mult_vec(c.axis, cy->height * 0.5));
-	c.bot = sub_vec(cy->center, mult_vec(c.axis, cy->height * 0.5));
-	return (c);
-}
-
-t_cy_quad	cy_quad_init(t_ray *ray, t_cylinder *cy, t_vec axis)
+static t_cy_quad	cy_quad_init(t_ray *ray, t_cylinder *cy, t_vec axis)
 {
 	t_cy_quad	q;
 	double		dn;
@@ -79,4 +76,17 @@ void	cy_caps_hits(t_ray *ray, t_cy_caps c, t_cy_hits *h)
 	q.center = c.bot;
 	q.normal = mult_vec(c.axis, -1.0);
 	intersect_cap(&q, &h->t_bot);
+}
+
+int	cy_pick_best(t_cy_hits h, double *t_best, int *part)
+{
+	*t_best = -1.0;
+	*part = -1;
+	if (h.t_side > EPSILON && (*t_best < 0.0 || h.t_side < *t_best))
+		(*t_best = h.t_side, *part = 0);
+	if (h.t_top > EPSILON && (*t_best < 0.0 || h.t_top < *t_best))
+		(*t_best = h.t_top, *part = 1);
+	if (h.t_bot > EPSILON && (*t_best < 0.0 || h.t_bot < *t_best))
+		(*t_best = h.t_bot, *part = 2);
+	return (*t_best > 0.0);
 }

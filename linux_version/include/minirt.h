@@ -104,9 +104,8 @@ t_vec		add_vec(t_vec u, t_vec v);
 t_vec		mult_vec(t_vec v, double a);
 t_vec		hadamard(t_vec a, t_vec b);
 
-// ren_rendering.c
+// core_render.c
 void		my_mlx_pixel_put(t_image *img, int x, int y, int color);
-int			clean_exit(t_data *data);
 int			handle_key(int keycode, void *param);
 void		draw(t_renderer *info, t_scene *sc);
 void		rendering(t_data *data);
@@ -116,25 +115,32 @@ t_inter		scene_inter(t_ray *ray, t_scene *sc);
 t_vec		ray_color(t_ray *ray, t_scene *sc);
 t_ray		ray_primary(t_camera *cam, double sx, double sy);
 
-// ren_hit_object_update.c
+// ren_color_cal.c
+t_vec		ambient_color(t_scene *sc, t_vec obj_color);
+t_vec		diffuse_color(t_vec obj, t_light *li, t_vec n, t_vec ldir);
+int			in_shadow(t_scene *sc, t_inter inter, t_light *li);
+t_vec		shade_hit(t_scene *sc, t_inter inter);
+int			clean_exit(t_data *data);
+
+// ren_sphere.c
 t_inter		hit_sphere_update(t_inter best, t_objs *obj, t_ray *ray);
+
+// ren_plane.c
 t_inter		hit_plane_update(t_inter best, t_objs *obj, t_ray *ray);
+
+// ren_cylinder.c
 t_inter		hit_cylinder_update(t_inter best, t_objs *obj, t_ray *ray);
 
-// ren_intersection.c
-double		get_smallest_positive(double t1, double t2);
-int			sphere_intersect(t_ray *ray, t_sphere *sp, double *t_hit);
-int			plane_intersection(t_ray *ray, t_plane *pl, double *t_hit);
-int			cylinder_intersection_closed(t_ray *ray, t_cylinder *cy,
-				double *t_hit, int *part);
-int			intersect_cap(t_capq *q, double *t_hit);
+// ren_cone.c
+t_inter	hit_cone_update(t_inter best, t_objs *obj, t_ray *ray);
 
 // ren_intersection_cy.c
 int			cy_pick_best(t_cy_hits h, double *t_best, int *part);
-t_cy_caps	cy_caps_init(t_cylinder *cy);
-t_cy_quad	cy_quad_init(t_ray *ray, t_cylinder *cy, t_vec axis);
 int			cy_side_hit(t_ray *ray, t_cylinder *cy, t_vec axis, double *t_side);
 void		cy_caps_hits(t_ray *ray, t_cy_caps c, t_cy_hits *h);
+
+// ren_utils.c
+double		get_smallest_positive(double t1, double t2);
 
 // covert_to_rgb.c
 int			to_byte(double x);
@@ -142,10 +148,5 @@ int			create_rgb(int r, int g, int b);
 int			vec_to_rgb(t_vec c);
 t_vec		clamp01(t_vec c);
 
-// ren_color_cal.c
-t_vec		ambient_color(t_scene *sc, t_vec obj_color);
-t_vec		diffuse_color(t_vec obj, t_light *li, t_vec n, t_vec ldir);
-int			in_shadow(t_scene *sc, t_inter inter, t_light *li);
-t_vec		shade_hit(t_scene *sc, t_inter inter);
 
 #endif

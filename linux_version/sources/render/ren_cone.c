@@ -1,40 +1,23 @@
 #include "../include/minirt.h"
 
-static int	co_pick_best(t_co_hits h, double *t_best, int *part)
-{
-	*t_best = -1.0;
-	*part = -1;
-	if (h.t_side > EPSILON && (*t_best < 0.0 || h.t_side < *t_best))
-		(*t_best = h.t_side, *part = 0);
-	if (h.t_bot > EPSILON && (*t_best < 0.0 || h.t_bot < *t_best))
-		(*t_best = h.t_bot, *part = 1);
-	return (*t_best > 0.0);
-}
-
-
-static void co_bot_init(t_circle *bot, t_cylinder *co, t_vec axis)
-{
-  bot->diameter = co->diameter;
-  bot->center = sub_vec(co->center, mult_vec(axis, co->height * 0.5));
-  bot->normal = mult_vec(axis, -1.0);
-  bot->color = co->color;
-}
-
 static int	cone_intersection(t_ray *ray, t_cylinder *co, double *t_hit,
 		int *part)
 {
   t_circle	bot;
+  t_circle	top;
   t_vec axis;
-	t_co_hits	h;
+	t_cy_hits	h;
 	double		t_best;
 
 	h.t_side = -1.0;
 	h.t_bot = -1.0;
+  h.t_top = -1.0;
   axis = vec_normalize(co->normal);
-	co_bot_init(&bot, co, axis);
+  cy_caps_init(&top, &bot, co, axis);
 	co_side_hit(ray, co, axis, &h.t_side);
   circle_intersection(ray, &bot, &h.t_bot);
-	if (!co_pick_best(h, &t_best, part))
+  circle_intersection(ray, &top, &h.t_top);
+	if (!cy_pick_best(h, &t_best, part))
 		return (0);
 	*t_hit = t_best;
 	return (1);
@@ -42,15 +25,28 @@ static int	cone_intersection(t_ray *ray, t_cylinder *co, double *t_hit,
 
 static t_vec	co_part_normal(t_cylinder *co, t_vec axis, t_vec hit, int part)
 {
-	t_vec	v;
-	double	proj;
+  // t_vec   top;
+  t_vec   v_hit;
+  double  m;
+  double  proj;
 
-	if (part == 0)
-	{
-		v = sub_vec(hit, co->center);
-		proj = dot_vec(v, axis);
-		return (vec_normalize(sub_vec(v, mult_vec(axis, proj))));
-	}
+  if (part == 0)
+  {
+    m = (co->diameter * 0.5) * (co->diameter * 0.5) / (co->height * co->height);
+    // top = add_vec(co->center, mult_vec(axis, co->height * 0.5));
+    v_hit = sub_vec(hit, co->center);
+    proj = dot_vec(v_hit, axis);
+    if (proj >= 0) {
+      return (vec_normalize(sub_vec(v_hit, mult_vec(axis, (1 + m) * proj))));
+    } else {
+      t_vec rev_axis = mult_vec(axis, -1.0);
+      float rev_proj = dot_vec(v_hit, rev_axis);
+        
+      return vec_normalize(sub_vec(v_hit, mult_vec(rev_axis, (1 + m) * rev_proj)));
+    }
+  }
+  else if (part == 1)
+		return (axis);
   return (mult_vec(axis, -1.0));
 }
 

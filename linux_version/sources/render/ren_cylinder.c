@@ -1,6 +1,6 @@
 #include "../include/minirt.h"
 
-static int	cy_pick_best(t_cy_hits h, double *t_best, int *part)
+int	cy_pick_best(t_cy_hits h, double *t_best, int *part)
 {
 	*t_best = -1.0;
 	*part = -1;
@@ -14,7 +14,7 @@ static int	cy_pick_best(t_cy_hits h, double *t_best, int *part)
 }
 
 /* calculates the centers of the top and bottom cap */
-static void cy_caps_init(t_circle *top, t_circle *bot, t_cylinder *cy, t_vec axis)
+void cy_caps_init(t_circle *top, t_circle *bot, t_cylinder *cy, t_vec axis)
 {
   top->diameter = cy->diameter;
   top->center = add_vec(cy->center, mult_vec(axis, cy->height * 0.5));

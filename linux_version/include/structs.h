@@ -195,12 +195,6 @@ typedef struct s_cy_quad
   double        t2;
 }						t_cy_quad;
 
-typedef struct s_cy_caps
-{
-  t_circle top;
-  t_circle btm;
-}						t_cy_caps;
-
 typedef struct s_cy_hits
 {
 	double				t_side;

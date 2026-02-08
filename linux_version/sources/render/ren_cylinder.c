@@ -45,8 +45,8 @@ static int	cylinder_intersection_closed(t_ray *ray, t_cylinder *cy, double *t_hi
   axis = vec_normalize(cy->normal);
 	cy_caps_init(&top, &bot, cy, axis);
 	cy_side_hit(ray, cy, axis, &h.t_side);
-	circle_inersection(ray, &top, &h.t_top);
-  circle_inersection(ray, &bot, &h.t_bot);
+	circle_intersection(ray, &top, &h.t_top);
+  circle_intersection(ray, &bot, &h.t_bot);
 	if (!cy_pick_best(h, &t_best, part))
 		return (0);
 	*t_hit = t_best;

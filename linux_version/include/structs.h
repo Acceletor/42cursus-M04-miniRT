@@ -145,6 +145,7 @@ typedef struct s_circle
 	t_vec				center;
 	t_vec				normal;
 	double			diameter;
+  t_vec				color;
 }						t_circle;
 
 /* ====== Containers ======= */

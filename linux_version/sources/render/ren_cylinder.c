@@ -14,15 +14,15 @@ static int	cy_pick_best(t_cy_hits h, double *t_best, int *part)
 }
 
 /* calculates the centers of the top and bottom cap */
-static t_cy_caps	cy_caps_init(t_cylinder *cy)
+static void cy_caps_init(t_circle *top, t_circle *bot, t_cylinder *cy, t_vec axis)
 {
-	t_cy_caps	c;
+  top->diameter = cy->diameter;
+  top->center = add_vec(cy->center, mult_vec(axis, cy->height * 0.5));
+  top->normal = axis;
 
-	c.axis = vec_normalize(cy->normal);
-	c.r = cy->diameter * 0.5;
-	c.top = add_vec(cy->center, mult_vec(c.axis, cy->height * 0.5));
-	c.bot = sub_vec(cy->center, mult_vec(c.axis, cy->height * 0.5));
-	return (c);
+  bot->diameter = cy->diameter;
+  bot->center = sub_vec(cy->center, mult_vec(axis, cy->height * 0.5));
+  bot->normal = mult_vec(axis, -1.0);
 }
 
 /* 
@@ -33,16 +33,20 @@ Bottom and top cap
 static int	cylinder_intersection_closed(t_ray *ray, t_cylinder *cy, double *t_hit,
 		int *part)
 {
-	t_cy_caps	c;
+  t_circle	top;
+  t_circle	bot;
+  t_vec axis;
 	t_cy_hits	h;
 	double		t_best;
 
-	c = cy_caps_init(cy);
 	h.t_side = -1.0;
 	h.t_top = -1.0;
 	h.t_bot = -1.0;
-	cy_side_hit(ray, cy, c.axis, &h.t_side);
-	cy_caps_hits(ray, c, &h);
+  axis = vec_normalize(cy->normal);
+	cy_caps_init(&top, &bot, cy, axis);
+	cy_side_hit(ray, cy, axis, &h.t_side);
+	circle_inersection(ray, &top, &h.t_top);
+  circle_inersection(ray, &bot, &h.t_bot);
 	if (!cy_pick_best(h, &t_best, part))
 		return (0);
 	*t_hit = t_best;

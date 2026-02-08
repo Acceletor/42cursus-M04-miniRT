@@ -40,15 +40,15 @@ t = Sortest Distance to Plane Origin / Rate of perpendicular travel
 */
 static int	plane_intersection(t_ray *ray, t_plane *pl, double *t_hit)
 {
-	double	demon;
+	double	den;
 	t_vec	p0_to_o;
 	double	t;
 
-	demon = dot_vec(ray->dir, pl->normal);
-	if (fabs(demon) < EPSILON)
+	den = dot_vec(ray->dir, pl->normal);
+	if (fabs(den) < EPSILON)
 		return (0);
 	p0_to_o = sub_vec(pl->point, ray->origin);
-	t = dot_vec(p0_to_o, pl->normal) / demon;
+	t = dot_vec(p0_to_o, pl->normal) / den;
 	if (t < EPSILON)
 		return (0);
 	*t_hit = t;

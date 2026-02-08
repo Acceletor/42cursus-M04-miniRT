@@ -132,8 +132,8 @@ t_inter	hit_tube_update(t_inter best, t_objs *obj, t_ray *ray);
 // ren_cylinder_side.c
 int			cy_side_hit(t_ray *ray, t_cylinder *cy, t_vec axis, double *t_side);
 int	    cy_infinite_hit(t_ray *ray, t_cylinder *cy, t_vec axis, double *t_side);
-// ren_cylinder_cap.c
-void		cy_caps_hits(t_ray *ray, t_cy_caps c, t_cy_hits *h);
+// ren_circle.c
+int	circle_inersection(t_ray *ray, t_circle *ci, double *t_hit);
 
 // ren_cone.c
 t_inter	hit_cone_update(t_inter best, t_objs *obj, t_ray *ray);

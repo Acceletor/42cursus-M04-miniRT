@@ -52,6 +52,9 @@ int	cy_side_hit(t_ray *ray, t_cylinder *cy, t_vec axis, double *t_side)
 	return (1);
 }
 
+/*
+Does not do the height check
+*/
 int	cy_infinite_hit(t_ray *ray, t_cylinder *cy, t_vec axis, double *t_side)
 {
 	t_cy_quad	q;

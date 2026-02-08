@@ -17,21 +17,21 @@ getting the closer one.
 */
 static int	sphere_intersect(t_ray *ray, t_sphere *sp, double *t_hit)
 {
-	t_sp_tmp	sph;
+	t_sp_quad	q;
 	double		t;
 
-	sph.r = sp->diameter * 0.5;
-	sph.oc = sub_vec(ray->origin, sp->center); 
-	sph.a = dot_vec(ray->dir, ray->dir);
-	sph.b = 2.0 * dot_vec(ray->dir, sph.oc);
-	sph.c = dot_vec(sph.oc, sph.oc) - (sph.r * sph.r);
-	sph.disc = (sph.b * sph.b) - (4.0 * sph.a * sph.c);
-	if (sph.disc < 0.0)
+	q.r = sp->diameter * 0.5;
+	q.oc = sub_vec(ray->origin, sp->center); 
+	q.a = dot_vec(ray->dir, ray->dir);
+	q.b = 2.0 * dot_vec(ray->dir, q.oc);
+	q.c = dot_vec(q.oc, q.oc) - (q.r * q.r);
+	q.disc = (q.b * q.b) - (4.0 * q.a * q.c);
+	if (q.disc < 0.0)
 		return (0);
-	sph.sqrt_disc = sqrt(sph.disc);
-	sph.t1 = (-sph.b - sph.sqrt_disc) / (2.0 * sph.a);
-	sph.t2 = (-sph.b + sph.sqrt_disc) / (2.0 * sph.a);
-	t = get_smallest_positive(sph.t1, sph.t2);
+	q.sd = sqrt(q.disc);
+	q.t1 = (-q.b - q.sd) / (2.0 * q.a);
+	q.t2 = (-q.b + q.sd) / (2.0 * q.a);
+	t = get_smallest_positive(q.t1, q.t2);
 	if (t < 0.0)
 		return (0);
 	*t_hit = t;

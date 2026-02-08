@@ -140,6 +140,13 @@ typedef struct s_cone
 	t_vec				color;
 }						t_cone;
 
+typedef struct s_circle
+{
+	t_vec				center;
+	t_vec				normal;
+	double			diameter;
+}						t_circle;
+
 /* ====== Containers ======= */
 
 typedef struct s_scene
@@ -166,22 +173,23 @@ typedef struct s_data
 }						t_data;
 
 // sp
-typedef struct s_sp_tmp
+typedef struct s_sp_quad
 {
+  double				r;
 	t_vec				oc;
 	double				a;
 	double				b;
 	double				c;
 	double				disc;
-	double				sqrt_disc;
+	double				sd;
 	double				t1;
 	double				t2;
-	double				r;
-}						t_sp_tmp;
+}						t_sp_quad;
 
 // cy
 typedef struct s_cy_quad
 {
+  double				r;
 	t_vec				oc;
 	t_vec				d_perp;
 	t_vec				oc_perp;
@@ -189,7 +197,6 @@ typedef struct s_cy_quad
 	double				b;
 	double				c;
 	double				disc;
-	double				r;
   double		    sd;
   double        t1;
   double        t2;
@@ -197,10 +204,12 @@ typedef struct s_cy_quad
 
 typedef struct s_cy_caps
 {
-	t_vec				axis;
-	t_vec				top;
-	t_vec				bot;
-	double				r;
+  t_circle top;
+  t_circle btm;
+	// t_vec				axis;
+	// t_vec				top;
+	// t_vec				bot;
+	// double				r;
 }						t_cy_caps;
 
 typedef struct s_cy_hits
@@ -209,13 +218,5 @@ typedef struct s_cy_hits
 	double				t_top;
 	double				t_bot;
 }						t_cy_hits;
-
-typedef struct s_capq
-{
-	t_ray				*ray;
-	t_vec				center;
-	t_vec				normal;
-	double				r;
-}						t_capq;
 
 #endif

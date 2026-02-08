@@ -41,7 +41,7 @@ int	cy_side_hit(t_ray *ray, t_cylinder *cy, t_vec axis, double *t_side)
 	q.sd = sqrt(q.disc);
   q.t1 = (-q.b - q.sd) / (2.0 * q.a);
   q.t2 = (-q.b + q.sd) / (2.0 * q.a);
-	t = get_smallest_positive_within(ray, cy, axis, q);
+	t = smallest_positive(q.t1, q.t2);
 	if (t < 0.0)
 		return (0);
   p = add_vec(ray->origin, mult_vec(ray->dir, t));
@@ -67,11 +67,9 @@ int	cy_infinite_hit(t_ray *ray, t_cylinder *cy, t_vec axis, double *t_side)
   q.t1 = (-q.b - q.sd) / (2.0 * q.a);
   q.t2 = (-q.b + q.sd) / (2.0 * q.a);
   if (cy->height)
-  {
-    t = get_smallest_positive_within(ray, cy, axis, q);
-  }
+    t = smallest_positive_within_cy(ray, cy, axis, q);
   else
-    t = get_smallest_positive(q.t1, q.t2);
+    t = smallest_positive(q.t1, q.t2);
   if (t < 0.0)
 		return (0);
 	*t_side = t;

@@ -19,10 +19,12 @@ static void cy_caps_init(t_circle *top, t_circle *bot, t_cylinder *cy, t_vec axi
   top->diameter = cy->diameter;
   top->center = add_vec(cy->center, mult_vec(axis, cy->height * 0.5));
   top->normal = axis;
+  top->color = cy->color;
 
   bot->diameter = cy->diameter;
   bot->center = sub_vec(cy->center, mult_vec(axis, cy->height * 0.5));
   bot->normal = mult_vec(axis, -1.0);
+  bot->color = cy->color;
 }
 
 /* 
@@ -30,7 +32,7 @@ Composite object
 The Side (Finite Cylider)
 Bottom and top cap
 */
-static int	cylinder_intersection_closed(t_ray *ray, t_cylinder *cy, double *t_hit,
+static int	cylinder_intersection(t_ray *ray, t_cylinder *cy, double *t_hit,
 		int *part)
 {
   t_circle	top;
@@ -78,7 +80,7 @@ t_inter	hit_cylinder_update(t_inter best, t_objs *obj, t_ray *ray)
 	t_vec		axis;
 
 	cy = (t_cylinder *)obj->data;
-	if (!cylinder_intersection_closed(ray, cy, &t, &part))
+	if (!cylinder_intersection(ray, cy, &t, &part))
 		return (best);
 	if (best.t > 0.0 && t >= best.t)
 		return (best);
@@ -127,7 +129,7 @@ t_inter	hit_tube_update(t_inter best, t_objs *obj, t_ray *ray)
 //     t_vec v;
 
 //     cy = (t_cylinder *)obj->data;
-//     if (!cylinder_intersection_closed(ray, cy, &t, &part))
+//     if (!cylinder_intersection(ray, cy, &t, &part))
 //         return (best);
 //     if (best.t > 0.0 && t >= best.t)
 //         return (best);

@@ -138,6 +138,7 @@ t_inter	hit_tube_update(t_inter best, t_objs *obj, t_ray *ray);
 // ren_cylinder_side.c
 int			cy_side_hit(t_ray *ray, t_cylinder *cy, t_vec axis, double *t_side);
 int	    cy_infinite_hit(t_ray *ray, t_cylinder *cy, t_vec axis, double *t_side);
+
 // ren_circle.c
 int	circle_intersection(t_ray *ray, t_circle *ci, double *t_hit);
 t_inter	hit_circle_update(t_inter best, t_objs *obj, t_ray *ray);
@@ -145,9 +146,13 @@ t_inter	hit_circle_update(t_inter best, t_objs *obj, t_ray *ray);
 // ren_cone.c
 t_inter	hit_cone_update(t_inter best, t_objs *obj, t_ray *ray);
 
+// ren_cone_side.c
+int	co_side_hit(t_ray *ray, t_cylinder *co, t_vec axis, double *t_side);
+
 // ren_utils.c
-double		get_smallest_positive(double t1, double t2);
-double	get_smallest_positive_within(t_ray *ray, t_cylinder *cy, t_vec axis, t_cy_quad	q);
+double		smallest_positive(double t1, double t2);
+double	smallest_positive_within_cy(t_ray *ray, t_cylinder *cy, t_vec axis, t_cy_quad	q);
+double	smallest_positive_within_co(t_ray *ray, t_cylinder *co, t_vec axis, t_cy_quad	q);
 
 // covert_to_rgb.c
 int			to_byte(double x);

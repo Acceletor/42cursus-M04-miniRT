@@ -208,4 +208,10 @@ typedef struct s_cy_hits
 	double				t_bot;
 }						t_cy_hits;
 
+typedef struct s_co_hits
+{
+	double				t_side;
+	double				t_bot;
+}						t_co_hits;
+
 #endif

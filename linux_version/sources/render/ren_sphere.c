@@ -31,7 +31,7 @@ static int	sphere_intersect(t_ray *ray, t_sphere *sp, double *t_hit)
 	q.sd = sqrt(q.disc);
 	q.t1 = (-q.b - q.sd) / (2.0 * q.a);
 	q.t2 = (-q.b + q.sd) / (2.0 * q.a);
-	t = get_smallest_positive(q.t1, q.t2);
+	t = smallest_positive(q.t1, q.t2);
 	if (t < 0.0)
 		return (0);
 	*t_hit = t;

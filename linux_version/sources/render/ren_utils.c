@@ -1,6 +1,6 @@
 #include "../include/minirt.h"
 
-double	get_smallest_positive(double t1, double t2)
+double	smallest_positive(double t1, double t2)
 {
 	if (t1 > EPSILON && t2 > EPSILON)
 	{
@@ -15,7 +15,7 @@ double	get_smallest_positive(double t1, double t2)
 	return (-1.0);
 }
 
-int is_within(t_ray *ray, t_cylinder *cy, t_vec axis, double t)
+int is_within_cylinder(t_ray *ray, t_cylinder *cy, t_vec axis, double t)
 {
   t_vec		p;
 	double		y;
@@ -27,18 +27,50 @@ int is_within(t_ray *ray, t_cylinder *cy, t_vec axis, double t)
   return (1);
 }
 
-double	get_smallest_positive_within(t_ray *ray, t_cylinder *cy, t_vec axis, t_cy_quad	q)
+int is_within_cone(t_ray *ray, t_cylinder *cy, t_vec axis, double t)
 {
-  if (q.t1 > EPSILON && is_within(ray, cy, axis, q.t1))
+    t_vec   hit;
+    t_vec   top;
+    double  h;
+
+    top = add_vec(cy->center, mult_vec(axis, cy->height * 0.5));
+    hit = add_vec(ray->origin, mult_vec(ray->dir, t));
+    h = dot_vec(sub_vec(hit, top), axis);
+    if (h < 0.0 && h > -cy->height)
+        return (1);
+    return (0);
+}
+
+double	smallest_positive_within_co(t_ray *ray, t_cylinder *co, t_vec axis, t_cy_quad	q)
+{
+  if (q.t1 > EPSILON && is_within_cone(ray, co, axis, q.t1))
   {
-    if (q.t2 > EPSILON && is_within(ray, cy, axis, q.t2))
+    if (q.t2 > EPSILON && is_within_cone(ray, co, axis, q.t2))
     {
       if (q.t1 < q.t2)
   			return (q.t1);
     }
     return (q.t1);
   } 
-  else if (q.t2 > EPSILON && is_within(ray, cy, axis, q.t2))
+  else if (q.t2 > EPSILON && is_within_cone(ray, co, axis, q.t2))
+  {
+    return (q.t2);
+  }
+	return (-1.0);
+}
+
+double	smallest_positive_within_cy(t_ray *ray, t_cylinder *cy, t_vec axis, t_cy_quad	q)
+{
+  if (q.t1 > EPSILON && is_within_cylinder(ray, cy, axis, q.t1))
+  {
+    if (q.t2 > EPSILON && is_within_cylinder(ray, cy, axis, q.t2))
+    {
+      if (q.t1 < q.t2)
+  			return (q.t1);
+    }
+    return (q.t1);
+  } 
+  else if (q.t2 > EPSILON && is_within_cylinder(ray, cy, axis, q.t2))
   {
     return (q.t2);
   }

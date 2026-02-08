@@ -33,7 +33,6 @@ static t_vec	co_part_normal(t_cylinder *co, t_vec axis, t_vec hit, int part)
   if (part == 0)
   {
     m = (co->diameter * 0.5) * (co->diameter * 0.5) / (co->height * co->height);
-    // top = add_vec(co->center, mult_vec(axis, co->height * 0.5));
     v_hit = sub_vec(hit, co->center);
     proj = dot_vec(v_hit, axis);
     if (proj >= 0) {
@@ -41,7 +40,6 @@ static t_vec	co_part_normal(t_cylinder *co, t_vec axis, t_vec hit, int part)
     } else {
       t_vec rev_axis = mult_vec(axis, -1.0);
       float rev_proj = dot_vec(v_hit, rev_axis);
-        
       return vec_normalize(sub_vec(v_hit, mult_vec(rev_axis, (1 + m) * rev_proj)));
     }
   }

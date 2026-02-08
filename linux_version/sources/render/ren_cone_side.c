@@ -7,9 +7,7 @@ static t_cy_quad	co_quad_init(t_ray *ray, t_cylinder *co, t_vec axis)
 	double		ocn;
   double m;
 
-  // t_vec top = add_vec(co->center, mult_vec(axis, co->height * 0.5));
   t_vec top = co->center;
-  // q.r = co->diameter * 0.5;
   q.r = co->diameter;
   m = (q.r * q.r) / (co->height * co->height);
 	q.oc = sub_vec(ray->origin, top);

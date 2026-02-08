@@ -127,14 +127,16 @@ t_inter		hit_plane_update(t_inter best, t_objs *obj, t_ray *ray);
 
 // ren_cylinder.c
 t_inter		hit_cylinder_update(t_inter best, t_objs *obj, t_ray *ray);
+t_inter	hit_tube_update(t_inter best, t_objs *obj, t_ray *ray);
+
+// ren_cylinder_side.c
+int			cy_side_hit(t_ray *ray, t_cylinder *cy, t_vec axis, double *t_side);
+int	    cy_infinite_hit(t_ray *ray, t_cylinder *cy, t_vec axis, double *t_side);
+// ren_cylinder_cap.c
+void		cy_caps_hits(t_ray *ray, t_cy_caps c, t_cy_hits *h);
 
 // ren_cone.c
 t_inter	hit_cone_update(t_inter best, t_objs *obj, t_ray *ray);
-
-// ren_intersection_cy.c
-int			cy_pick_best(t_cy_hits h, double *t_best, int *part);
-int			cy_side_hit(t_ray *ray, t_cylinder *cy, t_vec axis, double *t_side);
-void		cy_caps_hits(t_ray *ray, t_cy_caps c, t_cy_hits *h);
 
 // ren_utils.c
 double		get_smallest_positive(double t1, double t2);

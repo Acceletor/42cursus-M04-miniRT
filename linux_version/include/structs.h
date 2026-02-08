@@ -164,7 +164,7 @@ typedef struct s_data
 	t_renderer			renderer;
 }						t_data;
 
-/// sp
+// sp
 typedef struct s_sp_tmp
 {
 	t_vec				oc;
@@ -189,6 +189,9 @@ typedef struct s_cy_quad
 	double				c;
 	double				disc;
 	double				r;
+  double		    sd;
+  double        t1;
+  double        t2;
 }						t_cy_quad;
 
 typedef struct s_cy_caps

@@ -1,12 +1,27 @@
 #include "../include/minirt.h"
 
+/*
+https://www.scratchapixel.com/lessons/3d-basic-rendering/minimal-ray-tracer-rendering-simple-shapes/ray-sphere-intersection.html
+
+Equation of a sphere, points are on the sphere if center_distance == radius.
+∣ P - C ∣^2 = r^2
+...
+(at^2 + bt + c ) calculating parts of the quadric equation
+disc - discriminant (in polish 'delta')
+if < 0 - no hits.
+if == 0 - 1 hit
+if > 0 - 2 hits
+
+calculating the solutions of the quadric equation.
+getting the closer one.
+*/
 static int	sphere_intersect(t_ray *ray, t_sphere *sp, double *t_hit)
 {
 	t_sp_tmp	sph;
 	double		t;
 
 	sph.r = sp->diameter * 0.5;
-	sph.oc = sub_vec(ray->origin, sp->center);
+	sph.oc = sub_vec(ray->origin, sp->center); 
 	sph.a = dot_vec(ray->dir, ray->dir);
 	sph.b = 2.0 * dot_vec(ray->dir, sph.oc);
 	sph.c = dot_vec(sph.oc, sph.oc) - (sph.r * sph.r);

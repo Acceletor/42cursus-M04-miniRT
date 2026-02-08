@@ -38,7 +38,8 @@ SRCBASE = \
 	render/ren_sphere \
 	render/ren_plane \
 	render/ren_cylinder \
-	render/ren_intersection_cy \
+	render/ren_cylinder_cap \
+	render/ren_cylinder_side \
 	render/ren_cone \
 	math/vector_op \
 	math/vector_op2

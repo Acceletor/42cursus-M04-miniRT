@@ -1,5 +1,19 @@
 #include "../include/minirt.h"
 
+static int	cy_pick_best(t_cy_hits h, double *t_best, int *part)
+{
+	*t_best = -1.0;
+	*part = -1;
+	if (h.t_side > EPSILON && (*t_best < 0.0 || h.t_side < *t_best))
+		(*t_best = h.t_side, *part = 0);
+	if (h.t_top > EPSILON && (*t_best < 0.0 || h.t_top < *t_best))
+		(*t_best = h.t_top, *part = 1);
+	if (h.t_bot > EPSILON && (*t_best < 0.0 || h.t_bot < *t_best))
+		(*t_best = h.t_bot, *part = 2);
+	return (*t_best > 0.0);
+}
+
+/* calculates the centers of the top and bottom cap */
 static t_cy_caps	cy_caps_init(t_cylinder *cy)
 {
 	t_cy_caps	c;
@@ -11,6 +25,11 @@ static t_cy_caps	cy_caps_init(t_cylinder *cy)
 	return (c);
 }
 
+/* 
+Composite object
+The Side (Finite Cylider)
+Bottom and top cap
+*/
 static int	cylinder_intersection_closed(t_ray *ray, t_cylinder *cy, double *t_hit,
 		int *part)
 {
@@ -43,7 +62,7 @@ static t_vec	cy_part_normal(t_cylinder *cy, t_vec axis, t_vec hit, int part)
 	}
 	if (part == 1)
 		return (axis);
-	return (mult_vec(axis, -1.0));
+  return (mult_vec(axis, -1.0));
 }
 
 t_inter	hit_cylinder_update(t_inter best, t_objs *obj, t_ray *ray)
@@ -65,6 +84,30 @@ t_inter	hit_cylinder_update(t_inter best, t_objs *obj, t_ray *ray)
 	hit.hit = add_vec(ray->origin, mult_vec(ray->dir, t));
 	hit.color = cy->color;
 	hit.norm = cy_part_normal(cy, axis, hit.hit, part);
+	if (dot_vec(hit.norm, ray->dir) > 0.0)
+		hit.norm = mult_vec(hit.norm, -1.0);
+	return (hit);
+}
+
+/* Infinite cylinder */
+t_inter	hit_tube_update(t_inter best, t_objs *obj, t_ray *ray)
+{
+  t_inter		hit;
+	t_cylinder	*cy;
+	double		t;
+	t_vec		axis;
+
+	cy = (t_cylinder *)obj->data;
+  axis = vec_normalize(cy->normal);
+  if(!cy_infinite_hit(ray, cy, axis, &t))
+		return (best);
+	if (best.t > 0.0 && t >= best.t)
+		return (best);
+	hit = best;
+	hit.t = t;
+	hit.hit = add_vec(ray->origin, mult_vec(ray->dir, t));
+	hit.color = cy->color;
+	hit.norm = cy_part_normal(cy, axis, hit.hit, 0);
 	if (dot_vec(hit.norm, ray->dir) > 0.0)
 		hit.norm = mult_vec(hit.norm, -1.0);
 	return (hit);

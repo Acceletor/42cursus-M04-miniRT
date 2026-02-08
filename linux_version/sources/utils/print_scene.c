@@ -49,6 +49,7 @@ void	print_lights_and_objs(t_scene *sc)
 		print_vec("  color: ", li->color);
 		li = li->next;
 	}
+  printf("\n");
 	ob = sc->objs;
 	i = 0;
 	printf("=== Objects ===\n");
@@ -88,6 +89,23 @@ void	print_lights_and_objs(t_scene *sc)
 			printf("  diam:    %.3f\n", ((t_cylinder *)ob->data)->diameter);
 			printf("  height:    %.3f\n", ((t_cylinder *)ob->data)->height);
 			print_vec("  color:  ", ((t_cylinder *)ob->data)->color);
+    }
+    else if (ob->type == OBJ_TUBE)
+		{
+			printf("Tube\n");
+			print_vec("  center:  ", ((t_cylinder *)ob->data)->center);
+			print_vec("  normal:  ", ((t_cylinder *)ob->data)->normal);
+			printf("  diam:    %.3f\n", ((t_cylinder *)ob->data)->diameter);
+			printf("  height:    %.3f\n", ((t_cylinder *)ob->data)->height);
+			print_vec("  color:  ", ((t_cylinder *)ob->data)->color);
+    }
+    else if (ob->type == OBJ_CIRCLE)
+		{
+			printf("Circle\n");
+			print_vec("  center:  ", ((t_circle *)ob->data)->center);
+			print_vec("  normal:  ", ((t_circle *)ob->data)->normal);
+			printf("  diam:    %.3f\n", ((t_circle *)ob->data)->diameter);
+			print_vec("  color:  ", ((t_circle *)ob->data)->color);
     }
 		ob = ob->next;
 	}

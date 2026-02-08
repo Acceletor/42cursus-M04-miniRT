@@ -32,6 +32,7 @@ SRCBASE = \
 	parser/parse_cylinder \
 	parser/parse_cone \
 	parser/parse_tube \
+	parser/parse_circle \
 	render/core_render \
 	render/ren_ray_cal \
 	render/ren_color_cal \

@@ -88,6 +88,9 @@ void	parse_tube(t_data *data, char **tokens);
 // parse_cone.c
 void	parse_cone(t_data *data, char **tokens);
 
+// parse_circle.c
+void	parse_circle(t_data *data, char **tokens);
+
 // print_scene.c
 void		print_vec(char *label, t_vec v);
 void		print_ambient(t_amb *amb);
@@ -137,6 +140,7 @@ int			cy_side_hit(t_ray *ray, t_cylinder *cy, t_vec axis, double *t_side);
 int	    cy_infinite_hit(t_ray *ray, t_cylinder *cy, t_vec axis, double *t_side);
 // ren_circle.c
 int	circle_intersection(t_ray *ray, t_circle *ci, double *t_hit);
+t_inter	hit_circle_update(t_inter best, t_objs *obj, t_ray *ray);
 
 // ren_cone.c
 t_inter	hit_cone_update(t_inter best, t_objs *obj, t_ray *ray);

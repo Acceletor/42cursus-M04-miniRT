@@ -30,7 +30,7 @@ static t_objs	*create_cone_obj(t_data *data, char **tokens)
 	return (new);
 }
 
-static void	set_cone_center_normal(t_data *data, t_cone *co,
+static void	set_cone_center_normal(t_data *data, t_cylinder *co,
 		char **tokens)
 {
 	if (get_vec(tokens[1], &co->center))
@@ -47,7 +47,7 @@ static void	set_cone_center_normal(t_data *data, t_cone *co,
 	co->normal = vec_normalize(co->normal);
 }
 
-static void	set_cone_attributes(t_data *data, t_cone *co, char **tokens)
+static void	set_cone_attributes(t_data *data, t_cylinder *co, char **tokens)
 {
 	co->diameter = ft_atod(tokens[3]);
 	if (co->diameter <= 0)
@@ -71,13 +71,12 @@ static void	set_cone_attributes(t_data *data, t_cone *co, char **tokens)
 
 void	parse_cone(t_data *data, char **tokens)
 {
-  (void) data; (void) tokens;
 	t_objs		*new;
-	t_cone	*co;
+	t_cylinder	*co;
 
 	validate_cone_tokens(data, tokens);
 	new = create_cone_obj(data, tokens);
-	co = (t_cone *)new->data;
+	co = (t_cylinder *)new->data;
 	set_cone_center_normal(data, co, tokens);
 	set_cone_attributes(data, co, tokens);
 	add_object_to_scene(&data->scene, new);

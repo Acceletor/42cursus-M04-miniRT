@@ -98,7 +98,8 @@ typedef enum e_obj_type
 	OBJ_PLANE,
 	OBJ_CYLINDER,
   OBJ_TUBE,
-  OBJ_CONE
+  OBJ_CONE,
+  OBJ_CIRCLE
 }						t_obj_type;
 
 typedef struct s_objs
@@ -130,15 +131,6 @@ typedef struct s_cylinder
 	double				height;
 	t_vec				color;
 }						t_cylinder;
-
-typedef struct s_cone
-{
-	t_vec				center;
-	t_vec				normal;
-	double				diameter;
-	double				height;
-	t_vec				color;
-}						t_cone;
 
 typedef struct s_circle
 {
@@ -207,10 +199,6 @@ typedef struct s_cy_caps
 {
   t_circle top;
   t_circle btm;
-	// t_vec				axis;
-	// t_vec				top;
-	// t_vec				bot;
-	// double				r;
 }						t_cy_caps;
 
 typedef struct s_cy_hits

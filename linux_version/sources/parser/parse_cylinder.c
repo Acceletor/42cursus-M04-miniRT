@@ -56,7 +56,7 @@ static void	set_cylinder_attributes(t_data *data, t_cylinder *cy, char **tokens)
 		ft_err("Cylinder diameter must be > 0!", &data->gc_root, 1);
 	}
 	cy->height = ft_atod(tokens[4]);
-	if (cy->height <= 0)
+	if (cy->height < 0)
 	{
 		free_split(tokens);
 		ft_err("Cylinder height must be > 0!", &data->gc_root, 1);
@@ -77,6 +77,9 @@ void	parse_cylinder(t_data *data, char **tokens)
 	new = create_cylinder_obj(data, tokens);
 	cy = (t_cylinder *)new->data;
 	set_cylinder_center_normal(data, cy, tokens);
+  printf("[%f]\n", cy->height);
 	set_cylinder_attributes(data, cy, tokens);
+  if (cy->height == 0.0)
+    new->type = OBJ_TUBE;
 	add_object_to_scene(&data->scene, new);
 }

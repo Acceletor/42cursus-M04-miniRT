@@ -97,6 +97,7 @@ typedef enum e_obj_type
 	OBJ_SPHERE,
 	OBJ_PLANE,
 	OBJ_CYLINDER,
+  OBJ_TUBE,
   OBJ_CONE
 }						t_obj_type;
 

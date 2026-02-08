@@ -18,7 +18,8 @@ t_inter	scene_inter(t_ray *ray, t_scene *sc)
 			best = hit_plane_update(best, obj, ray);
 		else if (obj->type == OBJ_CYLINDER)
 			best = hit_cylinder_update(best, obj, ray);
-      // best = hit_tube_update(best, obj, ray);
+    else if (obj->type == OBJ_TUBE)
+      best = hit_tube_update(best, obj, ray);
     else if (obj->type == OBJ_CONE)
 			best = hit_cone_update(best, obj, ray);
 		obj = obj->next;

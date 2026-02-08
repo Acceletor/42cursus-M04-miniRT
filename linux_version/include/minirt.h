@@ -82,6 +82,9 @@ void		parse_plane(t_data *data, char **tokens);
 // parse_cylinder.c
 void		parse_cylinder(t_data *data, char **tokens);
 
+// parse_tube.c
+void	parse_tube(t_data *data, char **tokens);
+
 // parse_cone.c
 void	parse_cone(t_data *data, char **tokens);
 
@@ -140,6 +143,7 @@ t_inter	hit_cone_update(t_inter best, t_objs *obj, t_ray *ray);
 
 // ren_utils.c
 double		get_smallest_positive(double t1, double t2);
+double	get_smallest_positive_within(t_ray *ray, t_cylinder *cy, t_vec axis, t_cy_quad	q);
 
 // covert_to_rgb.c
 int			to_byte(double x);

@@ -4,7 +4,7 @@
 Plane logic
 ...
 Calculate hit coords (p)
-
+Calculate distance to center and compare with radius
 */
 int	circle_inersection(t_ray *ray, t_circle *ci, double *t_hit)
 {

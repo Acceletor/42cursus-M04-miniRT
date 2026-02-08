@@ -93,7 +93,7 @@ t_inter	hit_cylinder_update(t_inter best, t_objs *obj, t_ray *ray)
 	return (hit);
 }
 
-/* Infinite cylinder */
+/* cylinder without caps */
 t_inter	hit_tube_update(t_inter best, t_objs *obj, t_ray *ray)
 {
   t_inter		hit;
@@ -103,8 +103,8 @@ t_inter	hit_tube_update(t_inter best, t_objs *obj, t_ray *ray)
 
 	cy = (t_cylinder *)obj->data;
   axis = vec_normalize(cy->normal);
-  if(!cy_infinite_hit(ray, cy, axis, &t))
-		return (best);
+  if (!cy_infinite_hit(ray, cy, axis, &t))
+    return (best);
 	if (best.t > 0.0 && t >= best.t)
 		return (best);
 	hit = best;

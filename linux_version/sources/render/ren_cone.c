@@ -25,7 +25,6 @@ static int	cone_intersection(t_ray *ray, t_cylinder *co, double *t_hit,
 
 static t_vec	co_part_normal(t_cylinder *co, t_vec axis, t_vec hit, int part)
 {
-  // t_vec   top;
   t_vec   v_hit;
   double  m;
   double  proj;

@@ -3,7 +3,7 @@
 
 # define WIDTH 800
 # define HEIGHT 600
-# define EPSILON 0.000001
+# define EPSILON 1e-6
 # define WINDOW_NAME "MiniRT"
 
 # include <stdlib.h>
@@ -141,7 +141,7 @@ t_vec clamp01(t_vec c);
 // ren_color_cal.c
 t_vec ambient_color(t_scene *sc, t_vec obj_color);
 t_vec diffuse_color(t_vec obj, t_light *li, t_vec n, t_vec ldir);
-int in_shadow(t_scene *sc, t_inter inter, t_light *li);
+int in_shadow(t_scene *sc, t_vec p, t_light *li);
 t_vec shade_hit(t_scene *sc, t_inter inter);
 
 #endif

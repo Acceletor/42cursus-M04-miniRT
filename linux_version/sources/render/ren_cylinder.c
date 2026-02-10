@@ -82,7 +82,7 @@ t_inter	hit_cylinder_update(t_inter best, t_objs *obj, t_ray *ray)
 	cy = (t_cylinder *)obj->data;
 	if (!cylinder_intersection(ray, cy, &t, &part))
 		return (best);
-	if (best.t > 0.0 && t >= best.t)
+	if (best.t > EPSILON && t >= best.t)
 		return (best);
 	axis = vec_normalize(cy->normal);
 	hit = best;
@@ -107,7 +107,7 @@ t_inter	hit_tube_update(t_inter best, t_objs *obj, t_ray *ray)
   axis = vec_normalize(cy->normal);
   if (!cy_infinite_hit(ray, cy, axis, &t))
     return (best);
-	if (best.t > 0.0 && t >= best.t)
+	if (best.t > EPSILON && t >= best.t)
 		return (best);
 	hit = best;
 	hit.t = t;
@@ -118,38 +118,3 @@ t_inter	hit_tube_update(t_inter best, t_objs *obj, t_ray *ray)
 		hit.norm = mult_vec(hit.norm, -1.0);
 	return (hit);
 }
-
-// t_inter hit_cylinder_update(t_inter best, t_objs *obj, t_ray *ray)
-// {
-//     t_inter hit;
-//     t_cylinder *cy;
-//     double t;
-//     int part;
-//     t_vec axis;
-//     t_vec v;
-
-//     cy = (t_cylinder *)obj->data;
-//     if (!cylinder_intersection(ray, cy, &t, &part))
-//         return (best);
-//     if (best.t > 0.0 && t >= best.t)
-//         return (best);
-//     axis = vec_normalize(cy->normal);
-//     hit = best;
-//     hit.t = t;
-//     hit.hit = add_vec(ray->origin, mult_vec(ray->dir, t));
-//     hit.color = cy->color;
-//     if (part == 0) //side
-//     {
-//         v = sub_vec(hit.hit, cy->center);
-//         hit.norm = vec_normalize(sub_vec(v, mult_vec(axis, dot_vec(v,
-					// axis))));
-//     }
-//     else if (part == 1) // top cap
-//         hit.norm = axis;
-//     else
-//         hit.norm = mult_vec(axis, -1); //bottom cap
-
-//     if (dot_vec(hit.norm, ray->dir) > 0.0)
-//         hit.norm = mult_vec(hit.norm, -1.0);
-//     return (hit);
-// }

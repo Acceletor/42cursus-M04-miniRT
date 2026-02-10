@@ -3,7 +3,7 @@
 
 # define WIDTH 800
 # define HEIGHT 600
-# define EPSILON 0.000001
+# define EPSILON 1e-6
 # define WINDOW_NAME "MiniRT"
 
 # include "../libft/ft_printf.h"
@@ -157,10 +157,7 @@ double	smallest_positive_within_cy(t_ray *ray, t_cylinder *cy, t_vec axis, t_cy_
 double	smallest_positive_within_co(t_ray *ray, t_cylinder *co, t_vec axis, t_cy_quad	q);
 
 // covert_to_rgb.c
-int			to_byte(double x);
-int			create_rgb(int r, int g, int b);
 int			vec_to_rgb(t_vec c);
 t_vec		clamp01(t_vec c);
-
 
 #endif

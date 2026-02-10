@@ -1,6 +1,6 @@
 #include "../include/minirt.h"
 
-int	to_byte(double x)
+static int	to_byte(double x)
 {
 	if (x <= 0.0)
 		return (0);
@@ -9,7 +9,7 @@ int	to_byte(double x)
 	return (int)(x * 255.999);
 }
 
-int	create_rgb(int r, int g, int b)
+static int	create_rgb(int r, int g, int b)
 {
 	return ((r & 0xff) << 16) | ((g & 0xff) << 8) | (b & 0xff);
 }

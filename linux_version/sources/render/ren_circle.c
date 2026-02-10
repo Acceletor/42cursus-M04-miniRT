@@ -38,7 +38,7 @@ t_inter	hit_circle_update(t_inter best, t_objs *obj, t_ray *ray)
 	ci = (t_circle *)obj->data;
 	if (!circle_intersection(ray, ci, &t))
 		return (best);
-	if (best.t > 0.0 && t >= best.t)
+	if (best.t > EPSILON && t >= best.t)
 		return (best);
 	hit = best;
 	hit.t = t;

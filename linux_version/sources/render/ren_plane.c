@@ -49,7 +49,7 @@ static int	plane_intersection(t_ray *ray, t_plane *pl, double *t_hit)
 		return (0);
 	p0_to_o = sub_vec(pl->point, ray->origin);
 	t = dot_vec(p0_to_o, pl->normal) / den;
-	if (t < EPSILON)
+	if (t <= EPSILON)
 		return (0);
 	*t_hit = t;
 	return (1);
@@ -69,7 +69,7 @@ t_inter	hit_plane_update(t_inter best, t_objs *obj, t_ray *ray)
 	pl = (t_plane *)obj->data;
 	if (!plane_intersection(ray, pl, &t))
 		return (best);
-	if (best.t > 0.0 && t >= best.t)
+	if (best.t > EPSILON && t >= best.t)
 		return (best);
 	hit = best;
 	hit.t = t;

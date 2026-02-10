@@ -10,7 +10,6 @@ RM = rm -rf
 
 MLX_DIR = minilibx
 MLX_FLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11
-
 LIB_FLAGS = -lm
 
 SRCBASE = \
@@ -51,19 +50,12 @@ SRC = $(addsuffix .c, $(addprefix sources/, $(SRCBASE)))
 
 OBJ = $(SRC:sources/%.c=$(OBJ_DIR)/%.o)
 
-# start: 
-# @make all
-
-# macos: init_macos $(NAME)
-
-# init_macos:
-# 	MLX_DIR = libmlx/macos
-# 	MLX_FLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
-# 	@make -C ./libmlx/macos
-# 	@cp libmlx/macos/libmlx.dylib .
-# 	@echo "\033[32m[Macos Program is ready for use]\033[0m"
-
 all: $(NAME)
+	@echo "\033[32m[Program is ready for use]\033[0m"
+
+macos: MLX_DIR = libmlx/macos
+macos: MLX_FLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
+macos: $(NAME)
 	@echo "\033[32m[Program is ready for use]\033[0m"
 
 $(OBJ_DIR):

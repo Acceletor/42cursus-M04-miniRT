@@ -21,7 +21,7 @@ static int	sphere_intersect(t_ray *ray, t_sphere *sp, double *t_hit)
 	double		t;
 
 	q.r = sp->diameter * 0.5;
-	q.oc = sub_vec(ray->origin, sp->center); 
+	q.oc = sub_vec(ray->origin, sp->center);
 	q.a = dot_vec(ray->dir, ray->dir);
 	q.b = 2.0 * dot_vec(ray->dir, q.oc);
 	q.c = dot_vec(q.oc, q.oc) - (q.r * q.r);
@@ -40,9 +40,9 @@ static int	sphere_intersect(t_ray *ray, t_sphere *sp, double *t_hit)
 
 t_inter	hit_sphere_update(t_inter best, t_objs *obj, t_ray *ray)
 {
-	t_inter		hit;
-	t_sphere	*sp;
-	double		t;
+	t_inter hit;
+	t_sphere *sp;
+	double t;
 
 	sp = (t_sphere *)obj->data;
 	if (!sphere_intersect(ray, sp, &t))
@@ -53,7 +53,7 @@ t_inter	hit_sphere_update(t_inter best, t_objs *obj, t_ray *ray)
 	hit.t = t;
 	hit.hit = add_vec(ray->origin, mult_vec(ray->dir, t));
 	hit.norm = vec_normalize(sub_vec(hit.hit, sp->center));
-  if (dot_vec(hit.norm, ray->dir) > 0.0)
+	if (dot_vec(hit.norm, ray->dir) > 0.0)
 		hit.norm = vec_normalize(mult_vec(hit.norm, -1.0));
 	hit.color = sp->color;
 	return (hit);

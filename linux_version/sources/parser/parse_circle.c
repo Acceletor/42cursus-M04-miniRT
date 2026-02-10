@@ -1,6 +1,5 @@
 #include "../include/minirt.h"
 
-
 static void	validate_circle_tokens(t_data *data, char **tokens)
 {
 	if (!tokens || split_len(tokens) != 5)
@@ -30,8 +29,7 @@ static t_objs	*create_circle_obj(t_data *data, char **tokens)
 	return (new);
 }
 
-static void	set_circle_center_normal(t_data *data, t_circle *ci,
-		char **tokens)
+static void	set_circle_center_normal(t_data *data, t_circle *ci, char **tokens)
 {
 	if (get_vec(tokens[1], &ci->center))
 	{

@@ -30,38 +30,37 @@ static t_objs	*create_tube_obj(t_data *data, char **tokens)
 	return (new);
 }
 
-static void	set_tube_center_normal(t_data *data, t_cylinder *cy,
-		char **tokens)
+static void	set_tube_center_normal(t_data *data, t_cylinder *tu, char **tokens)
 {
-	if (get_vec(tokens[1], &cy->center))
+	if (get_vec(tokens[1], &tu->center))
 	{
 		free_split(tokens);
 		ft_err("Invalid tube center!", &data->gc_root, 1);
 	}
-	if (get_vec(tokens[2], &cy->normal) || is_out_of_bounds(&cy->normal))
+	if (get_vec(tokens[2], &tu->normal) || is_out_of_bounds(&tu->normal))
 	{
 		free_split(tokens);
-		ft_err("Invalid tube axis vector [-1,1] and not zero!",
-			&data->gc_root, 1);
+		ft_err("Invalid tube axis vector [-1,1] and not zero!", &data->gc_root,
+			1);
 	}
-	cy->normal = vec_normalize(cy->normal);
+	tu->normal = vec_normalize(tu->normal);
 }
 
-static void	set_tube_attributes(t_data *data, t_cylinder *cy, char **tokens)
+static void	set_tube_attributes(t_data *data, t_cylinder *tu, char **tokens)
 {
-	cy->diameter = ft_atod(tokens[3]);
-	if (cy->diameter <= 0)
+	tu->diameter = ft_atod(tokens[3]);
+	if (tu->diameter <= 0)
 	{
 		free_split(tokens);
 		ft_err("Tube diameter must be > 0!", &data->gc_root, 1);
 	}
-	cy->height = ft_atod(tokens[4]);
-	if (cy->height < 0)
+	tu->height = ft_atod(tokens[4]);
+	if (tu->height < 0)
 	{
 		free_split(tokens);
 		ft_err("Tube height must be >= 0!", &data->gc_root, 1);
 	}
-	if (get_color(tokens[5], &cy->color))
+	if (get_color(tokens[5], &tu->color))
 	{
 		free_split(tokens);
 		ft_err("Invalid tube color!", &data->gc_root, 1);

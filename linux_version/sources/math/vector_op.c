@@ -23,7 +23,7 @@ t_vec	vec_cross(t_vec u, t_vec v)
 	return (w);
 }
 
-/* 
+/*
 Converts a vector to a 'unit verctor' (len of 1) while preserving direction. Pure direction vectors.
 EPSILON - a tiny number for division by zero checks
 */

@@ -202,10 +202,12 @@ typedef struct s_cy_hits
 	double				t_bot;
 }						t_cy_hits;
 
-typedef struct s_co_hits
+typedef struct s_cy_update
 {
-	double				t_side;
-	double				t_bot;
-}						t_co_hits;
+  t_cy_hits hits;
+  t_vec axis;
+  t_cylinder *cy;
+  t_ray *ray;
+} t_cy_update;
 
 #endif

@@ -9,7 +9,7 @@ void	init_scene(t_data *data)
 	data->scene.cam.is_set = false;
 }
 
-/* 
+/*
 Initializes the viewport
 Converts degrees FOV (sc->cam.fov) to radians (cam.theta)
 M_PI - Math PI
@@ -17,17 +17,19 @@ Based on theta calculates the vp_width.
   Flattening of the viewport. From a 'part of a circle' to a triangle.
   Theta is 'the angle of the viewport triangle'.
   by dividing it by 2 I get a right angle triangle.
-  Assuming distance from origin to 'screen' is 1, tan can be used to calculate the 'screen' side of the triangle (half-width). tan = opposite / adjacent(1)
-vp_height calculated with respect to aspect. 
-       .
-      /|\<-theta/2
-     / | \
-    /  |  \ 
+  Assuming distance from origin to 'screen' is 1,
+	tan can be used to calculate the 'screen' side of the triangle (half-width). tan = opposite
+	/ adjacent(1)
+vp_height calculated with respect to aspect.
+		.
+		/|\<-theta/2
+		/ | \
+	/  |  \
    /   |<-1\
   /    |    \
  /_____|_____\
-          ^
-          vp_width/2
+			^
+			vp_width/2
 
 Normalizes the camera direction vector.
 Grounds direction to +Y axis.
@@ -46,13 +48,13 @@ t_camera	set_camera(t_scene *sc)
 	cam.theta = sc->cam.fov * M_PI / 180.0;    // horizontal FOV
 	cam.vp_width = 2.0 * tan(cam.theta / 2.0); // distance = 1
 	cam.vp_height = cam.vp_width / cam.aspect;
-  // ---
+	// ---
 	cam.forward = vec_normalize(sc->cam.dir);
 	world_up = (t_vec){0, 1, 0}; // +Y
 	if (fabs(cam.forward.x) < EPSILON && fabs(cam.forward.z) < EPSILON)
 		world_up = (t_vec){0, 0, 1}; // +Z
 	cam.right = vec_normalize(vec_cross(cam.forward, world_up));
-	cam.up = vec_normalize(vec_cross(cam.right, cam.forward)); 
+	cam.up = vec_normalize(vec_cross(cam.right, cam.forward));
 	return (cam);
 }
 

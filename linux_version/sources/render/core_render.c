@@ -13,9 +13,9 @@ void	my_mlx_pixel_put(t_image *img, int x, int y, int color)
 int	clean_exit(t_data *data)
 {
 	mlx_destroy_window(data->renderer.mlx.mlx, data->renderer.mlx.win);
-  mlx_destroy_image(data->renderer.mlx.mlx, data->renderer.img.img);
-  mlx_destroy_display(data->renderer.mlx.mlx);
-  free(data->renderer.mlx.mlx);
+	mlx_destroy_image(data->renderer.mlx.mlx, data->renderer.img.img);
+	mlx_destroy_display(data->renderer.mlx.mlx);
+	free(data->renderer.mlx.mlx);
 	gc_free_all(&data->gc_root);
 	if (data->fd != -1)
 		close(data->fd);
@@ -35,7 +35,8 @@ int	handle_key(int keycode, void *param)
 
 /*
 For each pixel
-  convert pixel coordinates to a cartesian coordinate system (center = 0,0) with scale [1, -1]
+  convert pixel coordinates to a cartesian coordinate system (center = 0,0) with scale [1,
+	-1]
   calculate the given pixel's direction vector (ray)
   calculate the color of the ray by ..
 */
@@ -68,7 +69,7 @@ void	rendering(t_data *data)
 	info->cam = set_camera(&data->scene);
 	image_init(info);
 	draw(info, &data->scene);
-  printf("Finished Rendering\n");
+	printf("Finished Rendering\n");
 	mlx_key_hook(info->mlx.win, handle_key, data);
 	mlx_hook(info->mlx.win, 17, 0, clean_exit, data);
 	mlx_loop(info->mlx.mlx);

@@ -39,22 +39,19 @@ int	cy_side_hit(t_ray *ray, t_cylinder *cy, t_vec axis, double *t_side)
 	if (fabs(q.a) < EPSILON || q.disc < 0.0)
 		return (0);
 	q.sd = sqrt(q.disc);
-  q.t1 = (-q.b - q.sd) / (2.0 * q.a);
-  q.t2 = (-q.b + q.sd) / (2.0 * q.a);
+	q.t1 = (-q.b - q.sd) / (2.0 * q.a);
+	q.t2 = (-q.b + q.sd) / (2.0 * q.a);
 	t = smallest_positive(q.t1, q.t2);
 	if (t < 0.0)
 		return (0);
-  p = add_vec(ray->origin, mult_vec(ray->dir, t));
-  y = dot_vec(sub_vec(p, cy->center), axis);
-  if (fabs(y) > cy->height * 0.5)
-    return (0);
+	p = add_vec(ray->origin, mult_vec(ray->dir, t));
+	y = dot_vec(sub_vec(p, cy->center), axis);
+	if (fabs(y) > cy->height * 0.5)
+		return (0);
 	*t_side = t;
 	return (1);
 }
 
-/*
-If height ==
-*/
 int	cy_infinite_hit(t_ray *ray, t_cylinder *cy, t_vec axis, double *t_side)
 {
 	t_cy_quad	q;
@@ -64,13 +61,13 @@ int	cy_infinite_hit(t_ray *ray, t_cylinder *cy, t_vec axis, double *t_side)
 	if (fabs(q.a) < EPSILON || q.disc < 0.0)
 		return (0);
 	q.sd = sqrt(q.disc);
-  q.t1 = (-q.b - q.sd) / (2.0 * q.a);
-  q.t2 = (-q.b + q.sd) / (2.0 * q.a);
-  if (cy->height)
-    t = smallest_positive_within_cy(ray, cy, axis, q);
-  else
-    t = smallest_positive(q.t1, q.t2);
-  if (t < 0.0)
+	q.t1 = (-q.b - q.sd) / (2.0 * q.a);
+	q.t2 = (-q.b + q.sd) / (2.0 * q.a);
+	if (cy->height)
+		t = smallest_positive_within_cy(ray, cy, axis, q);
+	else
+		t = smallest_positive(q.t1, q.t2);
+	if (t < 0.0)
 		return (0);
 	*t_side = t;
 	return (1);

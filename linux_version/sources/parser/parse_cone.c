@@ -30,8 +30,7 @@ static t_objs	*create_cone_obj(t_data *data, char **tokens)
 	return (new);
 }
 
-static void	set_cone_center_normal(t_data *data, t_cylinder *co,
-		char **tokens)
+static void	set_cone_center_normal(t_data *data, t_cylinder *co, char **tokens)
 {
 	if (get_vec(tokens[1], &co->center))
 	{
@@ -41,8 +40,8 @@ static void	set_cone_center_normal(t_data *data, t_cylinder *co,
 	if (get_vec(tokens[2], &co->normal) || is_out_of_bounds(&co->normal))
 	{
 		free_split(tokens);
-		ft_err("Invalid cone axis vector [-1,1] and not zero!",
-			&data->gc_root, 1);
+		ft_err("Invalid cone axis vector [-1,1] and not zero!", &data->gc_root,
+			1);
 	}
 	co->normal = vec_normalize(co->normal);
 }
@@ -67,7 +66,6 @@ static void	set_cone_attributes(t_data *data, t_cylinder *co, char **tokens)
 		ft_err("Invalid cone color!", &data->gc_root, 1);
 	}
 }
-
 
 void	parse_cone(t_data *data, char **tokens)
 {

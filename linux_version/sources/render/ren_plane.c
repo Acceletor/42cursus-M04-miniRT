@@ -23,17 +23,17 @@ if t < 0 then behind the camera.
 
 dist = p0_to_o * cos(p0_to_o, n)
 
-          .
-          |\< 01 cos = (dist / t)
-          | \
-          |  \
+			.
+			|\< 01 cos = (dist / t)
+			| \
+			|  \
    (dist) |   \ (t?)
-          |    \
-          |     \  
-        __|______\__ Plane
-          P0     |P
-                 | (n_v)
-                 V 
+			|    \
+			|     \
+		__|______\__ Plane
+			P0     |P
+					| (n_v)
+					V
 
 t = dist / cos(01)
 t = Sortest Distance to Plane Origin / Rate of perpendicular travel
@@ -62,9 +62,9 @@ static int	plane_intersection(t_ray *ray, t_plane *pl, double *t_hit)
 */
 t_inter	hit_plane_update(t_inter best, t_objs *obj, t_ray *ray)
 {
-	t_inter	hit;
-	t_plane	*pl;
-	double	t;
+	t_inter hit;
+	t_plane *pl;
+	double t;
 
 	pl = (t_plane *)obj->data;
 	if (!plane_intersection(ray, pl, &t))

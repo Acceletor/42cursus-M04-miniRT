@@ -15,7 +15,7 @@ double	smallest_positive(double t1, double t2)
 	return (-1.0);
 }
 
-int	is_within_cylinder(t_ray *ray, t_cylinder *cy, t_vec axis, double t)
+static int	is_within_cylinder(t_ray *ray, t_cylinder *cy, t_vec axis, double t)
 {
 	t_vec	p;
 	double	y;
@@ -27,7 +27,7 @@ int	is_within_cylinder(t_ray *ray, t_cylinder *cy, t_vec axis, double t)
 	return (1);
 }
 
-int	is_within_cone(t_ray *ray, t_cylinder *cy, t_vec axis, double t)
+static int	is_within_cone(t_ray *ray, t_cylinder *cy, t_vec axis, double t)
 {
 	t_vec	hit;
 	t_vec	top;

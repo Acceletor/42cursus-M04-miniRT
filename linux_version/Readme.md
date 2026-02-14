@@ -18,12 +18,11 @@ This project is an introduction to the beautiful world of Raytracing. It feature
 ```bash
   make
 ```
+
 #### To run the program execute ./miniRT with a valid scene argument:
 ```bash
 ./miniRT scenes/example.rt
 ```
-
-![example](docs/example.png "example")
 
 In case of an invalid argument an error message will appear.
 
@@ -64,13 +63,41 @@ tu 10,12,0 1,0,-1 6.0 10.0 220,0,220
 ```
 ![Objects](docs/objects.png "Objects")
 
-## Rendering Logic
-Starting in `draw`, based on the initialized in `set_camera` coordinates, for each pixel, a normalized direction vector (ray), is created. The program iterates through the objects in the scene, calculating the closest valid intersection point. If the point is found, based on the normal vector of the surface. If not, the background color is rendered instead.
+## Rendering Logic Overview
+Starting in `draw`, based on the initialized in `set_camera` coordinates, for each pixel, a normalized direction vector (ray), is created. The program iterates through the objects in the scene, calculating the closest valid intersection point. If the point is found, the color is diffused with the colors of the lights and the ambient. If not, the ambient color is rendered instead. In the case of an object blocking the light, it doesn't diffuse the color, creating a shade. Additionaly a specular reflection is added.
 
-## Memory management
+#### Without shadows
+![plain_spheres](docs/plain_spheres.png "plain_spheres")
+
+#### Shadows
+![not_shiny_spheres](docs/not_shiny_spheres.png "not_shiny_spheres")
+
+#### Specular reflections
+![spheres](docs/spheres.png "spheres")
 
 ## What we learned
+- 3D Vector mathematics
+- Ray–object intersection algorithms
+- Basic lighting models
+- Parsing structured input files
+- Memory management and error handling in C
 
 ## Resources
-https://lousodrome.net/blog/light/2017/01/03/intersection-of-a-ray-and-a-cone
-https://www.scratchapixel.com/lessons/3d-basic-rendering/minimal-ray-tracer-rendering-simple-shapes/ray-sphere-intersection.html
+- https://lousodrome.net/blog/light/2017/01/03/intersection-of-a-ray-and-a-cone
+- https://www.scratchapixel.com/lessons/3d-basic-rendering/minimal-ray-tracer-rendering-simple-shapes/ray-sphere-intersection.html
+- https://tutorial.math.lamar.edu/classes/calciii/eqnsofplanes.aspx
+- https://en.wikipedia.org/wiki/Blinn%E2%80%93Phong_reflection_model
+
+### Challenges Gallery
+#### Shadow Acne - The ray hitting the object it's based on due to floating decimal points
+![shadow_acne](docs/shadow_acne.png "shadow_acne")
+#### Calculating the hits inside of objects
+![transparent_insides](docs/transparent_insides.png "transparent_insides")
+
+## Gallery
+#### Dark sun
+![gallery_sun](docs/gallery_sun.png "gallery_sun")
+#### Recursion
+![gallery_recursion](docs/gallery_recursion.png "gallery_recursion")
+#### Moonlight
+![gallery_moonlight](docs/gallery_moonlight.png "gallery_moonlight")

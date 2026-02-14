@@ -65,10 +65,12 @@ tu 10,12,0 1,0,-1 6.0 10.0 220,0,220
 ![Objects](docs/objects.png "Objects")
 
 ## Rendering Logic
-Starting in `draw`, based on the initialized in `set_camera` coordinates, for each pixel, a normalized direction vector (ray), is created. The program iterates through the objects in the scene, calculating the distance to each of them.
+Starting in `draw`, based on the initialized in `set_camera` coordinates, for each pixel, a normalized direction vector (ray), is created. The program iterates through the objects in the scene, calculating the closest valid intersection point. If the point is found, based on the normal vector of the surface. If not, the background color is rendered instead.
 
 ## Memory management
 
 ## What we learned
 
 ## Resources
+https://lousodrome.net/blog/light/2017/01/03/intersection-of-a-ray-and-a-cone
+https://www.scratchapixel.com/lessons/3d-basic-rendering/minimal-ray-tracer-rendering-simple-shapes/ray-sphere-intersection.html

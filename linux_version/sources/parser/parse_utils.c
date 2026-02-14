@@ -26,7 +26,11 @@ int	get_vec(char *str, t_vec *out)
 	free_split(params);
 	return (0);
 }
-
+/* 
+1 - malloc error
+2 - format error
+3 - invalid color
+*/
 int	get_color(char *str, t_vec *out)
 {
 	char	**params;
@@ -34,27 +38,20 @@ int	get_color(char *str, t_vec *out)
 
 	params = ft_split(str, ',');
 	if (!params)
-		return (1); // malloc error
+		return (1);
 	if (split_len(params) != 3)
-	{
-		free_split(params);
-		return (2); // format error
-	}
+		return (free_split(params), 2);
 	color = make_vec(ft_atod(params[0]), ft_atod(params[1]),
-			ft_atod(params[2]));
+    ft_atod(params[2]));
 	if (color.x != (int)color.x || color.y != (int)color.y
 		|| color.z != (int)color.z || color.x > 255 || color.y > 255
 		|| color.z > 255 || color.x < 0 || color.y < 0 || color.z < 0)
-	{
-		free_split(params);
-		return (3); // invalid color
-	}
+		return (free_split(params), 3);
 	out->x = (int)color.x;
 	out->y = (int)color.y;
 	out->z = (int)color.z;
 	*out = normalize_color(*out);
-	free_split(params);
-	return (0);
+	return (free_split(params), 0);
 }
 
 t_objs	*alloc_object(t_obj_type type, t_collector **gc_root)

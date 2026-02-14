@@ -23,7 +23,7 @@ static int	cone_intersection(t_ray *ray, t_cylinder *co, double *t_hit,
 	return (1);
 }
 
-/* 
+/*
 vector from center to hit
 proj - distance along the axis
 m cone coefficient
@@ -37,10 +37,10 @@ static t_vec	co_part_normal(t_cylinder *co, t_vec axis, t_vec hit, int part)
 
 	if (part == 0)
 	{
-    hc = sub_vec(hit, co->center);
-    proj = dot_vec(hc, axis);
-    m = (co->diameter * co->diameter) / (co->height * co->height);
-    return (vec_normalize(sub_vec(hc, mult_vec(axis, (1 + m) * proj))));
+		hc = sub_vec(hit, co->center);
+		proj = dot_vec(hc, axis);
+		m = (co->diameter * co->diameter) / (co->height * co->height);
+		return (vec_normalize(sub_vec(hc, mult_vec(axis, (1 + m) * proj))));
 	}
 	else if (part == 1)
 		return (axis);

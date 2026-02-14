@@ -66,7 +66,7 @@ int	cy_infinite_hit(t_ray *ray, t_cylinder *cy, t_vec axis, double *t_side)
 	if (cy->height)
 		t = smallest_positive_within_cy(ray, cy, axis, q);
 	else
-    t = smallest_positive(q.t1, q.t2);
+		t = smallest_positive(q.t1, q.t2);
 	if (t < EPSILON)
 		return (0);
 	*t_side = t;

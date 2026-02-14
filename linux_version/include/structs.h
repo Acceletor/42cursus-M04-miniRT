@@ -97,9 +97,9 @@ typedef enum e_obj_type
 	OBJ_SPHERE,
 	OBJ_PLANE,
 	OBJ_CYLINDER,
-  OBJ_TUBE,
-  OBJ_CONE,
-  OBJ_CIRCLE
+	OBJ_TUBE,
+	OBJ_CONE,
+	OBJ_CIRCLE
 }						t_obj_type;
 
 typedef struct s_objs
@@ -136,8 +136,8 @@ typedef struct s_circle
 {
 	t_vec				center;
 	t_vec				normal;
-	double			diameter;
-  t_vec				color;
+	double				diameter;
+	t_vec				color;
 }						t_circle;
 
 /* ====== Containers ======= */
@@ -168,7 +168,7 @@ typedef struct s_data
 // sp
 typedef struct s_sp_quad
 {
-  double				r;
+	double				r;
 	t_vec				oc;
 	double				a;
 	double				b;
@@ -182,7 +182,7 @@ typedef struct s_sp_quad
 // cy
 typedef struct s_cy_quad
 {
-  double				r;
+	double				r;
 	t_vec				oc;
 	t_vec				d_perp;
 	t_vec				oc_perp;
@@ -190,9 +190,9 @@ typedef struct s_cy_quad
 	double				b;
 	double				c;
 	double				disc;
-  double		    sd;
-  double        t1;
-  double        t2;
+	double				sd;
+	double				t1;
+	double				t2;
 }						t_cy_quad;
 
 typedef struct s_cy_hits
@@ -204,10 +204,10 @@ typedef struct s_cy_hits
 
 typedef struct s_cy_update
 {
-  t_cy_hits hits;
-  t_vec axis;
-  t_cylinder *cy;
-  t_ray *ray;
-} t_cy_update;
+	t_cy_hits			hits;
+	t_vec				axis;
+	t_cylinder			*cy;
+	t_ray				*ray;
+}						t_cy_update;
 
 #endif

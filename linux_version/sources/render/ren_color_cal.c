@@ -25,7 +25,8 @@ static t_vec	diffuse_color(t_vec obj, t_light *li, t_vec n, t_vec ldir)
 // try 32, 64, 128
 // View direction: from hit point to camera
 // Half vector H = normalize(L + V)
-static t_vec	specular_color(t_scene *sc, t_inter inter, t_light *li, t_vec ldir)
+static t_vec	specular_color(t_scene *sc, t_inter inter, t_light *li,
+		t_vec ldir)
 {
 	t_vec	vdir;
 	t_vec	h;
@@ -62,7 +63,7 @@ static int	in_shadow(t_scene *sc, t_vec p, t_light *li)
 }
 
 /*
-The hit point normal vector is moved by a tiny bit to prevent 
+The hit point normal vector is moved by a tiny bit to prevent
 Shadow Acne (The ray hitting the object itself)
 */
 t_vec	shade_hit(t_scene *sc, t_inter inter)
@@ -80,7 +81,8 @@ t_vec	shade_hit(t_scene *sc, t_inter inter)
 		if (!in_shadow(sc, p, li))
 		{
 			ldir = vec_normalize(sub_vec(li->pos, p));
-			col = add_vec(col, diffuse_color(inter.color, li, inter.norm, ldir));
+			col = add_vec(col, diffuse_color(inter.color, li, inter.norm,
+						ldir));
 			col = add_vec(col, specular_color(sc, inter, li, ldir));
 		}
 		li = li->next;

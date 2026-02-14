@@ -53,7 +53,7 @@ void		add_object_to_scene(t_scene *scene, t_objs *new);
 int			is_invalid_double(char *s);
 int			is_invalid_vector(char *s);
 int			has_invalid_input(char *token);
-int     is_out_of_bounds(t_vec *v);
+int			is_out_of_bounds(t_vec *v);
 
 // parse_ambient.c
 void		validate_ambient_tokens(t_data *data, char **tokens);
@@ -83,13 +83,13 @@ void		parse_plane(t_data *data, char **tokens);
 void		parse_cylinder(t_data *data, char **tokens);
 
 // parse_tube.c
-void	parse_tube(t_data *data, char **tokens);
+void		parse_tube(t_data *data, char **tokens);
 
 // parse_cone.c
-void	parse_cone(t_data *data, char **tokens);
+void		parse_cone(t_data *data, char **tokens);
 
 // parse_circle.c
-void	parse_circle(t_data *data, char **tokens);
+void		parse_circle(t_data *data, char **tokens);
 
 // print_scene.c
 void		print_vec(char *label, t_vec v);
@@ -133,28 +133,32 @@ t_inter		hit_plane_update(t_inter best, t_objs *obj, t_ray *ray);
 
 // ren_cylinder.c
 t_inter		hit_cylinder_update(t_inter best, t_objs *obj, t_ray *ray);
-t_inter	hit_tube_update(t_inter best, t_objs *obj, t_ray *ray);
-void cy_caps_init(t_circle *top, t_circle *bot, t_cylinder *cy, t_vec axis);
-int	cy_pick_best(t_cy_hits h, double *t_best, int *part);
+t_inter		hit_tube_update(t_inter best, t_objs *obj, t_ray *ray);
+void		cy_caps_init(t_circle *top, t_circle *bot, t_cylinder *cy,
+				t_vec axis);
+int			cy_pick_best(t_cy_hits h, double *t_best, int *part);
 
 // ren_cylinder_side.c
 int			cy_side_hit(t_ray *ray, t_cylinder *cy, t_vec axis, double *t_side);
-int	    cy_infinite_hit(t_ray *ray, t_cylinder *cy, t_vec axis, double *t_side);
+int			cy_infinite_hit(t_ray *ray, t_cylinder *cy, t_vec axis,
+				double *t_side);
 
 // ren_circle.c
-int	circle_intersection(t_ray *ray, t_circle *ci, double *t_hit);
-t_inter	hit_circle_update(t_inter best, t_objs *obj, t_ray *ray);
+int			circle_intersection(t_ray *ray, t_circle *ci, double *t_hit);
+t_inter		hit_circle_update(t_inter best, t_objs *obj, t_ray *ray);
 
 // ren_cone.c
-t_inter	hit_cone_update(t_inter best, t_objs *obj, t_ray *ray);
+t_inter		hit_cone_update(t_inter best, t_objs *obj, t_ray *ray);
 
 // ren_cone_side.c
-int	co_side_hit(t_ray *ray, t_cylinder *co, t_vec axis, double *t_side);
+int			co_side_hit(t_ray *ray, t_cylinder *co, t_vec axis, double *t_side);
 
 // ren_utils.c
 double		smallest_positive(double t1, double t2);
-double	smallest_positive_within_cy(t_ray *ray, t_cylinder *cy, t_vec axis, t_cy_quad	q);
-double	smallest_positive_within_co(t_ray *ray, t_cylinder *co, t_vec axis, t_cy_quad	q);
+double		smallest_positive_within_cy(t_ray *ray, t_cylinder *cy, t_vec axis,
+				t_cy_quad q);
+double		smallest_positive_within_co(t_ray *ray, t_cylinder *co, t_vec axis,
+				t_cy_quad q);
 
 // covert_to_rgb.c
 int			vec_to_rgb(t_vec c);

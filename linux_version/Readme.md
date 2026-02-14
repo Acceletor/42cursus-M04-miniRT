@@ -66,8 +66,6 @@ tu 10,12,0 1,0,-1 6.0 10.0 220,0,220
 ## Rendering Logic Overview
 Starting in `draw`, based on the initialized in `set_camera` coordinates, for each pixel, a normalized direction vector (ray), is created. The program iterates through the objects in the scene, calculating the closest valid intersection point. If the point is found, the color is diffused with the colors of the lights and the ambient. If not, the ambient color is rendered instead. In the case of an object blocking the light, it doesn't diffuse the color, creating a shade. Additionaly a specular reflection is added. 
 
-Blinn-Phong
-
 #### Without shadows
 ![plain_spheres](docs/plain_spheres.png "plain_spheres")
 
@@ -91,7 +89,7 @@ Blinn-Phong
 - https://en.wikipedia.org/wiki/Blinn%E2%80%93Phong_reflection_model
 
 ### Challenges Gallery
-#### Shadow Acne - The ray hitting the object it's based on due to floating decimal points
+#### Shadow Acne - The ray hits the object it emerges from, due to floating decimal point inaccuracy
 ![shadow_acne](docs/shadow_acne.png "shadow_acne")
 #### Rendering Object Insides & Intersection Ranges
 ![transparent_insides](docs/transparent_insides.png "transparent_insides")

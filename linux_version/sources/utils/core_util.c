@@ -76,7 +76,9 @@ double	ft_atod(const char *s)
 
 int	split_len(char **tokens)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (tokens && tokens[i])
 		i++;
 	return (i);

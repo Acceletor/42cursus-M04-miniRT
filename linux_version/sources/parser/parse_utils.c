@@ -38,7 +38,8 @@ int	get_vec(char *str, t_vec *out)
 	free_split(params);
 	return (0);
 }
-/* 
+
+/*
 1 - malloc error
 2 - format error
 3 - invalid color
@@ -54,7 +55,7 @@ int	get_color(char *str, t_vec *out)
 	if (split_len(params) != 3)
 		return (free_split(params), 2);
 	color = make_vec(ft_atod(params[0]), ft_atod(params[1]),
-    ft_atod(params[2]));
+			ft_atod(params[2]));
 	if (color.x != (int)color.x || color.y != (int)color.y
 		|| color.z != (int)color.z || color.x > 255 || color.y > 255
 		|| color.z > 255 || color.x < 0 || color.y < 0 || color.z < 0)

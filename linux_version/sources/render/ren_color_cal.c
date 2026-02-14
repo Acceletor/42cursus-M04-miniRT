@@ -6,7 +6,7 @@
 /*   By: sandrzej&ksuebtha <student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 18:03:01 by sandrzej&ks       #+#    #+#             */
-/*   Updated: 2026/02/14 18:03:02 by sandrzej&ks      ###   ########.fr       */
+/*   Updated: 2026/02/14 18:08:48 by sandrzej&ks      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,11 @@ static t_vec	ambient_color(t_scene *sc, t_vec obj_color)
 	a = mult_vec(sc->amb.color, sc->amb.ratio);
 	return (hadamard(obj_color, a));
 }
-/* Diffuses the light color based on obj hit angle (ndotl) and the defined ratio */
+
+/*
+Diffuses the light color based on obj hit angle (ndotl)
+  and the defined ratio
+*/
 static t_vec	diffuse_color(t_vec obj, t_light *li, t_vec n, t_vec ldir)
 {
 	double	ndotl;
@@ -34,7 +38,7 @@ static t_vec	diffuse_color(t_vec obj, t_light *li, t_vec n, t_vec ldir)
 	return (hadamard(obj, li_col));
 }
 
-// try 32, 64, 128
+// shininess 32, 64, 128, 256 - dep on material choice
 // View direction: from hit point to camera
 // Half vector H = normalize(L + V)
 static t_vec	specular_color(t_scene *sc, t_inter inter, t_light *li,
@@ -45,14 +49,12 @@ static t_vec	specular_color(t_scene *sc, t_inter inter, t_light *li,
 	t_vec	p;
 	double	ndoth;
 	double	spec;
-	double	shininess;
 
 	p = add_vec(inter.hit, mult_vec(inter.norm, EPSILON));
 	vdir = vec_normalize(sub_vec(sc->cam.pos, p));
 	h = vec_normalize(add_vec(ldir, vdir));
 	ndoth = fmax(dot_vec(inter.norm, h), 0.0);
-	shininess = 256;
-	spec = pow(ndoth, shininess);
+	spec = pow(ndoth, 256);
 	return (mult_vec(li->color, li->ratio * spec));
 }
 

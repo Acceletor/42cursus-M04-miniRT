@@ -43,9 +43,9 @@ int	circle_intersection(t_ray *ray, t_circle *ci, double *t_hit)
 
 t_inter	hit_circle_update(t_inter best, t_objs *obj, t_ray *ray)
 {
-	t_inter hit;
-	t_circle *ci;
-	double t;
+	t_inter		hit;
+	t_circle	*ci;
+	double		t;
 
 	ci = (t_circle *)obj->data;
 	if (!circle_intersection(ray, ci, &t))

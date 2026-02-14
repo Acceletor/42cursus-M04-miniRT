@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vector_op.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sandrzej&ksuebtha <student.42warsaw.pl>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/14 18:04:45 by sandrzej&ks       #+#    #+#             */
+/*   Updated: 2026/02/14 18:04:46 by sandrzej&ks      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minirt.h"
 
 /*
@@ -24,7 +36,8 @@ t_vec	vec_cross(t_vec u, t_vec v)
 }
 
 /*
-Converts a vector to a 'unit verctor' (len of 1) while preserving direction. Pure direction vectors.
+Converts a vector to a 'unit verctor' (len of 1) 
+	while preserving direction. Pure direction vectors.
 EPSILON - a tiny number for division by zero checks
 */
 t_vec	vec_normalize(t_vec v)

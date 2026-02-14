@@ -30,11 +30,11 @@ typedef struct s_vec
 
 typedef struct s_image // mlx image buffer
 {
-	void *img;
-	void *addr;
-	int bits_per_pixel;
-	int line_length;
-	int endian;
+	void	*img;
+	void	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 }						t_image;
 
 typedef struct s_ray
@@ -50,7 +50,7 @@ typedef struct s_camera
 	t_vec				right;
 	t_vec				up;
 	double				aspect;
-	double theta; // horizontal FOV (radian)
+	double				theta; // horizontal FOV (radian)
 	double				vp_width;
 	double				vp_height;
 }						t_camera;
@@ -72,8 +72,8 @@ typedef struct s_renderer
 
 typedef struct s_inter
 {
-	double t;  // distance along the ray
-	t_vec hit; // the exact 3D point where the ray touches the object
+	double				t; // distance along the ray
+	t_vec				hit; // 3D point where the ray touches the object
 	t_vec				norm;
 	t_vec				color;
 }						t_inter;
@@ -90,16 +90,16 @@ typedef struct s_cam
 {
 	bool				is_set;
 	t_vec				pos;
-	t_vec dir;  // [-1, 1]
-	double fov; // [0, 180]
+	t_vec				dir; // [-1, 1]
+	double				fov; // [0, 180]
 }						t_cam;
 
 typedef struct s_light // at least 1
 {
-	t_vec pos;
-	double ratio;
-	t_vec color;
-	struct s_light *next;
+	t_vec			pos;
+	double			ratio;
+	t_vec			color;
+	struct s_light	*next;
 }						t_light;
 
 /* ====== Objects ======= */

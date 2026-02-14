@@ -74,9 +74,9 @@ static int	plane_intersection(t_ray *ray, t_plane *pl, double *t_hit)
 */
 t_inter	hit_plane_update(t_inter best, t_objs *obj, t_ray *ray)
 {
-	t_inter hit;
-	t_plane *pl;
-	double t;
+	t_inter	hit;
+	t_plane	*pl;
+	double	t;
 
 	pl = (t_plane *)obj->data;
 	if (!plane_intersection(ray, pl, &t))

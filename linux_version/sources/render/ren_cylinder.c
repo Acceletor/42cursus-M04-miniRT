@@ -6,7 +6,7 @@
 /*   By: sandrzej&ksuebtha <student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 18:03:08 by sandrzej&ks       #+#    #+#             */
-/*   Updated: 2026/02/14 18:03:09 by sandrzej&ks      ###   ########.fr       */
+/*   Updated: 2026/02/14 18:18:53 by sandrzej&ks      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,20 @@ int	cy_pick_best(t_cy_hits h, double *t_best, int *part)
 	*t_best = -1.0;
 	*part = -1;
 	if (h.t_side > EPSILON && (*t_best < EPSILON || h.t_side < *t_best))
-		(*t_best = h.t_side, *part = 0);
+	{
+		*t_best = h.t_side;
+		*part = 0;
+	}
 	if (h.t_top > EPSILON && (*t_best < EPSILON || h.t_top < *t_best))
-		(*t_best = h.t_top, *part = 1);
+	{
+		*t_best = h.t_top;
+		*part = 1;
+	}
 	if (h.t_bot > EPSILON && (*t_best < EPSILON || h.t_bot < *t_best))
-		(*t_best = h.t_bot, *part = 2);
+	{
+		*t_best = h.t_bot;
+		*part = 2;
+	}
 	return (*t_best > EPSILON);
 }
 
@@ -69,7 +78,7 @@ static int	cylinder_intersection(t_ray *ray, t_cylinder *cy, double *t_hit,
 	return (1);
 }
 
-static t_vec	cy_part_normal(t_cylinder *cy, t_vec axis, t_vec hit, int part)
+t_vec	cy_part_normal(t_cylinder *cy, t_vec axis, t_vec hit, int part)
 {
 	t_vec	v;
 	double	proj;
@@ -104,30 +113,6 @@ t_inter	hit_cylinder_update(t_inter best, t_objs *obj, t_ray *ray)
 	hit.hit = add_vec(ray->origin, mult_vec(ray->dir, t));
 	hit.color = cy->color;
 	hit.norm = cy_part_normal(cy, axis, hit.hit, part);
-	if (dot_vec(hit.norm, ray->dir) > EPSILON)
-		hit.norm = mult_vec(hit.norm, -1.0);
-	return (hit);
-}
-
-/* cylinder without caps */
-t_inter	hit_tube_update(t_inter best, t_objs *obj, t_ray *ray)
-{
-	t_inter hit;
-	t_cylinder *cy;
-	double t;
-	t_vec axis;
-
-	cy = (t_cylinder *)obj->data;
-	axis = cy->normal;
-	if (!cy_infinite_hit(ray, cy, axis, &t))
-		return (best);
-	if (best.t > EPSILON && t >= best.t)
-		return (best);
-	hit = best;
-	hit.t = t;
-	hit.hit = add_vec(ray->origin, mult_vec(ray->dir, t));
-	hit.color = cy->color;
-	hit.norm = cy_part_normal(cy, axis, hit.hit, 0);
 	if (dot_vec(hit.norm, ray->dir) > EPSILON)
 		hit.norm = mult_vec(hit.norm, -1.0);
 	return (hit);

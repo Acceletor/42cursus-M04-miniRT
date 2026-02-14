@@ -18,12 +18,12 @@ static int	to_byte(double x)
 		return (0);
 	if (x >= 1.0)
 		return (255);
-	return (int)(x * 255.999);
+	return ((int)(x * 255.999));
 }
 
 static int	create_rgb(int r, int g, int b)
 {
-	return ((r & 0xff) << 16) | ((g & 0xff) << 8) | (b & 0xff);
+	return (((r & 0xff) << 16) | ((g & 0xff) << 8) | (b & 0xff));
 }
 
 int	vec_to_rgb(t_vec c) // expects 0..1

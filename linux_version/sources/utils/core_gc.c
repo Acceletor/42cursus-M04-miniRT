@@ -59,7 +59,8 @@ int	gc_append_adr(t_collector **g_root, void *adr)
 
 void	*gc_malloc(t_collector **g_root, size_t size)
 {
-	void *ptr;
+	void	*ptr;
+
 	ptr = malloc(size);
 	if (!ptr)
 		return (NULL);

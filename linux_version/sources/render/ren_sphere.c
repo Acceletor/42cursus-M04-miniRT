@@ -6,15 +6,13 @@
 /*   By: sandrzej&ksuebtha <student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 18:03:15 by sandrzej&ks       #+#    #+#             */
-/*   Updated: 2026/02/14 18:03:16 by sandrzej&ks      ###   ########.fr       */
+/*   Updated: 2026/02/14 18:05:59 by sandrzej&ks      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
 /*
-https://www.scratchapixel.com/lessons/3d-basic-rendering/minimal-ray-tracer-rendering-simple-shapes/ray-sphere-intersection.html
-
 Equation of a sphere, points are on the sphere if center_distance == radius.
 ∣ P - C ∣^2 = r^2
 ...
@@ -52,9 +50,9 @@ static int	sphere_intersect(t_ray *ray, t_sphere *sp, double *t_hit)
 
 t_inter	hit_sphere_update(t_inter best, t_objs *obj, t_ray *ray)
 {
-	t_inter hit;
-	t_sphere *sp;
-	double t;
+	t_inter		hit;
+	t_sphere	*sp;
+	double		t;
 
 	sp = (t_sphere *)obj->data;
 	if (!sphere_intersect(ray, sp, &t))

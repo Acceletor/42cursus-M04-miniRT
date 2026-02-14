@@ -22,7 +22,6 @@ This project introduces the fundamentals of computer graphics such as ray–obje
 - Real-time rendering using MiniLibX
 - Window management and clean exit handling
 
-
 ---
 
 ## 📁 Scene Description (.rt)

@@ -6,7 +6,7 @@
 /*   By: sandrzej&ksuebtha <student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 18:03:30 by sandrzej&ks       #+#    #+#             */
-/*   Updated: 2026/02/14 18:03:31 by sandrzej&ks      ###   ########.fr       */
+/*   Updated: 2026/02/14 18:20:12 by sandrzej&ks      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ Based on theta calculates the vp_width.
   Theta is 'the angle of the viewport triangle'.
   by dividing it by 2 I get a right angle triangle.
   Assuming distance from origin to 'screen' is 1,
-	tan can be used to calculate the 'screen' side of the triangle (half-width). tan = opposite
-	/ adjacent(1)
+	tan can be used to calculate the 'screen' side of the triangle (half-width).
+   tan = opposite / adjacent(1)
 vp_height calculated with respect to aspect.
 		.
 		/|\<-theta/2
@@ -57,14 +57,13 @@ t_camera	set_camera(t_scene *sc)
 
 	cam.pos = sc->cam.pos;
 	cam.aspect = (double)WIDTH / (double)HEIGHT;
-	cam.theta = sc->cam.fov * M_PI / 180.0;    // horizontal FOV
-	cam.vp_width = 2.0 * tan(cam.theta / 2.0); // distance = 1
+	cam.theta = sc->cam.fov * M_PI / 180.0;
+	cam.vp_width = 2.0 * tan(cam.theta / 2.0);
 	cam.vp_height = cam.vp_width / cam.aspect;
-	// ---
 	cam.forward = vec_normalize(sc->cam.dir);
-	world_up = (t_vec){0, 1, 0}; // +Y
+	world_up = (t_vec){0, 1, 0};
 	if (fabs(cam.forward.x) < EPSILON && fabs(cam.forward.z) < EPSILON)
-		world_up = (t_vec){0, 0, 1}; // +Z
+		world_up = (t_vec){0, 0, 1};
 	cam.right = vec_normalize(vec_cross(cam.forward, world_up));
 	cam.up = vec_normalize(vec_cross(cam.right, cam.forward));
 	return (cam);

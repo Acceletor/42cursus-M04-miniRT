@@ -47,8 +47,8 @@ int	handle_key(int keycode, void *param)
 
 /*
 For each pixel
-  convert pixel coordinates to a cartesian coordinate system (center = 0,0) with scale [1,
-	-1]
+  convert pixel coordinates to a cartesian coordinate system 
+  (center = 0,0) with scale [1,	-1]
   calculate the given pixel's direction vector (ray)
   calculate the color of the ray by ..
 */

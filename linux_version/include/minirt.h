@@ -6,7 +6,7 @@
 /*   By: sandrzej&ksuebtha <student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 18:03:45 by sandrzej&ks       #+#    #+#             */
-/*   Updated: 2026/02/14 18:03:46 by sandrzej&ks      ###   ########.fr       */
+/*   Updated: 2026/02/14 18:19:14 by sandrzej&ks      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,10 +145,13 @@ t_inter		hit_plane_update(t_inter best, t_objs *obj, t_ray *ray);
 
 // ren_cylinder.c
 t_inter		hit_cylinder_update(t_inter best, t_objs *obj, t_ray *ray);
-t_inter		hit_tube_update(t_inter best, t_objs *obj, t_ray *ray);
 void		cy_caps_init(t_circle *top, t_circle *bot, t_cylinder *cy,
 				t_vec axis);
+t_vec		cy_part_normal(t_cylinder *cy, t_vec axis, t_vec hit, int part);
 int			cy_pick_best(t_cy_hits h, double *t_best, int *part);
+
+// ren_tube.c
+t_inter		hit_tube_update(t_inter best, t_objs *obj, t_ray *ray);
 
 // ren_cylinder_side.c
 int			cy_side_hit(t_ray *ray, t_cylinder *cy, t_vec axis, double *t_side);

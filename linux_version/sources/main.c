@@ -6,16 +6,15 @@
 /*   By: sandrzej&ksuebtha <student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 18:03:33 by sandrzej&ks       #+#    #+#             */
-/*   Updated: 2026/02/14 18:03:34 by sandrzej&ks      ###   ########.fr       */
+/*   Updated: 2026/02/14 18:20:58 by sandrzej&ks      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../include/minirt.h"
 
 int	main(int argc, char **argv)
 {
-	t_data data;
+	t_data	data;
 
 	data.gc_root = NULL;
 	data.fd = -1;
@@ -26,6 +25,5 @@ int	main(int argc, char **argv)
 	print_scene(&data);
 	rendering(&data);
 	gc_free_all(&data.gc_root);
-	// close(fd)
 	return (0);
 }

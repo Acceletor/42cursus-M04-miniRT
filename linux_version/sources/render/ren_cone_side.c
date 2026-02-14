@@ -39,8 +39,8 @@ static t_cy_quad	co_quad_init(t_ray *ray, t_cylinder *co, t_vec axis)
 
 int	co_side_hit(t_ray *ray, t_cylinder *co, t_vec axis, double *t_side)
 {
-	t_cy_quad q;
-	double t;
+	t_cy_quad	q;
+	double		t;
 
 	q = co_quad_init(ray, co, axis);
 	if (q.disc < EPSILON)

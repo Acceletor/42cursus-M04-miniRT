@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_circle.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sandrzej&ksuebtha <student.42warsaw.pl>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/14 18:02:36 by sandrzej&ks       #+#    #+#             */
+/*   Updated: 2026/02/14 18:02:37 by sandrzej&ks      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minirt.h"
 
 static void	validate_circle_tokens(t_data *data, char **tokens)

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_plane.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sandrzej&ksuebtha <student.42warsaw.pl>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/14 18:02:46 by sandrzej&ks       #+#    #+#             */
+/*   Updated: 2026/02/14 18:02:47 by sandrzej&ks      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minirt.h"
 
 static void	validate_plane_tokens(t_data *data, char **tokens)

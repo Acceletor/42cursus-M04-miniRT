@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_sphere.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sandrzej&ksuebtha <student.42warsaw.pl>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/14 18:02:49 by sandrzej&ks       #+#    #+#             */
+/*   Updated: 2026/02/14 18:02:50 by sandrzej&ks      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minirt.h"
 
 static void	validate_sphere_tokens(t_data *data, char **tokens)

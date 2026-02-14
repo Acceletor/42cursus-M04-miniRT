@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ren_cone.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sandrzej&ksuebtha <student.42warsaw.pl>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/14 18:03:04 by sandrzej&ks       #+#    #+#             */
+/*   Updated: 2026/02/14 18:03:05 by sandrzej&ks      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minirt.h"
 
 static int	cone_intersection(t_ray *ray, t_cylinder *co, double *t_hit,

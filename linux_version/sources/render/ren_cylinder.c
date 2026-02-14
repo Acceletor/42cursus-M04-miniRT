@@ -9,13 +9,13 @@ int	cy_pick_best(t_cy_hits h, double *t_best, int *part)
 {
 	*t_best = -1.0;
 	*part = -1;
-	if (h.t_side > EPSILON && (*t_best < 0.0 || h.t_side < *t_best))
+	if (h.t_side > EPSILON && (*t_best < EPSILON || h.t_side < *t_best))
 		(*t_best = h.t_side, *part = 0);
-	if (h.t_top > EPSILON && (*t_best < 0.0 || h.t_top < *t_best))
+	if (h.t_top > EPSILON && (*t_best < EPSILON || h.t_top < *t_best))
 		(*t_best = h.t_top, *part = 1);
-	if (h.t_bot > EPSILON && (*t_best < 0.0 || h.t_bot < *t_best))
+	if (h.t_bot > EPSILON && (*t_best < EPSILON || h.t_bot < *t_best))
 		(*t_best = h.t_bot, *part = 2);
-	return (*t_best > 0.0);
+	return (*t_best > EPSILON);
 }
 
 /* calculates the centers of the top and bottom cap */
@@ -92,7 +92,7 @@ t_inter	hit_cylinder_update(t_inter best, t_objs *obj, t_ray *ray)
 	hit.hit = add_vec(ray->origin, mult_vec(ray->dir, t));
 	hit.color = cy->color;
 	hit.norm = cy_part_normal(cy, axis, hit.hit, part);
-	if (dot_vec(hit.norm, ray->dir) > 0.0)
+	if (dot_vec(hit.norm, ray->dir) > EPSILON)
 		hit.norm = mult_vec(hit.norm, -1.0);
 	return (hit);
 }
@@ -116,7 +116,7 @@ t_inter	hit_tube_update(t_inter best, t_objs *obj, t_ray *ray)
 	hit.hit = add_vec(ray->origin, mult_vec(ray->dir, t));
 	hit.color = cy->color;
 	hit.norm = cy_part_normal(cy, axis, hit.hit, 0);
-	if (dot_vec(hit.norm, ray->dir) > 0.0)
+	if (dot_vec(hit.norm, ray->dir) > EPSILON)
 		hit.norm = mult_vec(hit.norm, -1.0);
 	return (hit);
 }

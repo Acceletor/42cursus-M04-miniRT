@@ -36,7 +36,7 @@ int	is_within_cone(t_ray *ray, t_cylinder *cy, t_vec axis, double t)
 	top = add_vec(cy->center, mult_vec(axis, cy->height * 0.5));
 	hit = add_vec(ray->origin, mult_vec(ray->dir, t));
 	h = dot_vec(sub_vec(hit, top), axis);
-	if (h < 0.0 && h > -cy->height)
+	if (h < EPSILON && h > -cy->height)
 		return (1);
 	return (0);
 }

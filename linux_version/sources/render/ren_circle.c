@@ -44,7 +44,7 @@ t_inter	hit_circle_update(t_inter best, t_objs *obj, t_ray *ray)
 	hit.t = t;
 	hit.hit = add_vec(ray->origin, mult_vec(ray->dir, t));
 	hit.norm = vec_normalize(ci->normal);
-	if (dot_vec(hit.norm, ray->dir) > 0.0)
+	if (dot_vec(hit.norm, ray->dir) > EPSILON)
 		hit.norm = vec_normalize(mult_vec(hit.norm, -1.0));
 	hit.color = ci->color;
 	return (hit);

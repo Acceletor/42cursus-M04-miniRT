@@ -58,7 +58,7 @@ t_inter	hit_cone_update(t_inter best, t_objs *obj, t_ray *ray)
 	co = (t_cylinder *)obj->data;
 	if (!cone_intersection(ray, co, &t, &part))
 		return (best);
-	if (best.t > 0.0 && t >= best.t)
+	if (best.t > EPSILON && t >= best.t)
 		return (best);
 	axis = vec_normalize(co->normal);
 	hit = best;
@@ -67,7 +67,7 @@ t_inter	hit_cone_update(t_inter best, t_objs *obj, t_ray *ray)
 	hit.color = co->color;
 	hit.norm = co->normal;
 	hit.norm = co_part_normal(co, axis, hit.hit, part);
-	if (dot_vec(hit.norm, ray->dir) > 0.0)
+	if (dot_vec(hit.norm, ray->dir) > EPSILON)
 		hit.norm = mult_vec(hit.norm, -1.0);
 	return (hit);
 }

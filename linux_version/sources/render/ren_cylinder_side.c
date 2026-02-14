@@ -36,13 +36,13 @@ int	cy_side_hit(t_ray *ray, t_cylinder *cy, t_vec axis, double *t_side)
 	double		y;
 
 	q = cy_quad_init(ray, cy, axis);
-	if (fabs(q.a) < EPSILON || q.disc < 0.0)
+	if (fabs(q.a) < EPSILON || q.disc < EPSILON)
 		return (0);
 	q.sd = sqrt(q.disc);
 	q.t1 = (-q.b - q.sd) / (2.0 * q.a);
 	q.t2 = (-q.b + q.sd) / (2.0 * q.a);
 	t = smallest_positive(q.t1, q.t2);
-	if (t < 0.0)
+	if (t < EPSILON)
 		return (0);
 	p = add_vec(ray->origin, mult_vec(ray->dir, t));
 	y = dot_vec(sub_vec(p, cy->center), axis);
@@ -58,7 +58,7 @@ int	cy_infinite_hit(t_ray *ray, t_cylinder *cy, t_vec axis, double *t_side)
 	double		t;
 
 	q = cy_quad_init(ray, cy, axis);
-	if (fabs(q.a) < EPSILON || q.disc < 0.0)
+	if (fabs(q.a) < EPSILON || q.disc < EPSILON)
 		return (0);
 	q.sd = sqrt(q.disc);
 	q.t1 = (-q.b - q.sd) / (2.0 * q.a);
@@ -67,7 +67,7 @@ int	cy_infinite_hit(t_ray *ray, t_cylinder *cy, t_vec axis, double *t_side)
 		t = smallest_positive_within_cy(ray, cy, axis, q);
 	else
 		t = smallest_positive(q.t1, q.t2);
-	if (t < 0.0)
+	if (t < EPSILON)
 		return (0);
 	*t_side = t;
 	return (1);

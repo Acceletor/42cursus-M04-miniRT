@@ -2,7 +2,7 @@
 
 static int	to_byte(double x)
 {
-	if (x <= 0.0)
+	if (x <= EPSILON)
 		return (0);
 	if (x >= 1.0)
 		return (255);
@@ -21,12 +21,12 @@ int	vec_to_rgb(t_vec c) // expects 0..1
 
 t_vec	clamp01(t_vec c)
 {
-	if (c.x < 0.0)
-		c.x = 0.0;
-	if (c.y < 0.0)
-		c.y = 0.0;
-	if (c.z < 0.0)
-		c.z = 0.0;
+	if (c.x < EPSILON)
+		c.x = EPSILON;
+	if (c.y < EPSILON)
+		c.y = EPSILON;
+	if (c.z < EPSILON)
+		c.z = EPSILON;
 	if (c.x > 1.0)
 		c.x = 1.0;
 	if (c.y > 1.0)

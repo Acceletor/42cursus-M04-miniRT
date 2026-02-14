@@ -31,13 +31,13 @@ int	co_side_hit(t_ray *ray, t_cylinder *co, t_vec axis, double *t_side)
 	double t;
 
 	q = co_quad_init(ray, co, axis);
-	if (q.disc < 0.0)
+	if (q.disc < EPSILON)
 		return (0);
 	q.sd = sqrt(q.disc);
 	q.t1 = (-q.b - q.sd) / (2.0 * q.a);
 	q.t2 = (-q.b + q.sd) / (2.0 * q.a);
 	t = smallest_positive_within_co(ray, co, axis, q);
-	if (t < 0.0)
+	if (t < EPSILON)
 		return (0);
 	*t_side = t;
 	return (1);

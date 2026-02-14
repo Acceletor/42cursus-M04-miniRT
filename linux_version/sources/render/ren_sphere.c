@@ -26,13 +26,13 @@ static int	sphere_intersect(t_ray *ray, t_sphere *sp, double *t_hit)
 	q.b = 2.0 * dot_vec(ray->dir, q.oc);
 	q.c = dot_vec(q.oc, q.oc) - (q.r * q.r);
 	q.disc = (q.b * q.b) - (4.0 * q.a * q.c);
-	if (q.disc < 0.0)
+	if (q.disc < EPSILON)
 		return (0);
 	q.sd = sqrt(q.disc);
 	q.t1 = (-q.b - q.sd) / (2.0 * q.a);
 	q.t2 = (-q.b + q.sd) / (2.0 * q.a);
 	t = smallest_positive(q.t1, q.t2);
-	if (t < 0.0)
+	if (t < EPSILON)
 		return (0);
 	*t_hit = t;
 	return (1);
@@ -47,13 +47,13 @@ t_inter	hit_sphere_update(t_inter best, t_objs *obj, t_ray *ray)
 	sp = (t_sphere *)obj->data;
 	if (!sphere_intersect(ray, sp, &t))
 		return (best);
-	if (best.t > 0.0 && t >= best.t)
+	if (best.t > EPSILON && t >= best.t)
 		return (best);
 	hit = best;
 	hit.t = t;
 	hit.hit = add_vec(ray->origin, mult_vec(ray->dir, t));
 	hit.norm = vec_normalize(sub_vec(hit.hit, sp->center));
-	if (dot_vec(hit.norm, ray->dir) > 0.0)
+	if (dot_vec(hit.norm, ray->dir) > EPSILON)
 		hit.norm = vec_normalize(mult_vec(hit.norm, -1.0));
 	hit.color = sp->color;
 	return (hit);

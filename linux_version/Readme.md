@@ -65,6 +65,7 @@ tu 10,12,0 1,0,-1 6.0 10.0 220,0,220
 ![Objects](docs/objects.png "Objects")
 
 ## Rendering Logic
+Starting in `draw`, based on the initialized in `set_camera` coordinates, for each pixel, a normalized direction vector (ray), is created. The program iterates through the objects in the scene, calculating the distance to each of them.
 
 ## Memory management
 

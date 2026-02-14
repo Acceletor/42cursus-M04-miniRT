@@ -15,7 +15,7 @@ t_vec	diffuse_color(t_vec obj, t_light *li, t_vec n, t_vec ldir)
 	t_vec	li_col;
 
 	ndotl = dot_vec(n, ldir);
-	if (ndotl < 0.0)
+	if (ndotl < EPSILON)
 		ndotl = 0.0;
 	// li_col = mult_vec(normalize_color(li->color), li->ratio);
 	li_col = mult_vec(li->color, li->ratio);

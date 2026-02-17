@@ -10,12 +10,9 @@ Also known as
 This project is an introduction to the beautiful world of Raytracing. It features a ray tracing engine written in C, with support for basic geometric objects, coupled with ambient and diffuse lighting.
 
 ## Instructions
-#### Requirements:
-- macOS or Linux
-- minilibx
-
 #### To build the program:
 ```bash
+  make minilibx
   make
 ```
 

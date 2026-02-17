@@ -54,6 +54,10 @@ OBJ = $(SRC:sources/%.c=$(OBJ_DIR)/%.o)
 all: $(NAME)
 	@echo "\033[32m[Program is ready for use]\033[0m"
 
+minilibx:
+	@git clone https://github.com/42paris/minilibx-linux $(MLX_DIR)
+	@make -C $(MLX_DIR)
+
 macos: MLX_DIR = libmlx/macos
 macos: MLX_FLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 macos: $(NAME)

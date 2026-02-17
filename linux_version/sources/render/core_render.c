@@ -81,7 +81,7 @@ void	rendering(t_data *data)
 	info->cam = set_camera(&data->scene);
 	image_init(info);
 	draw(info, &data->scene);
-	printf("Finished Rendering\n");
+	ft_printf("Finished Rendering\n");
 	mlx_key_hook(info->mlx.win, handle_key, data);
 	mlx_hook(info->mlx.win, 17, 0, clean_exit, data);
 	mlx_loop(info->mlx.mlx);

@@ -14,8 +14,32 @@ This project is an introduction to the beautiful world of Raytracing. It feature
 - macOS or Linux
 - minilibx
 
-#### To build the program:
+#### Build instruction:
+##### macOS version
+- supports 3 objects:
+  - sp (sphere)
+  - pl (plane)
+  - cy (cylinder)
+ 
+##### build step
 ```bash
+  cd mac_version
+  make
+```
+---
+##### Linux version
+- supports 6 objects:
+  - sp (sphere)
+  - pl (plane)
+  - cy (cylinder)
+  - co (double cone)
+  - tu (tube)
+  - ci (circle plane)
+ 
+##### build step
+```bash
+  cd linux_version
+  make minilibx
   make
 ```
 
@@ -28,7 +52,8 @@ In case of an invalid argument an error message will appear.
 
 ## .rt File Format
 #### Elements:
-- [A] Ambient (Background) Light [Required] 
+- [A] Ambient (Background) Light [Required]
+- [L] Light source 
 - [C] Camera [Required]
 - [pl] Infinite Plane 
 - [sp] Sphere
@@ -64,7 +89,7 @@ tu 10,12,0 1,0,-1 6.0 10.0 220,0,220
 ![Objects](docs/objects.png "Objects")
 
 ## Rendering Logic Overview
-Starting in `draw`, based on the initialized in `set_camera` coordinates, for each pixel, a normalized direction vector (ray), is created. The program iterates through the objects in the scene, calculating the closest valid intersection point. If the point is found, the color is diffused with the colors of the lights and the ambient. If not, the ambient color is rendered instead. In the case of an object blocking the light, it doesn't diffuse the color, creating a shade. Additionaly a specular reflection is added. 
+Starting in `draw`, based on the initialized in `set_camera` coordinates, for each pixel, a normalized direction vector (ray), is created. The program iterates through the objects in the scene, calculating the closest valid intersection point. If the point is found, the base color of the object is diffused with the colors of the lights and the ambient. If not, the ambient color is rendered instead. In the case of an object blocking the light, it doesn't diffuse the color, creating a shade. Additionaly a specular reflection is added. 
 
 #### Without shadows
 ![plain_spheres](docs/plain_spheres.png "plain_spheres")

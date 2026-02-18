@@ -23,8 +23,8 @@ t_camera set_camera(t_scene *sc)
     world_up = (t_vec){0, 1, 0}; // +Y
     if (fabs(cam.forward.x) < EPSILON && fabs(cam.forward.z) < EPSILON)
         world_up = (t_vec){0, 0, 1}; // +Z
-    cam.right = vec_normalize(vec_cross(cam.forward, world_up));
-    cam.up =  vec_normalize(vec_cross(cam.right, cam.forward));
+    cam.right = vec_normalize(vec_cross(world_up, cam.forward));
+    cam.up =  vec_normalize(vec_cross(cam.forward, cam.right));
     return (cam);
 }
 
